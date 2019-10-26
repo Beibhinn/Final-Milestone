@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load bootstrap_tags %}
+
+{% block content %}
+<div class="row row-flex">
+    {% for item in cart_items %}
+
+    <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4 display panel panel-display">
+
+        <div class="display panel panel-display">
+            <h3>{{ item.feature.name }}</h3>
+            <p class="issue-description">{{ item.feature.description }}</p>
+            <p>{{ item.feature.user }}</p>
+            <p>
+                <form method="post" class="form-inline" action="{% url 'remove_from_cart' item.id %}">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="row">
+    <a href="/" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Donate</a>
+</div>
+
+{% endblock %}
