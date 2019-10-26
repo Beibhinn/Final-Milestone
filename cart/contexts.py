@@ -12,9 +12,9 @@ def cart_contents(request):
     cart_items = []
     feature_count = 0
 
-    for id in cart.items():
-        feature = get_object_or_404(Feature, pk=id)
+    for key, value in cart.items():
+        feature = get_object_or_404(Feature, pk=key)
         feature_count += 1
-        cart_items.append({'id': id, 'feature': feature})
+        cart_items.append({'id': key, 'feature': feature})
 
     return {'cart_items': cart_items, 'feature_count': feature_count}
