@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-10 col-md-9">
+            <h3>{{ bug.name }}</h3>
+            <span class="float-right"><p>{{ bug.status }}</p></span>
+            <h4>Created by: {{ bug.username }}</h4>
+            {% if bug.image %}
+                <img src="/media/{{ bug.image }}">
+            {% endif %}
+            <div class="row">
+                <div class="text-center">
+                    <p>{{ bug.description }}</p>
+                    <p><span class="boldtext">Created on:</span> {{ bug.date_added }} </p>
+                    {% if bug.date_started %}
+                        <p><span class="boldtext">Started on:</span> {{ bug.date_started }} </p>
+                    {% endif %}
+                    {% if bug.date_finished %}
+                        <p><span class="boldtext">Completed on:</span> {{ bug.date_finished }} </p>
+                    {% endif %}
+                    <p><span class="boldtext">Upvotes:</span> {{ bug.upvotes }}</p>
+                    <p><span class="boldtext">Views:</span> {{ bug.views }}</p>
+
+                    <a href="{% url 'bugs' %}" class="btn btn-default">Back to Bugs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
