@@ -93,3 +93,4 @@ fabric.properties
 
 **/__pycache__
 *.sqlite3
+env.py
