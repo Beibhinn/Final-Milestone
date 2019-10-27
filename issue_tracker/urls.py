@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+import django
 from django.conf.urls import url, include
 from django.contrib import admin
 from accounts import urls as urls_accounts
@@ -24,6 +25,12 @@ from features.views import all_features
 from django.views import static
 from .settings import MEDIA_ROOT
 
+
+if django.VERSION[:2] < (2, 0):
+    from django.conf.urls import include, url as re_path
+else:
+    from django.urls import include, re_path
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', all_bugs, name='index'),
@@ -31,5 +38,6 @@ urlpatterns = [
     url(r'^bugs/', include(urls_bugs)),
     url(r'^cart/', include(urls_cart)),
     url(r'^features/', include(urls_features)),
-    url(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT})
+    url(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
+    re_path(r'^comments/', include('django_comments_xtd.urls')),
 ]

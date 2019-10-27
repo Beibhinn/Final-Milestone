@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
 
@@ -26,6 +27,16 @@ class Bug(models.Model):
         blank=True, default=None, null=True)
     upvotes = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
+    #
+    # class Meta:
+    #     db_table = 'bugs'
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse(
+            'bug_detail',
+            kwargs={'year': self.date_added.year,
+                    'month': int(self.date_added.strftime('%m').lower()),
+                    'day': self.date_added.day})
