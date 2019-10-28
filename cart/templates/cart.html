@@ -4,13 +4,27 @@
 {% block content %}
 <div class="row row-flex">
     {% for item in cart_items %}
-
     <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4 display panel panel-display">
-
         <div class="display panel panel-display">
             <h3>{{ item.feature.name }}</h3>
             <p class="issue-description">{{ item.feature.description }}</p>
             <p>{{ item.feature.user }}</p>
+            <div>Current donation value in cart: <span class="glyphicon glyphicon-eur" aria-hidden="true"></span> {{ item.donation_amount }}</div>
+            <br>
+            <div>New Amount:</div>
+            <p>
+                <form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="input-group">
+
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-eur" aria-hidden="true"></span></div>
+                            <input name="donation_amount" type="number" min="0" max="999" class="form-control">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+                </form>
+            </p>
             <p>
                 <form method="post" class="form-inline" action="{% url 'remove_from_cart' item.id %}">
                     {% csrf_token %}
@@ -28,7 +42,7 @@
     {% endfor %}
 </div>
 <div class="row">
-    <a href="/" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Donate</a>
+    <a href="{% url 'checkout' %}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Donate</a>
 </div>
 
 {% endblock %}

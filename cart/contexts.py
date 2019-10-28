@@ -10,11 +10,13 @@ def cart_contents(request):
     cart = request.session.get('cart', {})
 
     cart_items = []
+    total = 0
     feature_count = 0
 
-    for key, value in cart.items():
-        feature = get_object_or_404(Feature, pk=key)
+    for id, donation_amount in cart.items():
+        feature = get_object_or_404(Feature, pk=id)
+        total += donation_amount
         feature_count += 1
-        cart_items.append({'id': key, 'feature': feature})
+        cart_items.append({'id': id, 'donation_amount': donation_amount, 'feature': feature})
 
-    return {'cart_items': cart_items, 'feature_count': feature_count}
+    return {'cart_items': cart_items, 'total': total, 'feature_count': feature_count}

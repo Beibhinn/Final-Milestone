@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'bugs',
     'features',
     'cart',
+    'checkout',
     'django_comments_xtd',
     'django_comments',
 ]

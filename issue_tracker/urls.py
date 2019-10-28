@@ -19,6 +19,7 @@ from django.contrib import admin
 from accounts import urls as urls_accounts
 from bugs import urls as urls_bugs
 from cart import urls as urls_cart
+from checkout import urls as urls_checkout
 from features import urls as urls_features
 from bugs.views import all_bugs
 from features.views import all_features
@@ -37,6 +38,7 @@ urlpatterns = [
     url(r'^accounts/', include(urls_accounts)),
     url(r'^bugs/', include(urls_bugs)),
     url(r'^cart/', include(urls_cart)),
+    url(r'^checkout/', include(urls_checkout)),
     url(r'^features/', include(urls_features)),
     url(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
     re_path(r'^comments/', include('django_comments_xtd.urls')),
