@@ -6,6 +6,7 @@ from .models import DonationLineItem
 from django.conf import settings
 from django.utils import timezone
 from features.models import Feature
+from datetime import datetime
 import stripe
 
 # Create your views here.
@@ -15,7 +16,7 @@ stripe.api_key = settings.STRIPE_SECRET
 @login_required()
 def checkout(request):
     if request.method == "POST":
-        donation_form = DonationForm(request.POST)
+        donation_form = DonationForm(request.POST, request.user, datetime.now())
         payment_form = MakePaymentForm(request.POST)
 
         if donation_form.is_valid() and payment_form.is_valid():
@@ -61,7 +62,7 @@ def checkout(request):
             messages.error(request, "Sorry, we were unable to take a payment with that card")
     else:
         payment_form = MakePaymentForm()
-        donation_form = DonationForm()
+        donation_form = DonationForm(request.POST, request.user, datetime.now())
 
     return render(request, "checkout.html",
                   {"donation_form": donation_form, "payment_form": payment_form, "publishable": settings.STRIPE_PUBLISHABLE})

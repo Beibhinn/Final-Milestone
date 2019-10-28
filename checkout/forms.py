@@ -21,3 +21,15 @@ class DonationForm(forms.ModelForm):
         exclude = (
             'name', 'date'
         )
+
+    def __init__(self, request, user, date):
+        self.user = user
+        self.date = date
+        super().__init__(request)
+
+    def save(self, commit=True):
+        donation = super(DonationForm, self).save(False)
+        donation.user = self.user
+        donation.date = self.date
+        donation.save(commit)
+        return donation
