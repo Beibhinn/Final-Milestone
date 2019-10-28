@@ -23,4 +23,4 @@ class DonationLineItem(models.Model):
 
     def __str__(self):
         return "{0} {1} @ {2}".format(
-            self.feature, self.feature.name, self.feature.amount)
+            self.feature, self.feature.name, self.amount)
