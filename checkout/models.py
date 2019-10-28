@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
+from django.utils import timezone
+
 from features.models import Feature
 
 
@@ -10,7 +12,8 @@ from features.models import Feature
 class Donation(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE, null=True, blank=True)
-    date = models.DateField()
+    date = models.DateTimeField(
+        blank=False, default=timezone.now, null=False)
 
     def __str__(self):
         return "{0}-{1}-{2}".format(self.id, self.date, self.user)

@@ -20,7 +20,7 @@ class Bug(models.Model):
     status = models.CharField(
         max_length=20, choices=STATUS_CHOICES, default='CREATED')
     date_added = models.DateTimeField(
-        blank=True, default=timezone.now, null=True)
+        blank=False, default=timezone.now, null=False)
     date_started = models.DateTimeField(
         blank=True, default=None, null=True)
     date_finished = models.DateTimeField(
