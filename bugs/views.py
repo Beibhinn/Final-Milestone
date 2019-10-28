@@ -20,7 +20,7 @@ def all_bugs(request):
 def bug_detail(request, pk):
     """
     Creates a view that returns a single
-    Bug object based on the post ID (pk) and
+    Bug object based on the bug ID (pk) and
     renders it to the 'bugdetail.html' template.
     Return 404 if not found
     """

@@ -9,8 +9,8 @@ from django.contrib.auth.models import User
 class Bug(models.Model):
     name = models.CharField(max_length=150, blank=False)
     description = models.TextField(blank=False)
-    image = models.ImageField(upload_to='images')
-    username = models.ForeignKey(User, default=None)
+    image = models.ImageField(upload_to='images', blank=True)
+    username = models.ForeignKey(User)
     STATUS_CHOICES = (
         ('CREATED', 'Created'),
         ('IN PROGRESS', 'In progress'),

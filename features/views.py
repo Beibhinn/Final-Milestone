@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Feature
+from .forms import FeatureForm
 
 # Create your views here.
 
@@ -16,7 +17,7 @@ def all_features(request):
 def feature_detail(request, pk):
     """
     Creates a view that returns a single
-    Feature object based on the post ID (pk) and
+    Feature object based on the feature ID (pk) and
     renders it to the 'featuredetail.html' template.
     Return 404 if not found
     """
@@ -24,3 +25,20 @@ def feature_detail(request, pk):
     feature.views += 1
     feature.save()
     return render(request, "featuredetail.html", {'feature': feature})
+
+
+def add_or_edit_feature(request, pk=None):
+    """
+    Create a view that allows to add
+    or edit a feature depending if the feature ID
+    is null or not
+    """
+    feature = get_object_or_404(Feature, pk=pk) if pk else None
+    if request.method == "POST":
+        form = FeatureForm(request.POST, request.user, files=request.FILES, instance=feature)
+        if form.is_valid():
+            feature = form.save()
+            return redirect(feature_detail, feature.pk)
+    else:
+        form = FeatureForm(request.GET, request.user, files=None, instance=feature)
+    return render(request, 'featureform.html', {'form': form})

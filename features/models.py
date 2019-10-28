@@ -8,8 +8,8 @@ from django.contrib.auth.models import User
 class Feature(models.Model):
     name = models.CharField(max_length=150, blank=False)
     description = models.TextField(blank=False)
-    image = models.ImageField(upload_to='images')
-    username = models.ForeignKey(User, default=None)
+    image = models.ImageField(upload_to='images', blank=True)
+    username = models.ForeignKey(User)
     STATUS_CHOICES = (
         ('CREATED', 'Created'),
         ('IN PROGRESS', 'In progress'),
@@ -19,7 +19,7 @@ class Feature(models.Model):
     status = models.CharField(
         max_length=20, choices=STATUS_CHOICES, default='CREATED')
     date_added = models.DateTimeField(
-        blank=True, default=timezone.now, null=True)
+        blank=False, default=timezone.now, null=False)
     date_started = models.DateTimeField(
         blank=True, default=None, null=True)
     date_finished = models.DateTimeField(
