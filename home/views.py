@@ -1,8 +1,14 @@
 from django.shortcuts import render
+from bugs.models import Bug
+from features.models import Feature
 
 # Create your views here.
 
 
-def index(request):
+def all_items(request):
     """A view that will display the index page"""
-    return render(request, 'index.html')
+    bugs = Bug.objects.all()
+    features = Feature.objects.all()
+
+    return render(request, 'index.html', {'bugs': bugs,
+                                          'features': features})

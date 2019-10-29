@@ -55,8 +55,8 @@ def profile(request):
     bugs = Bug.objects.filter(username=username)
     features = Feature.objects.filter(username=username)
 
-    return render(request, 'profile.html', {'features': features,
-                                            'bugs': bugs})
+    return render(request, 'profile.html', {'bugs': bugs,
+                                          'features': features})
 
 
 def register(request):

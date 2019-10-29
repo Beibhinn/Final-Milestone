@@ -18,3 +18,9 @@ footer {
 .accountform {
     padding-top: 20px;
 }
+
+.issue-container {
+    border-style: solid;
+    border-width: 2px;
+    border-color: deepskyblue;
+}

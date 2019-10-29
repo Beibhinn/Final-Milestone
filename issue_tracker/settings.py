@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'checkout',
     'django_comments_xtd',
     'django_comments',
+    'home'
 ]
 
 SITE_ID = 1

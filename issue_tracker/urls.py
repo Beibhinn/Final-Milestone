@@ -23,6 +23,7 @@ from checkout import urls as urls_checkout
 from features import urls as urls_features
 from bugs.views import all_bugs
 from features.views import all_features
+from home.views import all_items
 from django.views import static
 from .settings import MEDIA_ROOT
 
@@ -34,7 +35,7 @@ else:
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', all_bugs, name='index'),
+    url(r'^$', all_items, name='index'),
     url(r'^accounts/', include(urls_accounts)),
     url(r'^bugs/', include(urls_bugs)),
     url(r'^cart/', include(urls_cart)),
