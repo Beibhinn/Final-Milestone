@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'features',
     'cart',
     'checkout',
+    'search',
     'django_comments_xtd',
     'django_comments',
     'home'
