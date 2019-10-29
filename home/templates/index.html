@@ -11,41 +11,172 @@
         </li>
     </ul>
 </div>
+<!--<div class="issue-container row row-flex">-->
+<!--    <h3>Issues</h3>-->
+<!--    {% for issue in issues %}-->
+<!--        <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-4 display panel panel-default">-->
+<!--            <div class="panel-body">-->
+<!--                <span class="right label label-primary">{{ issue.status }}</span>-->
+<!--                <span><h3><a href="{% url 'bug_detail' issue.id %}">{{ issue.name }}</a></h3></span>-->
+
+<!--                <p class="issue-description">{{ issue.description }}</p>-->
+<!--                <p><span>Upvotes: {{ issue.upvotes }}</span> <span>Views: {{ issue.views }}</span></p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    {% endfor %}-->
+<!--</div>-->
 <div class="issue-container row row-flex">
     <h3>Bugs</h3>
-    {% for bug in bugs %}
-        <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-4 display panel panel-default">
-            <div class="panel-body">
-                <span class="right label label-primary">{{ bug.status }}</span>
-                <span><h3><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a></h3></span>
+    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3">
+        <h4>To do</h4>
+        {% for bug in bugs_created %}
+            <div class="display panel panel-default">
+                <div class="panel-body">
+                    <span class="right label label-default">{{ bug.status }}</span>
+                    <span><h3><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a></h3></span>
 
-                <p class="issue-description">{{ bug.description }}</p>
-                <p><span>Upvotes: {{ bug.upvotes }}</span> <span>Views: {{ bug.views }}</span></p>
+                    <p class="issue-description">{{ bug.description }}</p>
+                    <p><span>Upvotes: {{ bug.upvotes }}</span> <span>Views: {{ bug.views }}</span></p>
+                </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3">
+        <h4>In progress</h4>
+        {% for bug in bugs_in_progress %}
+            <div class="display panel panel-default">
+                <div class="panel-body">
+                    <span class="right label label-warning">{{ bug.status }}</span>
+                    <span><h3><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a></h3></span>
+
+                    <p class="issue-description">{{ bug.description }}</p>
+                    <p><span>Upvotes: {{ bug.upvotes }}</span> <span>Views: {{ bug.views }}</span></p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3">
+        <h4>In review</h4>
+        {% for bug in bugs_in_review %}
+            <div class="display panel panel-default">
+                <div class="panel-body">
+                    <span class="right label label-primary">{{ bug.status }}</span>
+                    <span><h3><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a></h3></span>
+
+                    <p class="issue-description">{{ bug.description }}</p>
+                    <p><span>Upvotes: {{ bug.upvotes }}</span> <span>Views: {{ bug.views }}</span></p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3">
+        <h4>Done</h4>
+        {% for bug in bugs_complete %}
+            <div class="display panel panel-default">
+                <div class="panel-body">
+                    <span class="right label label-success">{{ bug.status }}</span>
+                    <span><h3><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a></h3></span>
+
+                    <p class="issue-description">{{ bug.description }}</p>
+                    <p><span>Upvotes: {{ bug.upvotes }}</span> <span>Views: {{ bug.views }}</span></p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 </div>
 <div class="issue-container row row-flex">
     <h3>Features</h3>
-    {% for feature in features %}
-        <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-4 display panel panel-default">
-            <div class="panel-body">
-                <span><h3><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a></h3></span>
-                <span class="label label-primary">{{ feature.status }}</span>
-                <p class="issue-description">{{ feature.description }}</p>
-                <p><span>Donations: {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
-                <form method="post" action="{% url 'add_to_cart' feature.id %}">
-                    {% csrf_token %}
-                    <div class="input-group">
-                        <div class="input-group-addon"><span class="glyphicon glyphicon-eur" aria-hidden="true"></span></div>
-                        <input name="donation_amount" type="number" min="1" max="999" class="form-control" placeholder="Amount">
-                        <span class="input-group-btn">
-                            <button class="btn btn-success" type="submit">Add to cart</button>
-                        </span>
-                    </div>
-                </form>
+    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3">
+        <h4>To do</h4>
+        {% for feature in features_created %}
+            <div class="display panel panel-default">
+                <div class="panel-body">
+                    <span class="label label-default">{{ feature.status }}</span>
+                    <span><h3><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a></h3></span>
+                    <p class="issue-description">{{ feature.description }}</p>
+                    <p><span>Donations: {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
+                    <form method="post" action="{% url 'add_to_cart' feature.id %}">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-eur" aria-hidden="true"></span></div>
+                            <input name="donation_amount" type="number" min="1" max="999" class="form-control" placeholder="Amount">
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" type="submit">Add to cart</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3">
+        <h4>In progress</h4>
+        {% for feature in features_to_do %}
+            <div class="display panel panel-default">
+                <div class="panel-body">
+                    <span class="label label-warning">{{ feature.status }}</span>
+                    <span><h3><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a></h3></span>
+                    <p class="issue-description">{{ feature.description }}</p>
+                    <p><span>Donations: {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
+                    <form method="post" action="{% url 'add_to_cart' feature.id %}">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-eur" aria-hidden="true"></span></div>
+                            <input name="donation_amount" type="number" min="1" max="999" class="form-control" placeholder="Amount">
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" type="submit">Add to cart</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3">
+        <h4>In review</h4>
+        {% for feature in features_in_review %}
+            <div class="display panel panel-default">
+                <div class="panel-body">
+                    <span class="label label-primary">{{ feature.status }}</span>
+                    <span><h3><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a></h3></span>
+                    <p class="issue-description">{{ feature.description }}</p>
+                    <p><span>Donations: {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
+                    <form method="post" action="{% url 'add_to_cart' feature.id %}">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-eur" aria-hidden="true"></span></div>
+                            <input name="donation_amount" type="number" min="1" max="999" class="form-control" placeholder="Amount">
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" type="submit">Add to cart</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3">
+        <h4>Done</h4>
+        {% for feature in features_complete %}
+            <div class="display panel panel-default">
+                <div class="panel-body">
+                    <span class="label label-success">{{ feature.status }}</span>
+                    <span><h3><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a></h3></span>
+                    <p class="issue-description">{{ feature.description }}</p>
+                    <p><span>Donations: {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
+                    <form method="post" action="{% url 'add_to_cart' feature.id %}">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-eur" aria-hidden="true"></span></div>
+                            <input name="donation_amount" type="number" min="1" max="999" class="form-control" placeholder="Amount">
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" type="submit">Add to cart</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
