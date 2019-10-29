@@ -11,7 +11,6 @@ def search_issues(request):
         Q(name__icontains=request.GET['search_term']) | Q(description__icontains=request.GET['search_term']))
     features = Feature.objects.filter(
         Q(name__icontains=request.GET['search_term']) | Q(description__icontains=request.GET['search_term']))
-    # bugs = Bug.objects.filter(name__icontains=request.GET['search_term'])
 
     return render(request, "searchresults.html", {"bugs": bugs, "features": features})
 

@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Feature
+from django.views.generic import DateDetailView
 from .forms import FeatureForm
 
 # Create your views here.
@@ -25,6 +26,17 @@ def feature_detail(request, pk):
     feature.views += 1
     feature.save()
     return render(request, "featuredetail.html", {'feature': feature})
+
+
+class FeatureDetailView(DateDetailView):
+    model = Feature
+    date_field = "date_added"
+    month_format = "%m"
+
+    def get_context_data(self, **kwargs):
+        context = super(FeatureDetailView, self).get_context_data(**kwargs)
+        context.update({'next': reverse('comments-xtd-sent')})
+        return context
 
 
 def add_or_edit_feature(request, pk=None):

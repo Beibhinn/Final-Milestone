@@ -49,6 +49,9 @@
              {% render_comment_form for bug %}
           </div>
         </div>
+    {% else %}
+    <p>Please <a href="{% url 'login' %}">log in</a> or <a href="{% url 'register' %}">register</a> to post a comment</p>
+
     {% endif %}
 </div>
 {% endblock %}

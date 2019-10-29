@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
 
@@ -29,3 +30,10 @@ class Feature(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse(
+            'feature_detail',
+            kwargs={'year': self.date_added.year,
+                    'month': int(self.date_added.strftime('%m').lower()),
+                    'day': self.date_added.day})
