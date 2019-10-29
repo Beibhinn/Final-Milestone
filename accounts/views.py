@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from bugs.models import Bug
 from features.models import Feature
+from checkout.models import DonationLineItem, Donation
 
 
 # Create your views here.
@@ -54,9 +55,12 @@ def profile(request):
     username = User.objects.get(username=request.user.username)
     bugs = Bug.objects.filter(username=username)
     features = Feature.objects.filter(username=username)
+    don = Donation.objects.filter(user=username)
+    donations = DonationLineItem.objects.filter(donation=don)
 
     return render(request, 'profile.html', {'bugs': bugs,
-                                          'features': features})
+                                            'features': features,
+                                            'donations': donations})
 
 
 def register(request):

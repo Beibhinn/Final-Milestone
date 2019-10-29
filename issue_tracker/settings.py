@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'search',
     'django_comments_xtd',
     'django_comments',
-    'home'
+    'home',
+    'avatar'
 ]
 
 SITE_ID = 1
