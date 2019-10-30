@@ -67,5 +67,11 @@
             <p>Footer content</p>
         </div>
     </footer>
+<script>
+    var $content = $('#profile-content');
+    $content.on('show.bs.collapse', '.collapse', function () {
+        $content.find('.collapse.in').collapse('hide');
+    });
+</script>
 </body>
 </html>
