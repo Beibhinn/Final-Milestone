@@ -21,6 +21,20 @@ footer {
 
 .issue-container {
     border-style: solid;
-    border-width: 2px;
+    border-width: 1px;
     border-color: deepskyblue;
+    border-radius: 5px;
+}
+
+.issue-container >h3 {
+    text-align: center;
+}
+
+.status-container {
+    height: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
+}
+
+.status-container > h4 {
+    text-align: center;
 }

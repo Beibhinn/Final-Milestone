@@ -1,8 +1,6 @@
 from django.shortcuts import render
 from bugs.models import Bug
 from features.models import Feature
-from itertools import chain
-from operator import attrgetter
 
 # Create your views here.
 
@@ -13,7 +11,7 @@ def all_items(request):
     features = Feature.objects.all()
 
     def filter_by_status(issue, status):
-        return (issue for issue in issue if issue.status == status)
+        return [issue for issue in issue if issue.status == status]
 
     return render(request, 'index.html', {'bugs_created': filter_by_status(bugs, "CREATED"),
                                           'bugs_in_progress': filter_by_status(bugs, "IN PROGRESS"),
