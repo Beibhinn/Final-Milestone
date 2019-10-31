@@ -1,6 +1,9 @@
+import json
+
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Feature
 from django.views.generic import DateDetailView
+from django.http import HttpResponse, HttpResponseNotAllowed
 from .forms import FeatureForm
 
 # Create your views here.
@@ -54,3 +57,21 @@ def add_or_edit_feature(request, pk=None):
     else:
         form = FeatureForm(request.GET, request.user, files=None, instance=feature)
     return render(request, 'featureform.html', {'form': form})
+
+
+def update_status(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+
+        feature = get_object_or_404(Feature, pk=data['id'])
+        # Check if the status is different
+        if feature.status == data['status']:
+            print('status stayed the same')
+        else:
+            feature.status = data['status']
+            print(feature.status)
+            feature.save()
+
+        return HttpResponse(status=204)
+    else:
+        return HttpResponseNotAllowed(["POST"])

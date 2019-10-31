@@ -229,28 +229,53 @@
             </div>
         {% endif %}
     </div>
-    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3 display panel panel-default status-container">
+    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3 display panel panel-default status-container" data-status="IN PROGRESS" ondrop="drop(event)" ondragover="allowDrop(event)">
         <h4>In progress</h4>
         {% if features_in_progress %}
             {% for feature in features_in_progress %}
-                <div class="display panel panel-default">
-                    <div class="panel-body">
-                        <span class="label label-warning pull-right">{{ feature.status }}</span>
-                        <span><h3><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a></h3></span>
-                        <p class="issue-description">{{ feature.description }}</p>
-                        <p><span>Donations: {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
-                        <form method="post" action="{% url 'add_to_cart' feature.id %}">
-                            {% csrf_token %}
-                            <div class="input-group">
-                                <div class="input-group-addon"><span class="glyphicon glyphicon-eur" aria-hidden="true"></span></div>
-                                <input name="donation_amount" type="number" min="1" max="999" class="form-control" placeholder="Amount">
-                                <span class="input-group-btn">
+                {% if user.is_staff %}
+                    <div class="display panel panel-default" id="feature-{{ feature.id }}" draggable="true" ondragstart="drag(event)">
+                        <div class="panel-body">
+                            <span class="right label label-warning pull-right">{{ feature.status }}</span>
+                            <span><h3><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a></h3></span>
+
+                            <p class="issue-description">{{ feature.description }}</p>
+                            <p><span>Donations: {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
+                            <form method="post" action="{% url 'add_to_cart' feature.id %}">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-eur"
+                                                                         aria-hidden="true"></span></div>
+                                    <input name="donation_amount" type="number" min="1" max="999" class="form-control"
+                                           placeholder="Amount">
+                                    <span class="input-group-btn">
                                     <button class="btn btn-success" type="submit">Add to cart</button>
                                 </span>
-                            </div>
-                        </form>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                    {% else %}
+                    <div class="display panel panel-default" draggable="true">
+                        <div class="panel-body">
+                            <span class="right label label-warning pull-right">{{ feature.status }}</span>
+                            <span><h3><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a></h3></span>
+
+                            <p class="issue-description">{{ feature.description }}</p>
+                            <p><span>Donations: {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
+                            <form method="post" action="{% url 'add_to_cart' feature.id %}">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-eur" aria-hidden="true"></span></div>
+                                    <input name="donation_amount" type="number" min="1" max="999" class="form-control" placeholder="Amount">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-success" type="submit">Add to cart</button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
             {% endfor %}
         {% else %}
             <div class="display panel panel-default">
@@ -261,28 +286,53 @@
         {% endif %}
 
     </div>
-    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3 display panel panel-default status-container">
+    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3 display panel panel-default status-container" data-status="IN REVIEW" ondrop="drop(event)" ondragover="allowDrop(event)">
         <h4>In review</h4>
         {% if features_in_review %}
             {% for feature in features_in_review %}
-                <div class="display panel panel-default">
-                    <div class="panel-body">
-                        <span class="label label-primary pull-right">{{ feature.status }}</span>
-                        <span><h3><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a></h3></span>
-                        <p class="issue-description">{{ feature.description }}</p>
-                        <p><span>Donations: {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
-                        <form method="post" action="{% url 'add_to_cart' feature.id %}">
-                            {% csrf_token %}
-                            <div class="input-group">
-                                <div class="input-group-addon"><span class="glyphicon glyphicon-eur" aria-hidden="true"></span></div>
-                                <input name="donation_amount" type="number" min="1" max="999" class="form-control" placeholder="Amount">
-                                <span class="input-group-btn">
+                {% if user.is_staff %}
+                    <div class="display panel panel-default" id="feature-{{ feature.id }}" draggable="true" ondragstart="drag(event)">
+                        <div class="panel-body">
+                            <span class="right label label-primary pull-right">{{ feature.status }}</span>
+                            <span><h3><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a></h3></span>
+
+                            <p class="issue-description">{{ feature.description }}</p>
+                            <p><span>Donations: {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
+                            <form method="post" action="{% url 'add_to_cart' feature.id %}">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-eur"
+                                                                         aria-hidden="true"></span></div>
+                                    <input name="donation_amount" type="number" min="1" max="999" class="form-control"
+                                           placeholder="Amount">
+                                    <span class="input-group-btn">
                                     <button class="btn btn-success" type="submit">Add to cart</button>
                                 </span>
-                            </div>
-                        </form>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                    {% else %}
+                    <div class="display panel panel-default" draggable="true">
+                        <div class="panel-body">
+                            <span class="right label label-primary pull-right">{{ feature.status }}</span>
+                            <span><h3><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a></h3></span>
+
+                            <p class="issue-description">{{ feature.description }}</p>
+                            <p><span>Donations: {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
+                            <form method="post" action="{% url 'add_to_cart' feature.id %}">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-eur" aria-hidden="true"></span></div>
+                                    <input name="donation_amount" type="number" min="1" max="999" class="form-control" placeholder="Amount">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-success" type="submit">Add to cart</button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
             {% endfor %}
         {% else %}
             <div class="display panel panel-default">
@@ -292,28 +342,53 @@
             </div>
         {% endif %}
     </div>
-    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3 display panel panel-default status-container">
+    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3 display panel panel-default status-container" data-status="COMPLETE" ondrop="drop(event)" ondragover="allowDrop(event)">
         <h4>Done</h4>
         {% if features_complete %}
             {% for feature in features_complete %}
-                <div class="display panel panel-default">
-                    <div class="panel-body">
-                        <span class="label label-success pull-right">{{ feature.status }}</span>
-                        <span><h3><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a></h3></span>
-                        <p class="issue-description">{{ feature.description }}</p>
-                        <p><span>Donations: {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
-                        <form method="post" action="{% url 'add_to_cart' feature.id %}">
-                            {% csrf_token %}
-                            <div class="input-group">
-                                <div class="input-group-addon"><span class="glyphicon glyphicon-eur" aria-hidden="true"></span></div>
-                                <input name="donation_amount" type="number" min="1" max="999" class="form-control" placeholder="Amount">
-                                <span class="input-group-btn">
+                {% if user.is_staff %}
+                    <div class="display panel panel-default" id="feature-{{ feature.id }}" draggable="true" ondragstart="drag(event)">
+                        <div class="panel-body">
+                            <span class="right label label-success pull-right">{{ feature.status }}</span>
+                            <span><h3><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a></h3></span>
+
+                            <p class="issue-description">{{ feature.description }}</p>
+                            <p><span>Donations: {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
+                            <form method="post" action="{% url 'add_to_cart' feature.id %}">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-eur"
+                                                                         aria-hidden="true"></span></div>
+                                    <input name="donation_amount" type="number" min="1" max="999" class="form-control"
+                                           placeholder="Amount">
+                                    <span class="input-group-btn">
                                     <button class="btn btn-success" type="submit">Add to cart</button>
                                 </span>
-                            </div>
-                        </form>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                    {% else %}
+                    <div class="display panel panel-default" draggable="true">
+                        <div class="panel-body">
+                            <span class="right label label-success pull-right">{{ feature.status }}</span>
+                            <span><h3><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a></h3></span>
+
+                            <p class="issue-description">{{ feature.description }}</p>
+                            <p><span>Donations: {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
+                            <form method="post" action="{% url 'add_to_cart' feature.id %}">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-eur" aria-hidden="true"></span></div>
+                                    <input name="donation_amount" type="number" min="1" max="999" class="form-control" placeholder="Amount">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-success" type="submit">Add to cart</button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
             {% endfor %}
         {% else %}
             <div class="display panel panel-default">
