@@ -81,3 +81,22 @@ def update_status(request):
     else:
         return HttpResponseNotAllowed(["POST"])
 
+
+def toggle_upvote(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+
+        # Get the Bug with this id
+        bug = get_object_or_404(Bug, pk=data['id'])
+
+        if bug.upvoters.all().filter(id__exact=request.user.id).first() is None:
+            bug.upvoters.add(request.user)
+            print('Added ', request.user)
+        else:
+            bug.upvoters.remove(request.user)
+            print('Removed ', request.user)
+
+        bug.save()
+        return HttpResponse(status=204)
+    else:
+        return HttpResponseNotAllowed(["POST"])

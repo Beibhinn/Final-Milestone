@@ -1,5 +1,5 @@
 from django.conf.urls import url, include
-from .views import all_bugs, bug_detail, BugDetailView, add_or_edit_bug, update_status
+from .views import all_bugs, bug_detail, BugDetailView, add_or_edit_bug, update_status, toggle_upvote
 
 urlpatterns = [
     url(r'^$', all_bugs, name='bugs'),
@@ -9,5 +9,6 @@ urlpatterns = [
         BugDetailView.as_view(),
         name='bug_detail'),
     url(r'^new/$', add_or_edit_bug, name='new_bug'),
-    url(r'^update_status/$', update_status)
+    url(r'^update_status/$', update_status),
+    url(r'^toggle_upvote/$', toggle_upvote)
 ]

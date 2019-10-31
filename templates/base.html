@@ -108,6 +108,20 @@ function drop(ev) {
         }
     });
 }
+
+function toggleUpvote(id) {
+    $.ajax({
+        url: `bugs/toggle_upvote/`,
+        type: 'post',
+        data: JSON.stringify({
+            id: id,
+        }),
+        headers: {
+            "X-CSRFToken": csrfToken
+        },
+        dataType: 'json',
+    });
+}
 </script>
 </body>
 </html>

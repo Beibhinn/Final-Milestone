@@ -25,11 +25,16 @@ class Bug(models.Model):
         blank=True, default=None, null=True)
     date_finished = models.DateTimeField(
         blank=True, default=None, null=True)
-    upvotes = models.IntegerField(default=0)
+    upvoters = models.ManyToManyField(User, related_name='upvoters')
     views = models.IntegerField(default=0)
-    #
-    # class Meta:
-    #     db_table = 'bugs'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.upvotes = self.upvoters.count()
+
+    # @property
+    # def upvotes(self):
+    #     return self.upvoters.count()
 
     def __str__(self):
         return self.name
