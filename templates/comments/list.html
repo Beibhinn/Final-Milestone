@@ -1,40 +1,42 @@
 {% load i18n %}
 {% load comments %}
+{% load avatar_tags %}
 {% load comments_xtd %}
 
-<!--<div id="comments" class="media-list">-->
-<!--    {% for comment in comment_list %}-->
-<!--    <div class="media pb-2">-->
-<!--        <a name="c{{ comment.id }}"></a>-->
-<!--        {{ comment.user_email|xtd_comment_gravatar }}-->
-<!--        <div class="media-body">-->
-<!--            <div class="comment pb-3">-->
-<!--              <h5>{{ comment.name }}</h5>-->
-<!--                <h6 class="mb-1 small d-flex">-->
-<!--                  <div class="mr-auto">{{ comment.submit_date }}</div>-->
-<!--                </h6>-->
-<!--                <div class="content">-->
-<!--                    <div class="content">-->
-<!--                        {% include "includes/django_comments_xtd/comment_content.html" with content=comment.comment %}-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    {% endfor %}-->
-<!--</div>-->
+<div id="comments" class="media-list">
+    {% for comment in comment_list %}
+    <div class="media pb-2">
+        <a name="c{{ comment.id }}"></a>
+        {% avatar comment.user class="img-circle img-responsive" id="user_avatar" %}
+        <div class="media-body">
+            <div class="comment pb-3">
+              <h5>{{ comment.name }}</h5>
+                <h6 class="mb-1 small d-flex">
+                  <div class="mr-auto">{{ comment.submit_date }}</div>
+                </h6>
+                <div class="content">
+                    <div class="content">
+                        {% include "includes/django_comments_xtd/comment_content.html" with content=comment.comment %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 
-<dl id="comments">
-  {% for comment in comment_list %}
-    <dt id="c{{ comment.id }}">
-      {{ comment.user_email|xtd_comment_gravatar }}
-      {{ comment.name }}
+<!--<dl id="comments">-->
+<!--  {% for comment in comment_list %}-->
+<!--    <dt id="c{{ comment.id }}">-->
+<!--      {% avatar user class="img-circle img-responsive" id="user_avatar" %}-->
+<!--&lt;!&ndash;      {{ comment.user_email|xtd_comment_gravatar }}&ndash;&gt;-->
+<!--      {{ comment.name }}-->
 
-    </dt>
-    <p>{{ comment.submit_date }}</p>
-    <dd>
-      <p>{{ comment.comment }}</p>
-    </dd>
+<!--    </dt>-->
+<!--    <p>{{ comment.submit_date }}</p>-->
+<!--    <dd>-->
+<!--      <p>{{ comment.comment }}</p>-->
+<!--    </dd>-->
 
-  {% endfor %}
-</dl>
+<!--  {% endfor %}-->
+<!--</dl>-->

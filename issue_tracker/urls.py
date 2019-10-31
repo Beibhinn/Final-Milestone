@@ -45,5 +45,5 @@ urlpatterns = [
     url(r'^features/', include(urls_features)),
     url(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
     re_path(r'^comments/', include('django_comments_xtd.urls')),
-    url(r'^avatar/', include('avatar.urls')),
+    url(r'avatar/', include('avatar.urls')),
 ]
