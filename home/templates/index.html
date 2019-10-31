@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!--suppress XmlDuplicatedId -->
 <div class="row row-flex">
     <form class="nav navbar-form navbar-left" action="{% url 'search' %}" method="GET">
         <div class="form-group">
@@ -33,119 +34,192 @@
 <!--</div>-->
 <div class="issue-container row row-flex">
     <h3>Bugs</h3>
-    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3 display panel panel-default status-container">
+    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3 display panel panel-default status-container" data-status="CREATED" ondrop="drop(event)" ondragover="allowDrop(event)">
         <h4>To do</h4>
         {% if bugs_created %}
             {% for bug in bugs_created %}
-            <div class="display panel panel-default">
-                <div class="panel-body">
-                    <span class="right label label-default pull-right">{{ bug.status }}</span>
-                    <span><h3><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a></h3></span>
+                {% if user.is_staff %}
+                    <div class="display panel panel-default" id="bug-{{ bug.id }}" draggable="true" ondragstart="drag(event)">
+                        <div class="panel-body">
+                            <span class="right label label-default pull-right">{{ bug.status }}</span>
+                            <span><h3><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a></h3></span>
 
-                    <p class="issue-description">{{ bug.description }}</p>
-                    <p><span>Upvotes: {{ bug.upvotes }}</span> <span class="pull-right">Views: {{ bug.views }}</span></p>
-                </div>
-            </div>
+                            <p class="issue-description">{{ bug.description }}</p>
+                            <p><span>Upvotes: {{ bug.upvotes }}</span> <span class="pull-right">Views: {{ bug.views }}</span></p>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="display panel panel-default" draggable="true">
+                        <div class="panel-body">
+                            <span class="right label label-default pull-right">{{ bug.status }}</span>
+                            <span><h3><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a></h3></span>
+
+                            <p class="issue-description">{{ bug.description }}</p>
+                            <p><span>Upvotes: {{ bug.upvotes }}</span> <span class="pull-right">Views: {{ bug.views }}</span></p>
+                        </div>
+                    </div>
+                {% endif %}
             {% endfor %}
         {% else %}
-        <div class="display panel panel-default">
+        <div class="no-issue display panel panel-default">
             <div class="panel-body">
                 <p>There are currently no new bugs to do</p>
             </div>
         </div>
         {% endif %}
     </div>
-    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3 display panel panel-default status-container">
+    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3 display panel panel-default status-container" data-status="IN PROGRESS" ondrop="drop(event)" ondragover="allowDrop(event)">
         <h4>In progress</h4>
         {% if bugs_in_progress %}
             {% for bug in bugs_in_progress %}
-                <div class="display panel panel-default">
-                    <div class="panel-body">
-                        <span class="right label label-warning pull-right">{{ bug.status }}</span>
-                        <span><h3><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a></h3></span>
+                {% if user.is_staff %}
+                    <div class="display panel panel-default" id="bug-{{ bug.id }}" draggable="true" ondragstart="drag(event)">
+                        <div class="panel-body">
+                            <span class="right label label-warning pull-right">{{ bug.status }}</span>
+                            <span><h3><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a></h3></span>
 
-                        <p class="issue-description">{{ bug.description }}</p>
-                        <p><span>Upvotes: {{ bug.upvotes }}</span> <span class="pull-right">Views: {{ bug.views }}</span></p>
+                            <p class="issue-description">{{ bug.description }}</p>
+                            <p><span>Upvotes: {{ bug.upvotes }}</span> <span class="pull-right">Views: {{ bug.views }}</span></p>
+                        </div>
                     </div>
-                </div>
+                {% else %}
+                    <div class="display panel panel-default" draggable="true">
+                        <div class="panel-body">
+                            <span class="right label label-warning pull-right">{{ bug.status }}</span>
+                            <span><h3><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a></h3></span>
+
+                            <p class="issue-description">{{ bug.description }}</p>
+                            <p><span>Upvotes: {{ bug.upvotes }}</span> <span class="pull-right">Views: {{ bug.views }}</span></p>
+                        </div>
+                    </div>
+                {% endif %}
             {% endfor %}
         {% else %}
-            <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-4 display panel panel-default">
-                <div class="panel-body">
-                    <p>There are no bugs in progress at the moment</p>
-                </div>
+        <div class="no-issue display panel panel-default">
+            <div class="panel-body">
+                <p>There are no bugs in progress at the moment</p>
             </div>
+        </div>
         {% endif %}
     </div>
-    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3 display panel panel-default status-container">
+    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3 display panel panel-default status-container" data-status="IN REVIEW" ondrop="drop(event)" ondragover="allowDrop(event)">
         <h4>In review</h4>
         {% if bugs_in_review %}
             {% for bug in bugs_in_review %}
-                <div class="display panel panel-default">
-                    <div class="panel-body">
-                        <span class="right label label-primary pull-right">{{ bug.status }}</span>
-                        <span><h3><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a></h3></span>
+                {% if user.is_staff %}
+                    <div class="display panel panel-default" id="bug-{{ bug.id }}" draggable="true" ondragstart="drag(event)">
+                        <div class="panel-body">
+                            <span class="right label label-primary pull-right">{{ bug.status }}</span>
+                            <span><h3><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a></h3></span>
 
-                        <p class="issue-description">{{ bug.description }}</p>
-                        <p><span>Upvotes: {{ bug.upvotes }}</span> <span class="pull-right">Views: {{ bug.views }}</span></p>
+                            <p class="issue-description">{{ bug.description }}</p>
+                            <p><span>Upvotes: {{ bug.upvotes }}</span> <span class="pull-right">Views: {{ bug.views }}</span></p>
+                        </div>
                     </div>
-                </div>
+                {% else %}
+                    <div class="display panel panel-default" draggable="true">
+                        <div class="panel-body">
+                            <span class="right label label-primary pull-right">{{ bug.status }}</span>
+                            <span><h3><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a></h3></span>
+
+                            <p class="issue-description">{{ bug.description }}</p>
+                            <p><span>Upvotes: {{ bug.upvotes }}</span> <span class="pull-right">Views: {{ bug.views }}</span></p>
+                        </div>
+                    </div>
+                {% endif %}
             {% endfor %}
         {% else %}
-            <div class="display panel panel-default">
-                <div class="panel-body">
-                    <p>There are no bugs in review right now</p>
-                </div>
+        <div class="no-issue display panel panel-default">
+            <div class="panel-body">
+                <p>There are no bugs in review right now</p>
             </div>
+        </div>
         {% endif %}
     </div>
-    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3 display panel panel-default status-container">
+    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3 display panel panel-default status-container" data-status="COMPLETE" ondrop="drop(event)" ondragover="allowDrop(event)">
         <h4>Done</h4>
-        {% if bugs_complete %}
-            {% for bug in bugs_complete %}
-                <div class="display panel panel-default">
-                    <div class="panel-body">
-                        <span class="right label label-success pull-right">{{ bug.status }}</span>
-                        <span><h3><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a></h3></span>
+            {% if bugs_complete %}
+                {% for bug in bugs_complete %}
+                    {% if user.is_staff %}
+                    <div class="display panel panel-default" id="bug-{{ bug.id }}" draggable="true" ondragstart="drag(event)">
+                        <div class="panel-body">
+                            <span class="right label label-success pull-right">{{ bug.status }}</span>
+                            <span><h3><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a></h3></span>
 
-                        <p class="issue-description">{{ bug.description }}</p>
-                        <p><span>Upvotes: {{ bug.upvotes }}</span> <span class="pull-right">Views: {{ bug.views }}</span></p>
+                            <p class="issue-description">{{ bug.description }}</p>
+                            <p><span>Upvotes: {{ bug.upvotes }}</span> <span class="pull-right">Views: {{ bug.views }}</span></p>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="display panel panel-default" draggable="true">
+                        <div class="panel-body">
+                            <span class="right label label-success pull-right">{{ bug.status }}</span>
+                            <span><h3><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a></h3></span>
+
+                            <p class="issue-description">{{ bug.description }}</p>
+                            <p><span>Upvotes: {{ bug.upvotes }}</span> <span class="pull-right">Views: {{ bug.views }}</span></p>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <div class="no-issue display panel panel-default">
+                    <div class="panel-body">
+                        <p>No bugs have been completed yet</p>
                     </div>
                 </div>
-            {% endfor %}
-        {% else %}
-            <div class="display panel panel-default">
-                <div class="panel-body">
-                    <p>No bugs have been completed yet</p>
-                </div>
-            </div>
-        {% endif %}
+            {% endif %}
     </div>
 </div>
 <div class="issue-container row row-flex">
     <h3>Features</h3>
-    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3 display panel panel-default status-container">
+    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-3 display panel panel-default status-container" data-status="CREATED" ondrop="drop(event)" ondragover="allowDrop(event)">
         <h4>To do</h4>
         {% if features_created %}
             {% for feature in features_created %}
-                <div class="display panel panel-default">
-                    <div class="panel-body">
-                        <span class="label label-default pull-right">{{ feature.status }}</span>
-                        <span><h3><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a></h3></span>
-                        <p class="issue-description">{{ feature.description }}</p>
-                        <p><span>Donations: {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
-                        <form method="post" action="{% url 'add_to_cart' feature.id %}">
-                            {% csrf_token %}
-                            <div class="input-group">
-                                <div class="input-group-addon"><span class="glyphicon glyphicon-eur" aria-hidden="true"></span></div>
-                                <input name="donation_amount" type="number" min="1" max="999" class="form-control" placeholder="Amount">
-                                <span class="input-group-btn">
+                {% if user.is_staff %}
+                    <div class="display panel panel-default" id="feature-{{ feature.id }}" draggable="true" ondragstart="drag(event)">
+                        <div class="panel-body">
+                            <span class="right label label-default pull-right">{{ feature.status }}</span>
+                            <span><h3><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a></h3></span>
+
+                            <p class="issue-description">{{ feature.description }}</p>
+                            <p><span>Donations: {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
+                            <form method="post" action="{% url 'add_to_cart' feature.id %}">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-eur"
+                                                                         aria-hidden="true"></span></div>
+                                    <input name="donation_amount" type="number" min="1" max="999" class="form-control"
+                                           placeholder="Amount">
+                                    <span class="input-group-btn">
                                     <button class="btn btn-success" type="submit">Add to cart</button>
                                 </span>
-                            </div>
-                        </form>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                    {% else %}
+                    <div class="display panel panel-default" draggable="true">
+                        <div class="panel-body">
+                            <span class="right label label-default pull-right">{{ feature.status }}</span>
+                            <span><h3><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a></h3></span>
+
+                            <p class="issue-description">{{ feature.description }}</p>
+                            <p><span>Donations: {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
+                            <form method="post" action="{% url 'add_to_cart' feature.id %}">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-eur" aria-hidden="true"></span></div>
+                                    <input name="donation_amount" type="number" min="1" max="999" class="form-control" placeholder="Amount">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-success" type="submit">Add to cart</button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
             {% endfor %}
         {% else %}
             <div class="display panel panel-default">

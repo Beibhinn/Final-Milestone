@@ -1,7 +1,10 @@
+import json
+
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Bug
 from django.urls import reverse
 from django.views.generic import DateDetailView
+from django.http import HttpResponse, HttpResponseNotAllowed
 from .forms import BugForm
 
 
@@ -56,4 +59,25 @@ def add_or_edit_bug(request, pk=None):
     else:
         form = BugForm(request.GET, request.user, files=None, instance=bug)
     return render(request, 'bugform.html', {'form': form})
+
+
+def update_status(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        # print('ID ', data['id'])
+        # print('STATUS ', data['status'])
+
+        # Get the Bug with this id
+        bug = get_object_or_404(Bug, pk=data['id'])
+        # Check if the status is different
+        if bug.status == data['status']:
+            print('they are the same')
+        else:
+            bug.status = data['status']
+            print(bug.status)
+        # Dave the bug with the new status
+            bug.save()
+        return HttpResponse(status=204)
+    else:
+        return HttpResponseNotAllowed(["POST"])
 
