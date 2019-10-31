@@ -62,7 +62,7 @@ def checkout(request):
             messages.error(request, "Sorry, we were unable to take a payment with that card")
     else:
         payment_form = MakePaymentForm()
-        donation_form = DonationForm(request.GET, request.user)
+        donation_form = DonationForm(request.GET, request.user, datetime.now())
 
     return render(request, "checkout.html",
                   {"donation_form": donation_form, "payment_form": payment_form, "publishable": settings.STRIPE_PUBLISHABLE})
