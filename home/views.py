@@ -17,6 +17,7 @@ def all_items(request):
                                           'bugs_in_progress': filter_by_status(bugs, "IN PROGRESS"),
                                           'bugs_in_review': filter_by_status(bugs, "IN REVIEW"),
                                           'bugs_complete': filter_by_status(bugs, "COMPLETE"),
+                                          'bugs_upvoted': Bug.objects.filter(upvoters__id=request.user.id),
                                           'features_created': filter_by_status(features, "CREATED"),
                                           'features_in_progress': filter_by_status(features, "IN PROGRESS"),
                                           'features_in_review': filter_by_status(features, "IN REVIEW"),
