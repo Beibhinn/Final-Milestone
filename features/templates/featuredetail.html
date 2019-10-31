@@ -1,56 +1,63 @@
 {% extends "base.html" %}
 {% load comments %}
 {% block content %}
-    <div class="row">
-        <div class="col-sm-10 col-md-9">
-            <h3>{{ feature.name }}</h3>
-            <span class="float-right"><p>{{ feature.status }}</p></span>
-            <h4>Created by: {{ feature.username }}</h4>
-            {% if feature.image %}
-                <img src="/media/{{ feature.image }}">
-            {% endif %}
+<div class="row row-flex">
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-sm-10 component-container">
+            <div class="col-sm-10 col-md-6 component">
+                <h3>{{ feature.name }}</h3>
+                <span class="float-right"><p>{{ feature.status }}</p></span>
+                <h4>Created by: {{ feature.username }}</h4>
+            </div>
+            <div class="col-sm-10 col-md-6 component">
+                {% if feature.image %}
+                <img class="attachment" src="/media/{{ feature.image }}">
+                {% endif %}
+            </div>
             <div class="row">
-                <div class="text-center">
-                    <p>{{ feature.description }}</p>
-                    <p><span class="boldtext">Created on:</span> {{ feature.date_added }} </p>
-                    {% if feature.date_started %}
+                <div class="col-sm-10 component">
+                    <div class="issue-detail">
+                        <p>{{ feature.description }}</p>
+                        <p><span class="boldtext">Created on:</span> {{ feature.date_added }} </p>
+                        {% if feature.date_started %}
                         <p><span class="boldtext">Started on:</span> {{ feature.date_started }} </p>
-                    {% endif %}
-                    {% if feature.date_finished %}
+                        {% endif %}
+                        {% if feature.date_finished %}
                         <p><span class="boldtext">Completed on:</span> {{ feature.date_finished }} </p>
-                    {% endif %}
-                    <p><span class="boldtext">Upvotes:</span> {{ feature.upvotes }}</p>
-                    <p><span class="boldtext">Views:</span> {{ feature.views }}</p>
+                        {% endif %}
+                        <p><span class="boldtext">Upvotes:</span> {{ feature.upvotes }}</p>
+                        <p><span class="boldtext">Views:</span> {{ feature.views }}</p>
 
-                    {% get_comment_count for feature as comment_count %}
-                    <div class="py-4 text-center">
-                      {{ comment_count }} comment{{ comment_count|pluralize }}
-                      ha{{ comment_count|pluralize:"s,ve" }} been posted.
+                        {% get_comment_count for feature as comment_count %}
+                        <div class="py-4 text-center">
+                            {{ comment_count }} comment{{ comment_count|pluralize }}
+                            ha{{ comment_count|pluralize:"s,ve" }} been posted.
+                        </div>
+
                     </div>
-
-                    <a href="{% url 'features' %}" class="btn btn-default">Back to Features</a>
                 </div>
             </div>
         </div>
     </div>
+</div>
 <div>
     {% if comment_count %}
     <hr/>
     <div class="comments">
-      {% render_comment_list for feature %}
+        {% render_comment_list for feature %}
     </div>
     {% endif %}
 </div>
 <div>
     {% if user.is_authenticated %}
-        <div class="card card-block mb-5">
-          <div class="card-body">
-            <h4 class="card-title text-center pb-3">Post your comment</h4>
-             {% render_comment_form for feature %}
-          </div>
+    <div class="card card-block mb-5 comment-container">
+        <div class="card-body">
+            {% render_comment_form for feature %}
         </div>
+    </div>
     {% else %}
-    <p>Please <a href="{% url 'login' %}">log in</a> or <a href="{% url 'register' %}">register</a> to post a comment</p>
+    <p>Please <a href="{% url 'login' %}">log in</a> or <a href="{% url 'register' %}">register</a> to post a comment
+    </p>
 
     {% endif %}
 </div>

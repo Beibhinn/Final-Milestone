@@ -38,3 +38,37 @@ footer {
 .status-container > h4 {
     text-align: center;
 }
+
+.component-container{
+    display: flex;
+    padding-top: 15px;
+}
+
+.component {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.component>h3 {
+    margin-top: 10px;
+}
+
+.attachment {
+    max-height: 250px;
+}
+
+.issue-detail {
+    padding-left: 15px;
+}
+
+.pb-2 {
+    border-radius: 4px;
+}
+
+.comment-avatar {
+    padding-top: 8px;
+}
+
+.comment-container {
+    margin-top: 20px;
+}

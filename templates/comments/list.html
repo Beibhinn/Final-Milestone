@@ -5,18 +5,22 @@
 
 <div id="comments" class="media-list">
     {% for comment in comment_list %}
-    <div class="media pb-2">
+    <div class="pb-2">
         <a name="c{{ comment.id }}"></a>
-        {% avatar comment.user class="img-circle img-responsive" id="user_avatar" %}
-        <div class="media-body">
-            <div class="comment pb-3">
-              <h5>{{ comment.name }}</h5>
-                <h6 class="mb-1 small d-flex">
-                  <div class="mr-auto">{{ comment.submit_date }}</div>
-                </h6>
-                <div class="content">
+        <div class="row">
+            <div class="col-xs-1" style="display: inline-block">
+            {% avatar comment.user class="img-circle comment-avatar img-responsive" id="user_avatar" %}
+            </div>
+            <div class="col-xs-9" style="display: inline-block">
+                <div class="comment pb-3">
+                  <h5>{{ comment.name }}</h5>
+                    <h6 class="mb-1 small d-flex">
+                      <div class="mr-auto">{{ comment.submit_date }}</div>
+                    </h6>
                     <div class="content">
-                        {% include "includes/django_comments_xtd/comment_content.html" with content=comment.comment %}
+                        <div class="content">
+                            {% include "includes/django_comments_xtd/comment_content.html" with content=comment.comment %}
+                        </div>
                     </div>
                 </div>
             </div>

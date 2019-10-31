@@ -1,57 +1,65 @@
 {% extends "base.html" %}
 {% load comments %}
 {% block content %}
+<div class="row row-flex">
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-sm-10 component-container">
+            <div class="col-sm-10 col-md-6 component">
+                <h3>{{ bug.name }}</h3>
+                <span class="float-right"><p>{{ bug.status }}</p></span>
+                <h4>Created by: {{ bug.username }}</h4>
+            </div>
+            <div class="col-sm-10 col-md-6 component">
+                {% if bug.image %}
+                <img class="attachment" src="/media/{{ bug.image }}">
+                {% endif %}
+            </div>
+        </div>
+    </div>
     <div class="row">
-        <div class="col-sm-10 col-md-9">
-            <h3>{{ bug.name }}</h3>
-            <span class="float-right"><p>{{ bug.status }}</p></span>
-            <h4>Created by: {{ bug.username }}</h4>
-            {% if bug.image %}
-                <img src="/media/{{ bug.image }}">
-            {% endif %}
-            <div class="row">
-                <div class="text-center">
-                    <p>{{ bug.description }}</p>
-                    <p><span class="boldtext">Created on:</span> {{ bug.date_added }} </p>
-                    {% if bug.date_started %}
-                        <p><span class="boldtext">Started on:</span> {{ bug.date_started }} </p>
-                    {% endif %}
-                    {% if bug.date_finished %}
-                        <p><span class="boldtext">Completed on:</span> {{ bug.date_finished }} </p>
-                    {% endif %}
-                    <p><span class="boldtext">Upvotes:</span> {{ bug.upvotes }}</p>
-                    <p><span class="boldtext">Views:</span> {{ bug.views }}</p>
+        <div class="col-sm-10 component">
+            <div class="issue-detail">
+                <p>{{ bug.description }}</p>
+                <p><span class="boldtext">Created on:</span> {{ bug.date_added }} </p>
+                {% if bug.date_started %}
+                <p><span class="boldtext">Started on:</span> {{ bug.date_started }} </p>
+                {% endif %}
+                {% if bug.date_finished %}
+                <p><span class="boldtext">Completed on:</span> {{ bug.date_finished }} </p>
+                {% endif %}
+                <p><span class="boldtext">Upvotes:</span> {{ bug.upvotes }}</p>
+                <p><span class="boldtext">Views:</span> {{ bug.views }}</p>
 
-                    {% get_comment_count for bug as comment_count %}
-                    <div class="py-4 text-center">
-                      {{ comment_count }} comment{{ comment_count|pluralize }}
-                      ha{{ comment_count|pluralize:"s,ve" }} been posted.
-                    </div>
-
-                    <a href="{% url 'bugs' %}" class="btn btn-default">Back to Bugs</a>
+                {% get_comment_count for bug as comment_count %}
+                <div class="py-4">
+                    {{ comment_count }} comment{{ comment_count|pluralize }}
+                    ha{{ comment_count|pluralize:"s,ve" }} been posted.
                 </div>
             </div>
         </div>
     </div>
-<div>
-    {% if comment_count %}
-    <hr/>
-    <div class="comments">
-      {% render_comment_list for bug %}
-    </div>
-    {% endif %}
-</div>
-<div>
-    {% if user.is_authenticated %}
-        <div class="card card-block mb-5">
-          <div class="card-body">
-            <h4 class="card-title text-center pb-3">Post your comment</h4>
-             {% render_comment_form for bug %}
-          </div>
-        </div>
-    {% else %}
-    <p>Please <a href="{% url 'login' %}">log in</a> or <a href="{% url 'register' %}">register</a> to post a comment</p>
 
-    {% endif %}
+    </div>
+    <div>
+        {% if comment_count %}
+        <hr/>
+        <div class="comments">
+            {% render_comment_list for bug %}
+        </div>
+        {% endif %}
+    </div>
+    <div>
+        {% if user.is_authenticated %}
+        <div class="card card-block mb-5 comment-container">
+            <div class="card-body">
+                {% render_comment_form for bug %}
+            </div>
+        </div>
+        {% else %}
+        <p>Please <a href="{% url 'login' %}">log in</a> or <a href="{% url 'register' %}">register</a> to post a comment
+        </p>
+
+        {% endif %}
+    </div>
 </div>
 {% endblock %}
