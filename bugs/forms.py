@@ -6,7 +6,7 @@ class BugForm(forms.ModelForm):
 
     class Meta:
         model = Bug
-        exclude = ('username', 'status', 'date_added', 'date_started', 'date_finished', 'upvotes', 'views')
+        exclude = ('username', 'status', 'date_added', 'date_started', 'date_finished', 'upvoters', 'views')
 
     def __init__(self, request, username, files=None, instance=None):
         self.username = username

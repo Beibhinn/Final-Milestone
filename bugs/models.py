@@ -28,13 +28,9 @@ class Bug(models.Model):
     upvoters = models.ManyToManyField(User, related_name='upvoters')
     views = models.IntegerField(default=0)
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.upvotes = self.upvoters.count()
-
-    # @property
-    # def upvotes(self):
-    #     return self.upvoters.count()
+    @property
+    def upvotes(self):
+        return self.upvoters.count()
 
     def __str__(self):
         return self.name
