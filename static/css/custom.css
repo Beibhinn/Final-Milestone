@@ -71,4 +71,9 @@ footer {
 
 .comment-container {
     margin-top: 20px;
+    padding-top: 15px;
+}
+
+.bottom-container {
+    margin-top: 30px;
 }

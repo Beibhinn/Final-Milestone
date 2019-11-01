@@ -5,8 +5,16 @@
     <div class="row" style="margin-top: 20px;">
         <div class="col-sm-10 component-container">
             <div class="col-sm-10 col-md-6 component">
-                <h3>{{ bug.name }}</h3>
-                <span class="float-right"><p>{{ bug.status }}</p></span>
+                <span><h3>{{ bug.name }}</h3></span>
+                {% if bug.status == "CREATED" %}
+                    <span class="right label label-default">{{ bug.status }}</span>
+                {% elif bug.status == "IN PROGRESS" %}
+                    <span class="right label label-warning">{{ bug.status }}</span>
+                {% elif bug.status == "IN REVIEW" %}
+                    <span class="right label label-primary">{{ bug.status }}</span>
+                {% else %}
+                    <span class="right label label-success">{{ bug.status }}</span>
+                {% endif %}
                 <h4>Created by: {{ bug.username }}</h4>
             </div>
             <div class="col-sm-10 col-md-6 component">
@@ -48,7 +56,7 @@
         </div>
         {% endif %}
     </div>
-    <div>
+    <div class="row row-flex bottom-container>
         {% if user.is_authenticated %}
         <div class="card card-block mb-5 comment-container">
             <div class="card-body">
@@ -56,7 +64,7 @@
             </div>
         </div>
         {% else %}
-        <p>Please <a href="{% url 'login' %}">log in</a> or <a href="{% url 'register' %}">register</a> to post a comment
+        <p>Please <a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">register</a> to post a comment
         </p>
 
         {% endif %}
