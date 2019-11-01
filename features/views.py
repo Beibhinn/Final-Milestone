@@ -1,6 +1,8 @@
 import json
 
 from django.shortcuts import render, get_object_or_404, redirect
+from django.utils import timezone
+
 from .models import Feature
 from django.views.generic import DateDetailView
 from django.http import HttpResponse, HttpResponseNotAllowed
@@ -67,11 +69,21 @@ def update_status(request):
         # Check if the status is different
         if feature.status == data['status']:
             print('status stayed the same')
-        else:
-            feature.status = data['status']
-            print(feature.status)
-            feature.save()
+            return HttpResponse(status=204)
 
+        if data['status'] == 'IN PROGRESS':
+            if feature.date_started is None:
+                feature.date_started = timezone.now()
+
+        elif data['status'] == 'COMPLETE':
+            feature.date_finished = timezone.now()
+
+        elif feature.status == 'COMPLETE':
+            feature.date_finished = None
+
+        feature.status = data['status']
+        print(feature.status)
+        feature.save()
         return HttpResponse(status=204)
     else:
         return HttpResponseNotAllowed(["POST"])

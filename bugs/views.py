@@ -1,6 +1,8 @@
 import json
 
 from django.shortcuts import render, get_object_or_404, redirect
+from django.utils import timezone
+
 from .models import Bug
 from django.urls import reverse
 from django.views.generic import DateDetailView
@@ -72,11 +74,21 @@ def update_status(request):
         # Check if the status is different
         if bug.status == data['status']:
             print('they are the same')
-        else:
-            bug.status = data['status']
-            print(bug.status)
+            return HttpResponse(status=204)
+
+        if data['status'] == 'IN PROGRESS':
+            if bug.date_started is None:
+                bug.date_started = timezone.now()
+
+        elif data['status'] == 'COMPLETE':
+            bug.date_finished = timezone.now()
+
+        elif bug.status == 'COMPLETE':
+            bug.date_finished = None
+
+        bug.status = data['status']
         # Dave the bug with the new status
-            bug.save()
+        bug.save()
         return HttpResponse(status=204)
     else:
         return HttpResponseNotAllowed(["POST"])
