@@ -2,22 +2,7 @@
 
 {% block content %}
 <!--suppress XmlDuplicatedId -->
-<div class="row row-flex">
-    <form class="nav navbar-form navbar-left" action="{% url 'search' %}" method="GET">
-        <div class="form-group">
-            <input type="text" class="form-control" name="search_term" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-    </form>
-    <ul class="nav nav-tabs navbar-right">
-        <li class="nav-item" style="margin-top: 5px">
-            <a class="nav-link btn btn-default" href="{% url 'new_bug' %}">New Bug</a>
-        </li>
-        <li class="nav-item" style="margin-top: 5px">
-            <a class="nav-link btn btn-default" href="{% url 'new_feature' %}">New Feature</a>
-        </li>
-    </ul>
-</div>
+
 <!--<div class="issue-container row row-flex">-->
 <!--    <h3>Issues</h3>-->
 <!--    {% for issue in issues %}-->
