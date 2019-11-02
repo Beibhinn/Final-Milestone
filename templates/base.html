@@ -46,7 +46,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="/">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+          <span>Issue Dashboard</span></a>
       </li>
 
       <!-- Divider -->
@@ -103,7 +103,7 @@
         </a>
         <div id="collapseAccount" class="collapse" aria-labelledby="headingAccount" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
+            <h6 class="collapse-header">Account Access:</h6>
             {% if user.is_authenicated %}
               <a class="collapse-item" href="{% url 'profile' %}">Profile</a>
               <a class="collapse-item" href="{% url 'logout' %}">Logout</a>
@@ -281,7 +281,6 @@
         <div class="container-fluid">
 
             <div class="row">
-                <div>
                     {% if messages %}
                         <div class="alert alert-success">
                             <div class="messages">
@@ -294,7 +293,6 @@
                     <div class="container">
                         {% block content %} {% endblock %}
                     </div>
-                </div>
             </div>
 
         </div>
