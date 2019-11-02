@@ -7,8 +7,8 @@ from .models import Bug
 
 class TestBugModels(TestCase):
     def test_bug_form(self):
-        self.user = User.objects.create(username='admin',
-                                        password='ThisPassword',
+        self.user = User.objects.create(username="admin",
+                                        password="ThisPassword",
                                         is_superuser=True)
         self.user.save()
 
