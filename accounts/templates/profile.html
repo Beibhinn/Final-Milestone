@@ -1,118 +1,355 @@
 {% extends "base.html" %}
 {% load avatar_tags %}
 {% block content %}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">{{ user.username }}'s account</h1>
+</div>
+<hr>
+
 <div class="row">
-    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-4">
-        <h1>{{ user.username }}</h1>
-        <div>{% avatar user class="img-circle img-responsive" id="user_avatar" %}</div>
-        <div class="row">
+    <div class="col-md-4" style="text-align: center">
+        {% avatar user 160 class="img-profile rounded-circle" id="user_avatar" %}
+        <div>
             <a href="{% url 'avatar_change' %}">Change your avatar</a>
         </div>
     </div>
-    <div lass="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-8">
-        <ul class="nav nav-tabs nav-justified">
-            <li role="presentation" class="active" data-toggle="collapse" data-target="#issues"><a href="#">My Issues</a></li>
-            <li role="presentation" data-toggle="collapse" data-target="#upvotes"><a href="#">Upvoted Bugs</a></li>
-            <li role="presentation" data-toggle="collapse" data-target="#donations"><a href="#">Donations</a></li>
-        </ul>
+    <div class="col-md-8">
+        <div class="card shadow mb-4">
+            <!-- My issues Header - Accordion -->
+            <a href="#collapseMyIssues" class="d-block card-header py-3" data-toggle="collapse" role="button"
+               aria-expanded="true" aria-controls="collapseMyIssues">
+                <h6 class="m-0 font-weight-bold text-primary">My issues</h6>
+            </a>
+            <!-- My issues Content - Collapse -->
+            <div class="collapse" id="collapseMyIssues">
+                <div class="row card-body">
+                    <div class="col-md-6 mb-4">
+                        <div class="card shadow mb-4 status-container">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Bugs</h6>
+                            </div>
+                            <div class="card-body">
+                                {% if bugs %}
+                                    {% for bug in bugs %}
+                                        <div class="mb-4">
+                                            {% if bug.status == "CREATED" %}
+                                                <div class="card border-left-secondary shadow h-100 py-2">
+                                            {% elif bug.status == "IN PROGRESS" %}
+                                                <div class="card border-left-warning shadow h-100 py-2">{% elif bug.status == "IN REVIEW" %}
+                                            {% elif bug.status == "IN REVIEW" %}
+                                                <div class="card border-left-info shadow h-100 py-2">
+                                            {% else %}
+                                                <div class="card border-left-success shadow h-100 py-2">
+                                            {% endif %}
+                                                <div class="card-body">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col mr-2">
+                                                            {% if bug.status == "CREATED" %}
+                                                                <span class="badge badge-secondary">{{ bug.status }}</span>
+                                                            {% elif bug.status == "IN PROGRESS" %}
+                                                                <span class="badge badge-warning">{{ bug.status }}</span>
+                                                            {% elif bug.status == "IN REVIEW" %}
+                                                                <span class="badge badge-info">{{ bug.status }}</span>
+                                                            {% else %}
+                                                                <span class="badge badge-success">{{ bug.status }}</span>
+                                                            {% endif %}
+                                                            <div class="m-0 font-weight-bold text-primary">{{ bug.name }}</div>
+                                                            <div class="text-truncate">{{ bug.description }}</div>
+                                                        </div>
+                                                        <div class="col-auto text-center small text-gray-500">
+                                                            <span><a onclick="toggleUpvote('{{ bug.id }}')">
+                                                                      {% if bug in bugs_upvoted %}
+                                                                          <i class="fas fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                                                                      {% else %}
+                                                                          <i class="far fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                                                                      {% endif %}
+                                                                          Upvotes: {{ bug.upvotes }}</a>
+                                                            </span>
+                                                            <p>Views: {{ bug.views }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                <div class="mb-4">
+                                    <div class="card shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        You haven't added any bugs yet
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card shadow mb-4 status-container">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Features</h6>
+                            </div>
+                            <div class="card-body">
+                                {% if features %}
+                                    {% for feature in features %}
+                                        <div class="mb-4">
+                                            <div class="card border-left-success shadow h-100 py-2">
+                                                <div class="card-body">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col mr-2">
+                                                            <span class="badge badge-success">{{ feature.status }}</span>
+                                                            <div class="m-0 font-weight-bold text-primary">{{ feature.name }}
+                                                            </div>
+                                                            <div class="text-truncate">{{ feature.description }}</div>
+                                                        </div>
+                                                        <div class="col-auto text-center small text-gray-500">
+                                                            <p><span>Donations: € {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span>
+                                                            </p>
+                                                            <form method="post" action="{% url 'add_to_cart' feature.id %}">
+                                                                {% csrf_token %}
+                                                                <div class="input-group">
+                                                                    <div>
+                                                                        <input name="donation_amount" type="number" min="1" max="999" class="form-control"
+                                                                               placeholder="€">
+                                                                    </div>
+                                                                    <div class="input-group-btn">
+                                                                            <button class="btn btn-success" type="submit">Add to cart</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="mb-4">
+                                        <div class="card shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                            You haven't added any features yet
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Upvoted bugs header-->
+            <a href="#collapseMyUpvotes" class="d-block card-header py-3" data-toggle="collapse" role="button"
+               aria-expanded="true" aria-controls="collapseMyIssues">
+                <h6 class="m-0 font-weight-bold text-primary">Bugs I've upvoted</h6>
+            </a>
+            <!-- Upvoted bugs content -->
+            <div class="collapse" id="collapseMyUpvotes">
+                <div class="card-body">
+                    {% if bugs_upvoted %}
+                        {% for bug in bugs_upvoted %}
+                            <div class="mb-4">
+                                {% if bug.status == "CREATED" %}
+                                    <div class="card border-left-secondary shadow h-100 py-2">
+                                {% elif bug.status == "IN PROGRESS" %}
+                                    <div class="card border-left-warning shadow h-100 py-2">
+                                {% elif bug.status == "IN PROGRESS" %}
+                                     <div class="card border-left-info shadow h-100 py-2">
+                                {% else %}
+                                     <div class="card border-left-success shadow h-100 py-2">
+                                 {% endif %}
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                {% if bug.status == "CREATED" %}
+                                                    <span class="badge badge-secondary">{{ bug.status }}</span>
+                                                {% elif bug.status == "IN PROGRESS" %}
+                                                    <span class="badge badge-warning">{{ bug.status }}</span>
+                                                {% elif bug.status == "IN PROGRESS" %}
+                                                    <span class="badge badge-info">{{ bug.status }}</span>
+                                                {% else %}
+                                                    <span class="badge badge-success">{{ bug.status }}</span>
+                                                {% endif %}
+                                                <div class="m-0 font-weight-bold text-primary">{{ bug.name }}
+                                                </div>
+                                                <div class="text-truncate">{{ bug.description }}</div>
+                                            </div>
+                                            <div class="col-auto text-center small text-gray-500">
+                                                    <span><a onclick="toggleUpvote('{{ bug.id }}')">
+                                                              {% if bug in bugs_upvoted %}
+                                                                  <i class="fas fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                                                              {% else %}
+                                                                  <i class="far fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                                                              {% endif %}
+                                                              Upvotes: {{ bug.upvotes }}</a>
+                                                    </span>
+                                                <p>Views: {{ bug.views }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                    <div class="mb-4">
+                        <div class="card shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            You haven't upvoted any bugs yet
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+            </div>
+            <!-- Donations header-->
+            <a href="#collapseMyDonations" class="d-block card-header py-3" data-toggle="collapse" role="button"
+               aria-expanded="true" aria-controls="collapseMyDonations">
+                <h6 class="m-0 font-weight-bold text-primary">Donations</h6>
+            </a>
+            <!-- Donations content -->
+            <div class="collapse" id="collapseMyDonations">
+                <div class="card-body">
+                    {% if donations %}
+                        {% for donation in donations %}
+                            <div class="mb-4">
+                                {% if donation.feature.status == "CREATED" %}
+                                    <div class="card border-left-secondary shadow h-100 py-2">
+                                {% elif donation.feature.status == "IN PROGRESS" %}
+                                    <div class="card border-left-warning shadow h-100 py-2">
+                                {% elif donation.feature.status == "IN REVIEW" %}
+                                     <div class="card border-left-info shadow h-100 py-2">
+                                {% else %}
+                                     <div class="card border-left-success shadow h-100 py-2">
+                                {% endif %}
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    {% if donation.feature.status == "CREATED" %}
+                                                        <span class="badge badge-secondary">{{ donation.feature.status }}</span>
+                                                    {% elif donation.feature.status == "IN PROGRESS" %}
+                                                        <span class="badge badge-warning">{{ donation.feature.status }}</span>
+                                                    {% elif donation.feature.status == "IN REVIEW" %}
+                                                        <span class="badge badge-info">{{ donation.feature.status }}</span>
+                                                    {% else %}
+                                                        <span class="badge badge-secondary">{{ donation.feature.status }}</span>
+                                                    {% endif %}
+                                                    <div class="m-0 font-weight-bold text-primary">{{ donation.feature.name }}
+                                                    </div>
+                                                    <div class="text-truncate">{{ donation.feature.description }}</div>
+                                                </div>
+                                                <div class="col-auto text-center small text-gray-500">
+                                                    <p><span>Total donations: € {{ donation.feature.donations }}</span> <span>Views: {{ donation.feature.views }}</span>
+                                                    </p>
+                                                    <form method="post" action="{% url 'add_to_cart' donation.feature.id %}">
+                                                        {% csrf_token %}
+                                                        <div class="input-group">
+                                                            <div>
+                                                                <input name="donation_amount" type="number" min="1" max="999" class="form-control"
+                                                                       placeholder="€">
+                                                            </div>
+                                                            <div class="input-group-btn">
+                                                                    <button class="btn btn-success" type="submit">Add to cart</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <p>Amount already donated: € {{ donation.amount }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="mb-4">
+                            <div class="card shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                You haven't added any features yet
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+
+        </div>
     </div>
 </div>
+
+
 
 <!--    Now displays both bugs and features the user added-->
-<div class="row" id="profile-content">
-    <div class="collapse in" id="issues">
-        <h3>My issues</h3>
-        <div class="row row-flex">
-            {% if bugs %}
-                {% for bug in bugs %}
-                    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-4 display panel panel-default">
-                        <div class="panel-body">
-                            <span class="right label label-primary">{{ bug.status }}</span>
-                            <span><h3><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a></h3></span>
+<!--    <div class="collapse" id="upvotes">-->
+<!--        <h3>Bugs I've upvoted</h3>-->
+<!--        <div class="row row-flex">-->
+<!--            {% if bugs_upvoted %}-->
+<!--                {% for bug in bugs_upvoted %}-->
+<!--                    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-4 display panel panel-default">-->
+<!--                        <div class="panel-body">-->
+<!--                            <span class="right label label-primary">{{ bug.status }}</span>-->
+<!--                            <span><h3><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a></h3></span>-->
 
-                            <p class="issue-description">{{ bug.description }}</p>
-                            <p><span>Upvotes: {{ bug.upvotes }}</span> <span>Views: {{ bug.views }}</span></p>
-                        </div>
-                    </div>
-                {% endfor %}
-            {% else %}
-            <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-4 display panel panel-default">
-                <div class="panel-body">
-                    <p>You haven't added any bugs yet</p>
-                </div>
-            </div>
-            {% endif %}
-        </div>
-        <div class="row row-flex">
-            {% if features %}
-                {% for feature in features %}
-                    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-4 display panel panel-default">
-                        <div class="panel-body">
-                            <span><h3><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a></h3></span>
-                            <span class="label label-primary">{{ feature.status }}</span>
-                            <p class="issue-description">{{ feature.description }}</p>
-                            <p><span>Donations: {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
-                        </div>
-                    </div>
-                {% endfor %}
-            {% else %}
-            <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-4 display panel panel-default">
-                <div class="panel-body">
-                    <p>You haven't added any features yet</p>
-                </div>
-            </div>
-            {% endif %}
-        </div>
-    </div>
+<!--                            <p class="issue-description">{{ bug.description }}</p>-->
+<!--                            <p><span>Upvotes: {{ bug.upvotes }}</span> <span>Views: {{ bug.views }}</span></p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                {% endfor %}-->
+<!--            {% else %}-->
+<!--            <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-4 display panel panel-default">-->
+<!--                <div class="panel-body">-->
+<!--                    <p>You haven't upvoted any bugs yet</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            {% endif %}-->
+<!--        </div>-->
+<!--    </div>-->
 
-    <div class="collapse" id="upvotes">
-        <h3>Bugs I've upvoted</h3>
-        <div class="row row-flex">
-            {% if bugs_upvoted %}
-                {% for bug in bugs_upvoted %}
-                    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-4 display panel panel-default">
-                        <div class="panel-body">
-                            <span class="right label label-primary">{{ bug.status }}</span>
-                            <span><h3><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a></h3></span>
-
-                            <p class="issue-description">{{ bug.description }}</p>
-                            <p><span>Upvotes: {{ bug.upvotes }}</span> <span>Views: {{ bug.views }}</span></p>
-                        </div>
-                    </div>
-                {% endfor %}
-            {% else %}
-            <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-4 display panel panel-default">
-                <div class="panel-body">
-                    <p>You haven't upvoted any bugs yet</p>
-                </div>
-            </div>
-            {% endif %}
-        </div>
-    </div>
-
-    <div class="collapse" id="donations">
-        <h3>Features I've donated to</h3>
-        <div class="row row-flex">
-            {% if donations %}
-                {% for donation in donations %}
-                    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-4 display panel panel-default">
-                        <div class="panel-body">
-                            <span><h3><a href="{% url 'feature_detail' donation.feature.id %}">{{ donation.feature.name }}</a></h3></span>
-                            <span class="label label-primary">{{ donation.feature.status }}</span>
-                            <p class="issue-description">{{ donation.feature.description }}</p>
-                            <p>Donation: {{ donation.amount }}</p>
-                        </div>
-                    </div>
-                {% endfor %}
-            {% else %}
-            <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-4 display panel panel-default">
-                <div class="panel-body">
-                    <p>You haven't donated for any features yet</p>
-                </div>
-            </div>
-            {% endif %}
-        </div>
-    </div>
-</div>
+<!--    <div class="collapse" id="donations">-->
+<!--        <h3>Features I've donated to</h3>-->
+<!--        <div class="row row-flex">-->
+<!--            {% if donations %}-->
+<!--                {% for donation in donations %}-->
+<!--                    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-4 display panel panel-default">-->
+<!--                        <div class="panel-body">-->
+<!--                            <span><h3><a href="{% url 'feature_detail' donation.feature.id %}">{{ donation.feature.name }}</a></h3></span>-->
+<!--                            <span class="label label-primary">{{ donation.feature.status }}</span>-->
+<!--                            <p class="issue-description">{{ donation.feature.description }}</p>-->
+<!--                            <p>Donation: {{ donation.amount }}</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                {% endfor %}-->
+<!--            {% else %}-->
+<!--            <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-4 display panel panel-default">-->
+<!--                <div class="panel-body">-->
+<!--                    <p>You haven't donated for any features yet</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            {% endif %}-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 {% endblock %}
