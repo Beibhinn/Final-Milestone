@@ -105,7 +105,7 @@
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
                                                             <span class="badge badge-success">{{ feature.status }}</span>
-                                                            <div class="m-0 font-weight-bold text-primary">{{ feature.name }}
+                                                            <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                             </div>
                                                             <div class="text-truncate">{{ feature.description }}</div>
                                                         </div>
@@ -182,7 +182,7 @@
                                                 {% else %}
                                                     <span class="badge badge-success">{{ bug.status }}</span>
                                                 {% endif %}
-                                                <div class="m-0 font-weight-bold text-primary">{{ bug.name }}
+                                                <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
@@ -298,58 +298,5 @@
         </div>
     </div>
 </div>
-
-
-
-<!--    Now displays both bugs and features the user added-->
-<!--    <div class="collapse" id="upvotes">-->
-<!--        <h3>Bugs I've upvoted</h3>-->
-<!--        <div class="row row-flex">-->
-<!--            {% if bugs_upvoted %}-->
-<!--                {% for bug in bugs_upvoted %}-->
-<!--                    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-4 display panel panel-default">-->
-<!--                        <div class="panel-body">-->
-<!--                            <span class="right label label-primary">{{ bug.status }}</span>-->
-<!--                            <span><h3><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a></h3></span>-->
-
-<!--                            <p class="issue-description">{{ bug.description }}</p>-->
-<!--                            <p><span>Upvotes: {{ bug.upvotes }}</span> <span>Views: {{ bug.views }}</span></p>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                {% endfor %}-->
-<!--            {% else %}-->
-<!--            <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-4 display panel panel-default">-->
-<!--                <div class="panel-body">-->
-<!--                    <p>You haven't upvoted any bugs yet</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            {% endif %}-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--    <div class="collapse" id="donations">-->
-<!--        <h3>Features I've donated to</h3>-->
-<!--        <div class="row row-flex">-->
-<!--            {% if donations %}-->
-<!--                {% for donation in donations %}-->
-<!--                    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-4 display panel panel-default">-->
-<!--                        <div class="panel-body">-->
-<!--                            <span><h3><a href="{% url 'feature_detail' donation.feature.id %}">{{ donation.feature.name }}</a></h3></span>-->
-<!--                            <span class="label label-primary">{{ donation.feature.status }}</span>-->
-<!--                            <p class="issue-description">{{ donation.feature.description }}</p>-->
-<!--                            <p>Donation: {{ donation.amount }}</p>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                {% endfor %}-->
-<!--            {% else %}-->
-<!--            <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-4 display panel panel-default">-->
-<!--                <div class="panel-body">-->
-<!--                    <p>You haven't donated for any features yet</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            {% endif %}-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 
 {% endblock %}
