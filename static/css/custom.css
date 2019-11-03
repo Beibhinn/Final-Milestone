@@ -1,6 +1,5 @@
 body {
     font-family: Arial;
-    padding-top: 50px;
 }
 
 footer {
@@ -11,9 +10,6 @@ footer {
     color: #A9A9A9;
 }
 
-.icon-bar {
-    background-color: #fff;
-}
 
 .accountform {
     padding-top: 20px;
@@ -25,18 +21,9 @@ footer {
     border-color: deepskyblue;
     border-radius: 5px;
 }
-
-.issue-container >h3 {
-    text-align: center;
-}
-
 .status-container {
     height: 100%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
-}
-
-.status-container > h4 {
-    text-align: center;
 }
 
 .component-container{
@@ -49,24 +36,22 @@ footer {
     border-radius: 4px;
 }
 
-.component>h3 {
-    margin-top: 10px;
+.detail-badge {
+    margin: 1.25rem;
 }
 
 .attachment {
-    max-height: 250px;
+    max-width:100%;
+    max-height:100%;
 }
 
 .issue-detail {
     padding-left: 15px;
 }
 
-.pb-2 {
-    border-radius: 4px;
-}
-
 .comment-avatar {
     padding-top: 8px;
+    margin-right: 20px;
 }
 
 .comment-container {
