@@ -1,72 +1,121 @@
 {% extends "base.html" %}
 {% load comments %}
 {% block content %}
-<div class="row row-flex">
-    <div class="row" style="margin-top: 20px;">
-        <div class="col-sm-10 component-container">
-            <div class="col-sm-10 col-md-6 component">
-                <h3>{{ feature.name }}</h3>
-                {% if feature.status == "CREATED" %}
-                    <span class="right label label-default">{{ feature.status }}</span>
-                {% elif feature.status == "IN PROGRESS" %}
-                    <span class="right label label-warning">{{ feature.status }}</span>
-                {% elif feature.status == "IN REVIEW" %}
-                    <span class="right label label-primary">{{ feature.status }}</span>
-                {% else %}
-                    <span class="right label label-success">{{ feature.status }}</span>
-                {% endif %}
-                <h4>Created by: {{ feature.username }}</h4>
-            </div>
-            <div class="col-sm-10 col-md-6 component">
-                {% if feature.image %}
-                <img class="attachment" src="/media/{{ feature.image }}">
-                {% endif %}
-            </div>
-            <div class="row">
-                <div class="col-sm-10 component">
-                    <div class="issue-detail">
-                        <p>{{ feature.description }}</p>
-                        <span class="boldtext"><p>Created on: {{ feature.date_added }}</p></span>
-                        {% if feature.date_started %}
-                            <span class="boldtext"><p>Started on: {{ feature.date_started }} </p></span>
-                        {% endif %}
-                        {% if feature.date_finished %}
-                            <span class="boldtext"><p>Completed on: {{ feature.date_finished }}</p></span>
-                        {% endif %}
-                        <span class="boldtext"><p>Donations: {{ feature.donations }}</p></span>
-                        <span class="boldtext"><p>Views:  {{ feature.views }}</p></span>
 
-                        {% get_comment_count for feature as comment_count %}
-                        <div class="py-4">
-                            {{ comment_count }} comment{{ comment_count|pluralize }}
-                            ha{{ comment_count|pluralize:"s,ve" }} been posted.
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">{{ feature.name }}</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card shadow container">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col-md-4">
+                        {% if feature.status == "CREATED" %}
+                        <span class="badge detail-badge badge-secondary">{{ feature.status }}</span>
+                        {% elif feature.status == "IN PROGRESS" %}
+                        <span class="badge detail-badge badge-warning">{{ feature.status }}</span>
+                        {% elif feature.status == "IN REVIEW" %}
+                        <span class="badge detail-badge badge-info">{{ feature.status }}</span>
+                        {% else %}
+                        <span class="badge detail-badge badge-success">{{ feature.status }}</span>
+                        {% endif %}
+                        <div class="card-body">
+                            <p>Added by: {{ feature.username }}</p>
+                            <div class="small text-gray-600">
+                                <p>Created on: {{ feature.date_added }} </p>
+                                {% if feature.date_started %}
+                                <p>Started on: {{ feature.date_started }} </p>
+                                {% endif %}
+                                {% if feature.date_finished %}
+                                <p>Completed on: {{ feature.date_finished }} </p>
+                                {% endif %}
+                                <p>Donations: € {{ feature.donations }}</p>
+                                <p>Views: {{ feature.views }}</p>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col-md-8">
+                            {% if feature.image %}
+                                <img class="attachment" src="/media/{{ feature.image }}">
+                            {% endif %}
                         </div>
 
+                </div>
+                <div class="row no-gutters align-items-center">
+                    <div class="col-md-9">
+                        <div class="card-body">
+                            <p>{{ feature.description }}</p>
+                            {% get_comment_count for feature as comment_count %}
+                            <div class="py-4">
+                                {{ comment_count }} comment{{ comment_count|pluralize }}
+                                ha{{ comment_count|pluralize:"s,ve" }} been posted.
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-md-3">
+                        <div class="card-body">
+                            <div class="col-auto text-center small text-gray-500">
+                                <p class="text-gray-400" style="text-transform: uppercase"><span><b>Donate:</b></span></p>
+
+                            </div>
+                            <form method="post" action="{% url 'add_to_cart' feature.id %}">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-eur"
+                                                                         aria-hidden="true"></span></div>
+                                    <input name="donation_amount" type="number" min="1" max="999" class="form-control"
+                                           placeholder="€">
+                                    <span class="input-group-btn">
+                                            <button class="btn btn-success" type="submit">Add to cart</button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <div class="card shadow mb-4 container">
+            <div class="d-sm-flex align-items-center justify-content-between mt-4">
+                <h1 class="h5 mb-0 text-gray-600">Comments</h1>
+            </div>
+            <hr/>
+            <div class="card-body">
+                <div>
+                    {% if comment_count %}
+                    <div class="comments">
+                        {% render_comment_list for feature %}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="row row-flex bottom-container">
+                    {% if user.is_authenticated %}
+                    <div class="col-md-12">
+                        <div class="card-body">
+                            {% render_comment_form for feature %}
+                        </div>
+                    </div>
+                    {% else %}
+                    <p>Please <a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">register</a> to post a comment
+                    </p>
+
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div>
-    {% if comment_count %}
-    <hr/>
-    <div class="comments">
-        {% render_comment_list for feature %}
-    </div>
-    {% endif %}
-</div>
-<div class="row row-flex bottom-container">
-    {% if user.is_authenticated %}
-    <div class="card card-block mb-5 comment-container">
-        <div class="card-body">
-            {% render_comment_form for feature %}
-        </div>
-    </div>
-    {% else %}
-    <p>Please <a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">register</a> to post a comment
-    </p>
 
-    {% endif %}
-</div>
 {% endblock %}
+
+
+
