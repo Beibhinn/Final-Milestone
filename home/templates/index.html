@@ -33,7 +33,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <span class="badge badge-secondary">{{ bug.status }}</span>
-                                                <div class="m-0 font-weight-bold text-primary">{{ bug.name }}
+                                                <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
@@ -59,7 +59,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <span class="badge badge-secondary">{{ bug.status }}</span>
-                                                <div class="m-0 font-weight-bold text-primary">{{ bug.name }}
+                                                <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
@@ -118,7 +118,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <span class="badge badge-warning">{{ bug.status }}</span>
-                                                <div class="m-0 font-weight-bold text-primary">{{ bug.name }}
+                                                <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
@@ -144,7 +144,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <span class="badge badge-warning">{{ bug.status }}</span>
-                                                <div class="m-0 font-weight-bold text-primary">{{ bug.name }}
+                                                <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
@@ -203,7 +203,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <span class="badge badge-info">{{ bug.status }}</span>
-                                                <div class="m-0 font-weight-bold text-primary">{{ bug.name }}
+                                                <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
@@ -229,7 +229,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <span class="badge badge-info">{{ bug.status }}</span>
-                                                <div class="m-0 font-weight-bold text-primary">{{ bug.name }}
+                                                <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
@@ -288,7 +288,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <span class="badge badge-success">{{ bug.status }}</span>
-                                                <div class="m-0 font-weight-bold text-primary">{{ bug.name }}
+                                                <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
@@ -314,7 +314,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <span class="badge badge-success">{{ bug.status }}</span>
-                                                <div class="m-0 font-weight-bold text-primary">{{ bug.name }}
+                                                <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
@@ -381,12 +381,12 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <span class="badge badge-secondary">{{ feature.status }}</span>
-                                                <div class="m-0 font-weight-bold text-primary">{{ feature.name }}
+                                                <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
                                             <div class="col-auto text-center small text-gray-500">
-                                                <p><span>Donations: {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
+                                                <p><span>Donations: € {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
                                                 <form method="post" action="{% url 'add_to_cart' feature.id %}">
                                                     {% csrf_token %}
                                                     <div class="input-group">
@@ -411,7 +411,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <span class="badge badge-secondary">{{ feature.status }}</span>
-                                                <div class="m-0 font-weight-bold text-primary">{{ feature.name }}
+                                                <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
@@ -457,7 +457,7 @@
         <div class="card shadow mb-4 status-container" data-status="IN PROGRESS" ondrop="drop(event)" ondragover="allowDrop(event)">
             <!-- Card Header -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">To do</h6>
+                <h6 class="m-0 font-weight-bold text-primary">In progress</h6>
             </div>
             <!-- Card Body -->
             <div class="card-body">
@@ -471,12 +471,12 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <span class="badge badge-warning">{{ feature.status }}</span>
-                                                <div class="m-0 font-weight-bold text-primary">{{ feature.name }}
+                                                <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
                                             <div class="col-auto text-center small text-gray-500">
-                                                <p><span>Donations: {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
+                                                <p><span>Donations: € {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
                                                 <form method="post" action="{% url 'add_to_cart' feature.id %}">
                                                     {% csrf_token %}
                                                     <div class="input-group">
@@ -501,7 +501,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <span class="badge badge-warning">{{ feature.status }}</span>
-                                                <div class="m-0 font-weight-bold text-primary">{{ feature.name }}
+                                                <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
@@ -533,7 +533,7 @@
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">There are currently no new features to do</div>
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">There are no features in progress at the moment</div>
                                     </div>
                                 </div>
                             </div>
@@ -547,7 +547,7 @@
         <div class="card shadow mb-4 status-container" data-status="IN REVIEW" ondrop="drop(event)" ondragover="allowDrop(event)">
             <!-- Card Header -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">To do</h6>
+                <h6 class="m-0 font-weight-bold text-primary">In review</h6>
             </div>
             <!-- Card Body -->
             <div class="card-body">
@@ -561,12 +561,12 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <span class="badge badge-info">{{ feature.status }}</span>
-                                                <div class="m-0 font-weight-bold text-primary">{{ feature.name }}
+                                                <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
                                             <div class="col-auto text-center small text-gray-500">
-                                                <p><span>Donations: {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
+                                                <p><span>Donations: € {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
                                                 <form method="post" action="{% url 'add_to_cart' feature.id %}">
                                                     {% csrf_token %}
                                                     <div class="input-group">
@@ -591,7 +591,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <span class="badge badge-info">{{ feature.status }}</span>
-                                                <div class="m-0 font-weight-bold text-primary">{{ feature.name }}
+                                                <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
@@ -623,7 +623,7 @@
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">There are currently no new features to do</div>
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">There are no features in review right now</div>
                                     </div>
                                 </div>
                             </div>
@@ -637,7 +637,7 @@
         <div class="card shadow mb-4 status-container" data-status="COMPLETE" ondrop="drop(event)" ondragover="allowDrop(event)">
             <!-- Card Header -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">To do</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Done</h6>
             </div>
             <!-- Card Body -->
             <div class="card-body">
@@ -651,12 +651,12 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <span class="badge badge-success">{{ feature.status }}</span>
-                                                <div class="m-0 font-weight-bold text-primary">{{ feature.name }}
+                                                <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
                                             <div class="col-auto text-center small text-gray-500">
-                                                <p><span>Donations: {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
+                                                <p><span>Donations: € {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
                                                 <form method="post" action="{% url 'add_to_cart' feature.id %}">
                                                     {% csrf_token %}
                                                     <div class="input-group">
@@ -681,7 +681,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <span class="badge badge-success">{{ feature.status }}</span>
-                                                <div class="m-0 font-weight-bold text-primary">{{ feature.name }}
+                                                <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
@@ -713,7 +713,7 @@
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">There are currently no new features to do</div>
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">No features have been completed yet</div>
                                     </div>
                                 </div>
                             </div>
@@ -723,6 +723,6 @@
             </div>
         </div>
     </div>
-    
+
     {% endblock %}
 </div>
