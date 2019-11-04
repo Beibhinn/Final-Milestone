@@ -121,7 +121,7 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link"  href="{% url 'charts' %}">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Charts</span></a>
       </li>
@@ -339,9 +339,6 @@
   <!-- Page level plugins -->
   <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
 
-  <!-- Page level custom scripts -->
-  <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
-  <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
 
   <script src="https://kit.fontawesome.com/8b6167d561.js" crossorigin="anonymous"></script>
 
@@ -403,6 +400,9 @@
       });
   }
   </script>
+
+  {% block page_script %}
+  {% endblock %}
 
 </body>
 

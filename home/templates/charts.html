@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Charts</h1>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <div class="row container">
+            <div class="col-md-6">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Bugs statuses</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div class="chart-pie pt-4">
+                            <canvas id="bugChart"></canvas>
+
+                        </div>
+                        <hr>
+                        <div class="mt-4 text-center small">
+                          <span class="mr-2">
+                              <i class="fas fa-circle text-default"></i> Created
+                          </span>
+                            <span class="mr-2">
+                              <i class="fas fa-circle text-warning"></i> In progress
+                          </span>
+                            <span class="mr-2">
+                              <i class="fas fa-circle text-info"></i> In review
+                          </span>
+                            <span class="mr-2">
+                              <i class="fas fa-circle text-success"></i> Complete
+                          </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Features statuses</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div class="chart-pie pt-4">
+                            <canvas id="featureChart"></canvas>
+
+                        </div>
+                        <hr>
+                        <div class="mt-4 text-center small">
+                          <span class="mr-2">
+                              <i class="fas fa-circle text-default"></i> Created
+                          </span>
+                            <span class="mr-2">
+                              <i class="fas fa-circle text-warning"></i> In progress
+                          </span>
+                            <span class="mr-2">
+                              <i class="fas fa-circle text-info"></i> In review
+                          </span>
+                            <span class="mr-2">
+                              <i class="fas fa-circle text-success"></i> Complete
+                          </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block page_script %}
+<script>
+Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = '#858796';
+
+var ctx = document.getElementById("bugChart");
+
+var bugChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ["Created", "In Progress", "In review", "Complete"],
+    datasets: [{
+      data: [{{ created_bugs }}, {{ in_progress_bugs }}, {{ in_review_bugs }}, {{ completed_bugs }}],
+      backgroundColor: ['#858796', '#f6c23e', '#36b9cc', '#1cc88a'],
+      hoverBackgroundColor: ['#6b6d7b', '#f4b20b', '#2ea5b8', '#169c6b'],
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false
+    },
+    cutoutPercentage: 80,
+  },
+});
+
+var ctx = document.getElementById("featureChart");
+
+var featureChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ["Created", "In Progress", "In review", "Complete"],
+    datasets: [{
+      data: [{{ created_features }}, {{ in_progress_features }}, {{ in_review_features }}, {{ completed_features }}],
+      backgroundColor: ['#858796', '#f6c23e', '#36b9cc', '#1cc88a'],
+      hoverBackgroundColor: ['#6b6d7b', '#f4b20b', '#2ea5b8', '#169c6b'],
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false
+    },
+    cutoutPercentage: 80,
+  },
+});
+</script>
+{% endblock %}

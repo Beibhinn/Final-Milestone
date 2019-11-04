@@ -24,7 +24,7 @@ from features import urls as urls_features
 from search import urls as urls_search
 from bugs.views import all_bugs
 from features.views import all_features
-from home.views import all_items, about_us
+from home.views import all_items, about_us, charts
 from django.views import static
 from .settings import MEDIA_ROOT
 
@@ -46,5 +46,6 @@ urlpatterns = [
     url(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
     re_path(r'^comments/', include('django_comments_xtd.urls')),
     url(r'avatar/', include('avatar.urls')),
-    url(r'^about/', about_us, name='about')
+    url(r'^about/', about_us, name='about'),
+    url(r'^charts/', charts, name='charts')
 ]
