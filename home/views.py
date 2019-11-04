@@ -24,3 +24,6 @@ def all_items(request):
                                           'features_complete': filter_by_status(features, "COMPLETE")})
 
 
+def about_us(request):
+    """A view that will display the 'about us' page"""
+    return render(request, 'about.html')
