@@ -66,10 +66,8 @@
                                                         </span>
 
                                                 </form>
-                                                <a href="{% url 'checkout' %}" class="btn btn-success" role="button" style="float: left"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Donate</a>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -87,6 +85,15 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            {% endif %}
+                            {% if cart_items %}
+                            <div class="row">
+                                <a href="{% url 'checkout' %}" class="btn btn-success" role="button"></span> Donate</a>
+                            </div>
+                            {% else %}
+                            <div class="row">
+                                <a href="{% url 'checkout' %}" class="btn btn-success disabled" role="button"></span> Donate</a>
                             </div>
                             {% endif %}
                         </div>

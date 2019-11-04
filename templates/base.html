@@ -345,6 +345,9 @@
 
   <script src="https://kit.fontawesome.com/8b6167d561.js" crossorigin="anonymous"></script>
 
+  {% block head_js %}
+  {% endblock head_js %}
+
   <script>
     // https://docs.djangoproject.com/en/2.2/ref/csrf/#setting-the-token-on-the-ajax-request
     const csrfToken = jQuery("[name=csrfmiddlewaretoken]").val();
