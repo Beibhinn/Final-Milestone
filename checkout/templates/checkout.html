@@ -27,15 +27,10 @@
             <div class="card-body">
                 {% for item in cart_items %}
                 <div class="col-md-4 mb-4" style="display: inline-block">
-                {% if bug.status == "CREATED" %}
-                <div class="card border-left-secondary shadow h-100 py-2">
-                {% elif bug.status == "IN PROGRESS" %}
-                <div class="card border-left-warning shadow h-100 py-2">
-                {% elif bug.status == "IN REVIEW" %}
-                <div class="card border-left-info shadow h-100 py-2">
-                {% else %}
-                <div class="card border-left-success shadow h-100 py-2">
-                {% endif %}
+                <div class="card {% if item.feature.status == 'CREATED' %} border-left-secondary
+                        {% elif item.feature.status == 'IN PROGRESS' %} border-left-warning
+                        {% elif item.feature.status == 'IN REVIEW' %} border-left-info
+                        {% else %} border-left-success {% endif %} shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">

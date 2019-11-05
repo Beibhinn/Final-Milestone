@@ -33,15 +33,10 @@
                                 {% if bugs %}
                                     {% for bug in bugs %}
                                         <div class="mb-4">
-                                            {% if bug.status == "CREATED" %}
-                                                <div class="card border-left-secondary shadow h-100 py-2">
-                                            {% elif bug.status == "IN PROGRESS" %}
-                                                <div class="card border-left-warning shadow h-100 py-2">{% elif bug.status == "IN REVIEW" %}
-                                            {% elif bug.status == "IN REVIEW" %}
-                                                <div class="card border-left-info shadow h-100 py-2">
-                                            {% else %}
-                                                <div class="card border-left-success shadow h-100 py-2">
-                                            {% endif %}
+                                            <div class="card {% if bug.status == 'CREATED' %} border-left-secondary
+                                                {% elif bug.status == 'IN PROGRESS' %} border-left-warning
+                                                {% elif bug.status == 'IN REVIEW' %} border-left-info
+                                                {% else %} border-left-success {% endif %} shadow h-100 py-2">
                                                 <div class="card-body">
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
@@ -100,11 +95,22 @@
                                 {% if features %}
                                     {% for feature in features %}
                                         <div class="mb-4">
-                                            <div class="card border-left-success shadow h-100 py-2">
+                                            <div class="card {% if feature.status == 'CREATED' %} border-left-secondary
+                                                {% elif feature.status == 'IN PROGRESS' %} border-left-warning
+                                                {% elif feature.status == 'IN REVIEW' %} border-left-info
+                                                {% else %} border-left-success {% endif %} shadow h-100 py-2">
                                                 <div class="card-body">
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
-                                                            <span class="badge badge-success">{{ feature.status }}</span>
+                                                            {% if feature.status == "CREATED" %}
+                                                                <span class="badge badge-secondary">{{ feature.status }}</span>
+                                                            {% elif feature.status == "IN PROGRESS" %}
+                                                                <span class="badge badge-warning">{{ feature.status }}</span>
+                                                            {% elif feature.status == "IN REVIEW" %}
+                                                                <span class="badge badge-info">{{ feature.status }}</span>
+                                                            {% else %}
+                                                                <span class="badge badge-secondary">{{ feature.status }}</span>
+                                                            {% endif %}
                                                             <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                             </div>
                                                             <div class="text-truncate">{{ feature.description }}</div>
@@ -161,15 +167,10 @@
                     {% if bugs_upvoted %}
                         {% for bug in bugs_upvoted %}
                             <div class="mb-4">
-                                {% if bug.status == "CREATED" %}
-                                    <div class="card border-left-secondary shadow h-100 py-2">
-                                {% elif bug.status == "IN PROGRESS" %}
-                                    <div class="card border-left-warning shadow h-100 py-2">
-                                {% elif bug.status == "IN PROGRESS" %}
-                                     <div class="card border-left-info shadow h-100 py-2">
-                                {% else %}
-                                     <div class="card border-left-success shadow h-100 py-2">
-                                 {% endif %}
+                                <div class="card {% if bug.status == 'CREATED' %} border-left-secondary
+                                    {% elif bug.status == 'IN PROGRESS' %} border-left-warning
+                                    {% elif bug.status == 'IN REVIEW' %} border-left-info
+                                    {% else %} border-left-success {% endif %} shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
@@ -187,14 +188,14 @@
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
                                             <div class="col-auto text-center small text-gray-500">
-                                                    <span><a onclick="toggleUpvote('{{ bug.id }}')">
-                                                              {% if bug in bugs_upvoted %}
-                                                                  <i class="fas fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
-                                                              {% else %}
-                                                                  <i class="far fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
-                                                              {% endif %}
-                                                              Upvotes: {{ bug.upvotes }}</a>
-                                                    </span>
+                                                <span><a onclick="toggleUpvote('{{ bug.id }}')">
+                                                          {% if bug in bugs_upvoted %}
+                                                              <i class="fas fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                                                          {% else %}
+                                                              <i class="far fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                                                          {% endif %}
+                                                          Upvotes: {{ bug.upvotes }}</a>
+                                                </span>
                                                 <p>Views: {{ bug.views }}</p>
                                             </div>
                                         </div>
@@ -218,7 +219,6 @@
                     </div>
                     {% endif %}
                 </div>
-
             </div>
             <!-- Donations header-->
             <a href="#collapseMyDonations" class="d-block card-header py-3" data-toggle="collapse" role="button"
@@ -231,15 +231,10 @@
                     {% if donations %}
                         {% for donation in donations %}
                             <div class="mb-4">
-                                {% if donation.feature.status == "CREATED" %}
-                                    <div class="card border-left-secondary shadow h-100 py-2">
-                                {% elif donation.feature.status == "IN PROGRESS" %}
-                                    <div class="card border-left-warning shadow h-100 py-2">
-                                {% elif donation.feature.status == "IN REVIEW" %}
-                                     <div class="card border-left-info shadow h-100 py-2">
-                                {% else %}
-                                     <div class="card border-left-success shadow h-100 py-2">
-                                {% endif %}
+                                <div class="card {% if feature.status == 'CREATED' %} border-left-secondary
+                                    {% elif feature.status == 'IN PROGRESS' %} border-left-warning
+                                    {% elif feature.status == 'IN REVIEW' %} border-left-info
+                                    {% else %} border-left-success {% endif %} shadow h-100 py-2">
                                         <div class="card-body">
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
@@ -294,7 +289,7 @@
                         </div>
                     {% endif %}
                 </div>
-
+            </div>
         </div>
     </div>
 </div>

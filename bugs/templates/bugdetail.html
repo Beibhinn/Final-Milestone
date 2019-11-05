@@ -11,33 +11,31 @@
         <div class="card shadow container">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
-
-                        <div class="col-md-4">
-                                {% if bug.status == "CREATED" %}
-                                <span class="badge detail-badge badge-secondary">{{ bug.status }}</span>
-                                {% elif bug.status == "IN PROGRESS" %}
-                                <span class="badge detail-badge badge-warning">{{ bug.status }}</span>
-                                {% elif bug.status == "IN REVIEW" %}
-                                <span class="badge detail-badge badge-info">{{ bug.status }}</span>
-                                {% else %}
-                                <span class="badge detail-badge badge-success">{{ bug.status }}</span>
+                    <div class="col-md-4">
+                        {% if bug.status == "CREATED" %}
+                        <span class="badge detail-badge badge-secondary">{{ bug.status }}</span>
+                        {% elif bug.status == "IN PROGRESS" %}
+                        <span class="badge detail-badge badge-warning">{{ bug.status }}</span>
+                        {% elif bug.status == "IN REVIEW" %}
+                        <span class="badge detail-badge badge-info">{{ bug.status }}</span>
+                        {% else %}
+                        <span class="badge detail-badge badge-success">{{ bug.status }}</span>
+                        {% endif %}
+                        <div class="card-body">
+                            <p>Added by: {{ bug.username }}</p>
+                            <div class="small text-gray-600">
+                                <p>Created on: {{ bug.date_added }} </p>
+                                {% if bug.date_started %}
+                                <p>Started on: {{ bug.date_started }} </p>
                                 {% endif %}
-                                <div class="card-body">
-                                    <p>Added by: {{ bug.username }}</p>
-                                    <div class="small text-gray-600">
-                                        <p>Created on: {{ bug.date_added }} </p>
-                                        {% if bug.date_started %}
-                                        <p>Started on: {{ bug.date_started }} </p>
-                                        {% endif %}
-                                        {% if bug.date_finished %}
-                                        <p>Completed on: {{ bug.date_finished }} </p>
-                                        {% endif %}
-                                        <p>Upvotes: {{ bug.upvotes }}</p>
-                                        <p>Views: {{ bug.views }}</p>
-                                    </div>
-                                </div>
-
+                                {% if bug.date_finished %}
+                                <p>Completed on: {{ bug.date_finished }} </p>
+                                {% endif %}
+                                <p>Upvotes: {{ bug.upvotes }}</p>
+                                <p>Views: {{ bug.views }}</p>
+                            </div>
                         </div>
+                    </div>
                         <div class="col-md-8">
                             {% if bug.image %}
                                 <img class="attachment" src="/media/{{ bug.image }}">

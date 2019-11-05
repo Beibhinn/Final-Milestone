@@ -13,16 +13,11 @@
                 {% if features %}
                 {% for feature in features %}
                     <div class="col-md-3 mb-4" style="display: inline-block">
-                        {% if feature.status == "CREATED" %}
-                            <div class="card border-left-secondary shadow h-100 py-2">
-                        {% elif feature.status == "IN PROGRESS" %}
-                            <div class="card border-left-warning shadow h-100 py-2">
-                        {% elif feature.status == "IN REVIEW" %}
-                            <div class="card border-left-info shadow h-100 py-2">
-                        {% else %}
-                            <div class="card border-left-success shadow h-100 py-2">
-                        {% endif %}
-                                <div class="card-body">
+                        <div class="card {% if feature.status == 'CREATED' %} border-left-secondary
+                        {% elif feature.status == 'IN PROGRESS' %} border-left-warning
+                        {% elif feature.status == 'IN REVIEW' %} border-left-info
+                        {% else %} border-left-success {% endif %} shadow h-100 py-2">
+                            <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         {% if feature.status == "CREATED" %}
@@ -54,7 +49,7 @@
                                     </div>
                                 </div>
                             </div>
-                            </div>
+                        </div>
                     </div>
                 {% endfor %}
                 {% else %}

@@ -19,86 +19,78 @@
                 {% if cart_items %}
                 {% for item in cart_items %}
                 <div class="col-md-4 mb-4" style="display: inline-block">
-                    {% if bug.status == "CREATED" %}
-                    <div class="card border-left-secondary shadow h-100 py-2">
-                        {% elif bug.status == "IN PROGRESS" %}
-                        <div class="card border-left-warning shadow h-100 py-2">
-                            {% elif bug.status == "IN REVIEW" %}
-                            <div class="card border-left-info shadow h-100 py-2">
-                                {% else %}
-                                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card {% if item.feature.status == 'CREATED' %} border-left-secondary
+                        {% elif item.feature.status == 'IN PROGRESS' %} border-left-warning
+                        {% elif item.feature.status == 'IN REVIEW' %} border-left-info
+                        {% else %} border-left-success {% endif %} shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    {% if item.feature.status == "CREATED" %}
+                                    <span class="badge badge-secondary">{{ item.feature.status }}</span>
+                                    {% elif item.feature.status == "IN PROGRESS" %}
+                                    <span class="badge badge-warning">{{ item.feature.status }}</span>
+                                    {% elif item.feature.status == "IN REVIEW" %}
+                                    <span class="badge badge-info">{{ item.feature.status }}</span>
+                                    {% else %}
+                                    <span class="badge badge-success">{{ item.feature.status }}</span>
                                     {% endif %}
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                {% if item.feature.status == "CREATED" %}
-                                                <span class="badge badge-secondary">{{ item.feature.status }}</span>
-                                                {% elif item.feature.status == "IN PROGRESS" %}
-                                                <span class="badge badge-warning">{{ item.feature.status }}</span>
-                                                {% elif item.feature.status == "IN REVIEW" %}
-                                                <span class="badge badge-info">{{ item.feature.status }}</span>
-                                                {% else %}
-                                                <span class="badge badge-success">{{ item.feature.status }}</span>
-                                                {% endif %}
-                                                <form method="post" style="float:right" class="form-inline" action="{% url 'remove_from_cart' item.id %}">
-                                                    {% csrf_token %}
-                                                    <div class="input-group">
-                                                        <span class="input-group-btn">
-                                                            <button type="submit" class="btn btn-danger" aria-label="Left Align">
-                                                                <i class="fas fa-trash-alt"></i>
-                                                            </button>
-                                                        </span>
-                                                    </div>
-                                                </form>
-                                                <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' item.id %}">{{ item.feature.name }}</a></div>
-                                                <div class="text-truncate">{{ item.feature.description }}</div>
-                                            </div>
-                                            <div class="col-sm-12 text-center small text-gray-500">
-                                                <div>Current donation value in cart: € {{ item.donation_amount }}</div>
-                                                <form method="post" action="{% url 'adjust_cart' item.id %}">
-                                                    {% csrf_token %}
-                                                    <div class="input-group" style="width: 100%">
-                                                        <input name="donation_amount" type="number" min="1" max="999" class="form-control"
-                                                               placeholder="€">
-                                                    </div>
-                                                        <span class="input-group-btn" style="float: right">
-                                                                <button type="submit" class="btn btn-primary"><i class="fas fa-edit" style="max-width: 14px"></i></button>
-                                                        </span>
+                                    <form method="post" style="float:right" class="form-inline" action="{% url 'remove_from_cart' item.id %}">
+                                        {% csrf_token %}
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <button type="submit" class="btn btn-danger" aria-label="Left Align">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                    <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' item.id %}">{{ item.feature.name }}</a></div>
+                                    <div class="text-truncate">{{ item.feature.description }}</div>
+                                </div>
+                                <div class="col-sm-12 text-center small text-gray-500">
+                                    <div>Current donation value in cart: € {{ item.donation_amount }}</div>
+                                    <form method="post" action="{% url 'adjust_cart' item.id %}">
+                                        {% csrf_token %}
+                                        <div class="input-group" style="width: 100%">
+                                            <input name="donation_amount" type="number" min="1" max="999" class="form-control"
+                                                   placeholder="€">
+                                        </div>
+                                            <span class="input-group-btn" style="float: right">
+                                                    <button type="submit" class="btn btn-primary"><i class="fas fa-edit" style="max-width: 14px"></i></button>
+                                            </span>
 
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
-                            {% endfor %}
-                            {% else %}
-                            <div class="mb-4">
-                                <div class="card shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs text-center font-weight-bold text-primary text-uppercase mb-1">
-                                                    Looks like you haven't got anything in your basket just yet. Please feel free to donate to any feature(s) you'd most like to see implemented
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% if cart_items %}
-                            <div class="row">
-                                <a href="{% url 'checkout' %}" class="btn btn-success" role="button"></span> Donate</a>
-                            </div>
-                            {% else %}
-                            <div class="row">
-                                <a href="{% url 'checkout' %}" class="btn btn-success disabled" role="button"></span> Donate</a>
-                            </div>
-                            {% endif %}
                         </div>
                     </div>
                 </div>
+                {% endfor %}
+                {% else %}
+                <div class="mb-4">
+                    <div class="card shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs text-center font-weight-bold text-primary text-uppercase mb-1">
+                                        Looks like you haven't got anything in your basket just yet. Please feel free to donate to any feature(s) you'd most like to see implemented
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% if cart_items %}
+                <div class="row">
+                    <a href="{% url 'checkout' %}" class="btn btn-success" role="button"></span> Donate</a>
+                </div>
+                {% else %}
+                <div class="row">
+                    <a href="{% url 'checkout' %}" class="btn btn-success disabled" role="button"></span> Donate</a>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>

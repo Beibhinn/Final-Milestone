@@ -19,15 +19,10 @@
                             {% if bugs %}
                                 {% for bug in bugs %}
                                     <div class="mb-4">
-                                        {% if bug.status == "CREATED" %}
-                                            <div class="card border-left-secondary shadow h-100 py-2">
-                                        {% elif bug.status == "IN PROGRESS" %}
-                                            <div class="card border-left-warning shadow h-100 py-2">{% elif bug.status == "IN REVIEW" %}
-                                        {% elif bug.status == "IN REVIEW" %}
-                                            <div class="card border-left-info shadow h-100 py-2">
-                                        {% else %}
-                                            <div class="card border-left-success shadow h-100 py-2">
-                                        {% endif %}
+                                        <div class="card {% if bug.status == 'CREATED' %} border-left-secondary
+                                            {% elif bug.status == 'IN PROGRESS' %} border-left-warning
+                                            {% elif bug.status == 'IN REVIEW' %} border-left-info
+                                            {% else %} border-left-success {% endif %} shadow h-100 py-2">
                                             <div class="card-body">
                                                 <div class="row no-gutters align-items-center">
                                                     <div class="col mr-2">
@@ -87,11 +82,22 @@
                             {% if features %}
                                 {% for feature in features %}
                                     <div class="mb-4">
-                                        <div class="card border-left-success shadow h-100 py-2">
+                                        <div class="card {% if feature.status == 'CREATED' %} border-left-secondary
+                                            {% elif feature.status == 'IN PROGRESS' %} border-left-warning
+                                            {% elif feature.status == 'IN REVIEW' %} border-left-info
+                                            {% else %} border-left-success {% endif %} shadow h-100 py-2">
                                             <div class="card-body">
                                                 <div class="row no-gutters align-items-center">
                                                     <div class="col mr-2">
+                                                        {% if feature.status == "CREATED" %}
+                                                        <span class="badge badge-secondary">{{ feature.status }}</span>
+                                                        {% elif feature.status == "IN PROGRESS" %}
+                                                        <span class="badge badge-warning">{{ feature.status }}</span>
+                                                        {% elif feature.status == "IN REVIEW" %}
+                                                        <span class="badge badge-info">{{ feature.status }}</span>
+                                                        {% else %}
                                                         <span class="badge badge-success">{{ feature.status }}</span>
+                                                        {% endif %}
                                                         <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                         </div>
                                                         <div class="text-truncate">{{ feature.description }}</div>
