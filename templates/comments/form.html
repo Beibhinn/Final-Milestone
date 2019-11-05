@@ -20,6 +20,11 @@
                 {{ form.comment }}
             </div>
         </div>
+        {% if 'features' in request.path %}
+        <input type="hidden" name="next" value="{% url 'feature_detail' feature.id %}" />
+        {% elif 'bugs' in request.path %}
+        <input type="hidden" name="next" value="{% url 'bug_detail' bug.id %}" />
+        {% endif %}
     </fieldset>
 
     <div class="row form-group">
