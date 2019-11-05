@@ -212,8 +212,13 @@
                   {% endif %}
                 </h6>
                 {% if cart_items %}
-                  <a class="dropdown-item d-flex align-items-center" href="#">
-                    {% for item in cart_items %}
+                  {% for item in cart_items %}
+                    <a class="dropdown-item d-flex align-items-center" href="{% url 'feature_detail' item.feature.id %}">
+                    {% if item.feature.image %}
+                      <div class="dropdown-list-image mr-3">
+                        <img class="rounded-circle" src="/media/{{ item.feature.image }}" alt="">
+                      </div>
+                    {% endif %}
                     <div class="font-weight-bold">
                       <div class="text-truncate">{{ item.feature.name }}</div>
                       <div class="small text-gray-500">Donation:  {{ item.donation_amount }}</div>
