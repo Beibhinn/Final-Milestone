@@ -1,7 +1,6 @@
-from django.test import TestCase, Client
-from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
-from django.utils import timezone
+from django.test import TestCase
+
 from .models import Bug
 
 
@@ -14,7 +13,7 @@ class TestBugModels(TestCase):
 
         bug = Bug.objects.create(name="I get an error saying 404?",
                                  description="Every time I try to access the page",
-                                 username=self.user,)
+                                 username=self.user)
         bug.save()
 
         self.assertEqual(str(bug.name), "I get an error saying 404?")
