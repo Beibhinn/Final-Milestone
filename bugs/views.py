@@ -55,13 +55,16 @@ def add_or_edit_bug(request, pk=None):
     is null or not
     """
     bug = get_object_or_404(Bug, pk=pk) if pk else None
+    print(bug)
     if request.method == "POST":
-        form = BugForm(request.POST, request.user, files=request.FILES, instance=bug)
+        form = BugForm(request.POST, request.FILES, instance=bug)
         if form.is_valid():
-            bug = form.save()
+            bug = form.save(commit=False)
+            bug.username = request.user
+            bug.save()
             return redirect(bug_detail, bug.pk)
     else:
-        form = BugForm(request.GET, request.user, files=None, instance=bug)
+        form = BugForm(instance=bug)
     return render(request, 'bugform.html', {'form': form})
 
 

@@ -9,6 +9,7 @@ urlpatterns = [
         BugDetailView.as_view(),
         name='bug_detail'),
     url(r'^new/$', add_or_edit_bug, name='new_bug'),
+    url(r'^edit/(?P<pk>\d+)/$', add_or_edit_bug, name='edit_bug'),
     url(r'^update_status/$', update_status),
     url(r'^toggle_upvote/$', toggle_upvote)
 ]
