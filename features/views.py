@@ -1,6 +1,7 @@
 import json
 
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
 from django.utils import timezone
 
 from .models import Feature
@@ -51,13 +52,16 @@ def add_or_edit_feature(request, pk=None):
     is null or not
     """
     feature = get_object_or_404(Feature, pk=pk) if pk else None
+    print(feature)
     if request.method == "POST":
-        form = FeatureForm(request.POST, request.user, files=request.FILES, instance=feature)
+        form = FeatureForm(request.POST, files=request.FILES, instance=feature)
         if form.is_valid():
-            feature = form.save()
+            feature = form.save(commit=False)
+            feature.username = request.user
+            feature.save()
             return redirect(feature_detail, feature.pk)
     else:
-        form = FeatureForm(request.GET, request.user, files=None, instance=feature)
+        form = FeatureForm(instance=feature)
     return render(request, 'featureform.html', {'form': form})
 
 

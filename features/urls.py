@@ -9,5 +9,6 @@ urlpatterns = [
         FeatureDetailView.as_view(),
         name='feature_detail'),
     url(r'^new/$', add_or_edit_feature, name='new_feature'),
+    url(r'^edit/(?P<pk>\d+)/$', add_or_edit_feature, name='edit_feature'),
     url(r'^update_status/$', update_status)
 ]
