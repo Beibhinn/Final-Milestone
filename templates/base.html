@@ -163,7 +163,7 @@
             <div class="input-group">
               <input type="text" class="form-control bg-light border-0 small" name="search_term" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
               <div class="input-group-append">
-                <button class="btn btn-primary" type="submit">
+                <button class="btn btn-main" type="submit">
                   <i class="fas fa-search fa-sm"></i>
                 </button>
               </div>
@@ -221,7 +221,7 @@
                     {% endif %}
                     <div class="font-weight-bold">
                       <div class="text-truncate">{{ item.feature.name }}</div>
-                      <div class="small text-gray-500">Donation:  {{ item.donation_amount }}</div>
+                      <div class="small text-gray-500">Donation: € {{ item.donation_amount }}</div>
                     </div>
                     {% endfor %}
                   </a>
@@ -232,7 +232,7 @@
                     </div>
                   </a>
                 {% endif %}
-                  <a class="dropdown-item text-center small text-gray-500" href="{% url 'view_cart' %}">Edit cart</a>
+                  <a class="dropdown-item text-center small text-gray-500" href="{% url 'view_cart' %}">View cart</a>
               </div>
             </li>
 
@@ -296,7 +296,7 @@
                             </div>
                         </div>
                     {% endif %}
-                    <div class="container">
+                    <div class="container-fluid">
                         {% block content %} {% endblock %}
                     </div>
             </div>
@@ -393,7 +393,7 @@
 
   function toggleUpvote(id) {
       $.ajax({
-          url: `bugs/toggle_upvote/`,
+          url: "http://{{ request.get_host }}/bugs/toggle_upvote/",
           type: 'post',
           data: JSON.stringify({
               id: id,
@@ -403,6 +403,7 @@
           },
           dataType: 'json',
       });
+      $(`#${id}`).find('.fa-arrow-alt-circle-up').toggleClass("fas").toggleClass("far");
   }
   </script>
 

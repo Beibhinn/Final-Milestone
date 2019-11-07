@@ -60,7 +60,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2 text-center">
+                    <div id="{{ bug.id }}" class="col-md-2 text-center">
                         <span style="float: right"><a onclick="toggleUpvote('{{ bug.id }}')">
                             <p class="text-gray-400" style="text-transform: uppercase; display: inline-block"><b>Upvote: </b></p>
                             {% if bug in bugs_upvoted %}

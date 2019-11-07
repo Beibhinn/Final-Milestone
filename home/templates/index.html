@@ -4,13 +4,13 @@
 <!--suppress XmlDuplicatedId -->
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Issue Dashboard</h1>
+    <h1 class="h3 mb-0 page-heading">Issue Dashboard</h1>
 </div>
 <hr>
 
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Bugs</h1>
+    <h4 class="h4 sub-heading mb-0">Bugs</h4>
 </div>
 <!-- Bugs Section -->
 
@@ -18,7 +18,7 @@
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card shadow mb-4 status-container" data-status="CREATED" ondrop="drop(event)" ondragover="allowDrop(event)">
             <!-- Card Header -->
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <div class="card-header mb-2 py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">To do</h6>
             </div>
             <!-- Card Body -->
@@ -32,17 +32,17 @@
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <span class="badge badge-secondary">{{ bug.status }}</span>
+                                                <span class="badge status-badge badge-secondary">{{ bug.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div class="col-auto text-center small text-gray-500">
+                                            <div id="{{ bug.id }}" class="col-auto text-center small text-gray-500">
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}
-                                                              <i class="fas fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                                                              <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
                                                           {% else %}
-                                                              <i class="far fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                                                              <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
@@ -58,18 +58,18 @@
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <span class="badge badge-secondary">{{ bug.status }}</span>
+                                                <span class="badge status-badge badge-secondary">{{ bug.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div class="col-auto text-center small text-gray-500">
+                                            <div id="{{ bug.id }}" class="col-auto text-center small text-gray-500">
                                                 {% if user.is_authenticated %}
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}
-                                                              <i class="fas fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                                                              <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
                                                           {% else %}
-                                                              <i class="far fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                                                              <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
@@ -103,7 +103,7 @@
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card shadow mb-4 status-container" data-status="IN PROGRESS" ondrop="drop(event)" ondragover="allowDrop(event)">
             <!-- Card Header -->
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <div class="card-header mb-2 py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">In progress</h6>
             </div>
             <!-- Card Body -->
@@ -117,17 +117,17 @@
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <span class="badge badge-warning">{{ bug.status }}</span>
+                                                <span class="badge status-badge badge-warning">{{ bug.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div class="col-auto text-center small text-gray-500">
+                                            <div id="{{ bug.id }}" class="col-auto text-center small text-gray-500">
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}
-                                                              <i class="fas fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                                                              <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
                                                           {% else %}
-                                                              <i class="far fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                                                              <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
@@ -143,18 +143,18 @@
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <span class="badge badge-warning">{{ bug.status }}</span>
+                                                <span class="badge status-badge badge-warning">{{ bug.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div class="col-auto text-center small text-gray-500">
+                                            <div id="{{ bug.id }}" class="col-auto text-center small text-gray-500">
                                                 {% if user.is_authenticated %}
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}
-                                                              <i class="fas fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                                                              <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
                                                           {% else %}
-                                                              <i class="far fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                                                              <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
@@ -188,7 +188,7 @@
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card shadow mb-4 status-container" data-status="IN REVIEW" ondrop="drop(event)" ondragover="allowDrop(event)">
             <!-- Card Header -->
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <div class="card-header mb-2 py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">In review</h6>
             </div>
             <!-- Card Body -->
@@ -202,17 +202,17 @@
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <span class="badge badge-info">{{ bug.status }}</span>
+                                                <span class="badge status-badge badge-info">{{ bug.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div class="col-auto text-center small text-gray-500">
+                                            <div id="{{ bug.id }}" class="col-auto text-center small text-gray-500">
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}
-                                                              <i class="fas fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                                                              <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
                                                           {% else %}
-                                                              <i class="far fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                                                              <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
@@ -228,18 +228,18 @@
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <span class="badge badge-info">{{ bug.status }}</span>
+                                                <span class="badge status-badge badge-info">{{ bug.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div class="col-auto text-center small text-gray-500">
+                                            <div id="{{ bug.id }}" class="col-auto text-center small text-gray-500">
                                                 {% if user.is_authenticated %}
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}
-                                                              <i class="fas fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                                                              <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
                                                           {% else %}
-                                                              <i class="far fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                                                              <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
@@ -273,7 +273,7 @@
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card shadow mb-4 status-container" data-status="COMPLETE" ondrop="drop(event)" ondragover="allowDrop(event)">
             <!-- Card Header -->
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <div class="card-header mb-2 py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Done</h6>
             </div>
             <!-- Card Body -->
@@ -287,17 +287,17 @@
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <span class="badge badge-success">{{ bug.status }}</span>
+                                                <span class="badge status-badge badge-success">{{ bug.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div class="col-auto text-center small text-gray-500">
+                                            <div id="{{ bug.id }}" class="col-auto text-center small text-gray-500">
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}
-                                                              <i class="fas fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                                                              <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
                                                           {% else %}
-                                                              <i class="far fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                                                              <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
@@ -313,18 +313,18 @@
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <span class="badge badge-success">{{ bug.status }}</span>
+                                                <span class="badge status-badge badge-success">{{ bug.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div class="col-auto text-center small text-gray-500">
+                                            <div id="{{ bug.id }}" class="col-auto text-center small text-gray-500">
                                                 {% if user.is_authenticated %}
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}
-                                                              <i class="fas fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                                                              <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
                                                           {% else %}
-                                                              <i class="far fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                                                              <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
@@ -359,14 +359,14 @@
 
 <hr>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Features</h1>
+        <h4 class="h4 sub-heading mb-0">Features</h4>
 </div>
 
 <div class="row">
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card shadow mb-4 status-container" data-status="CREATED" ondrop="drop(event)" ondragover="allowDrop(event)">
             <!-- Card Header -->
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <div class="card-header mb-2 py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">To do</h6>
             </div>
             <!-- Card Body -->
@@ -380,7 +380,7 @@
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <span class="badge badge-secondary">{{ feature.status }}</span>
+                                                <span class="badge status-badge badge-secondary">{{ feature.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
@@ -410,7 +410,7 @@
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <span class="badge badge-secondary">{{ feature.status }}</span>
+                                                <span class="badge status-badge badge-secondary">{{ feature.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
@@ -456,7 +456,7 @@
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card shadow mb-4 status-container" data-status="IN PROGRESS" ondrop="drop(event)" ondragover="allowDrop(event)">
             <!-- Card Header -->
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <div class="card-header mb-2 py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">In progress</h6>
             </div>
             <!-- Card Body -->
@@ -470,7 +470,7 @@
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <span class="badge badge-warning">{{ feature.status }}</span>
+                                                <span class="badge status-badge badge-warning">{{ feature.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
@@ -500,7 +500,7 @@
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <span class="badge badge-warning">{{ feature.status }}</span>
+                                                <span class="badge status-badge badge-warning">{{ feature.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
@@ -546,7 +546,7 @@
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card shadow mb-4 status-container" data-status="IN REVIEW" ondrop="drop(event)" ondragover="allowDrop(event)">
             <!-- Card Header -->
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <div class="card-header mb-2 py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">In review</h6>
             </div>
             <!-- Card Body -->
@@ -560,7 +560,7 @@
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <span class="badge badge-info">{{ feature.status }}</span>
+                                                <span class="badge status-badge badge-info">{{ feature.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
@@ -590,7 +590,7 @@
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <span class="badge badge-info">{{ feature.status }}</span>
+                                                <span class="badge status-badge badge-info">{{ feature.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
@@ -636,7 +636,7 @@
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card shadow mb-4 status-container" data-status="COMPLETE" ondrop="drop(event)" ondragover="allowDrop(event)">
             <!-- Card Header -->
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <div class="card-header mb-2 py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Done</h6>
             </div>
             <!-- Card Body -->
@@ -650,7 +650,7 @@
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <span class="badge badge-success">{{ feature.status }}</span>
+                                                <span class="badge status-badge badge-success">{{ feature.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
@@ -680,7 +680,7 @@
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <span class="badge badge-success">{{ feature.status }}</span>
+                                                <span class="badge status-badge badge-success">{{ feature.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>

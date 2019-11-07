@@ -3,13 +3,13 @@
 {% block content %}
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Bugs</h1>
+    <h1 class="h3 mb-0 page-heading">Bugs</h1>
 </div>
 
 <div class="row">
     <div class="col-md-12 mb-4">
-        <div class="card shadow mb-4 container">
-            <div class="card-body">
+        <div class="card shadow mb-4 status-container">
+            <div class="card-body mt-4 row">
                 {% if bugs %}
                 {% for bug in bugs %}
                 <div class="col-md-3 mb-4" style="display: inline-block">
@@ -32,7 +32,7 @@
                                     <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a></div>
                                     <div class="text-truncate">{{ bug.description }}</div>
                                 </div>
-                                <div class="col-auto text-center small text-gray-500">
+                                <div id="{{ bug.id }}" class="col-auto text-center small text-gray-500">
                                     <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                         {% if bug in bugs_upvoted %}
                                               <i class="fas fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
