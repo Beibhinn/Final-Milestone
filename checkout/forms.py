@@ -19,7 +19,7 @@ class DonationForm(forms.ModelForm):
     class Meta:
         model = Donation
         exclude = (
-            'name', 'date'
+            'user', 'date'
         )
 
     def __init__(self, request, user, date):
