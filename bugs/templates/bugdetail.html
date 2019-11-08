@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">{{ bug.name }}</h1>
+    <h1 class="h3 mb-0 page-heading">{{ bug.name }}</h1>
     {% if user.is_authenticated %}
         {% if user == bug.username %}
     <a href="{% url 'edit_bug' bug.id %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-edit fa-sm text-white-50"></i> Edit bug</a>
