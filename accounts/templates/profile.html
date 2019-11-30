@@ -19,17 +19,17 @@
             <!-- My issues Header - Accordion -->
             <a href="#collapseMyIssues" class="d-block card-header py-3" data-toggle="collapse" role="button"
                aria-expanded="true" aria-controls="collapseMyIssues">
-                <h6 class="m-0 font-weight-bold text-primary">My issues</h6>
+                <h6 class="m-0 sub-heading font-weight-bold">My issues</h6>
             </a>
             <!-- My issues Content - Collapse -->
-            <div class="collapse" id="collapseMyIssues">
+            <div class="collapse mt-4" id="collapseMyIssues">
                 <div class="row card-body">
-                    <div class="col-md-6 mb-4">
-                        <div class="card shadow mb-4 status-container">
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Bugs</h6>
+                    <div class="col-md-12 col-lg-6 mb-4">
+                        <div class="mb-4 status-container">
+                            <div class="py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="section-header font-weight-bold text-primary">Bugs</h6>
                             </div>
-                            <div class="card-body">
+                            <div class="pl-4 pr-4">
                                 {% if bugs %}
                                     {% for bug in bugs %}
                                         <div class="mb-4">
@@ -38,22 +38,22 @@
                                                 {% elif bug.status == 'IN REVIEW' %} border-left-info
                                                 {% else %} border-left-success {% endif %} shadow h-100 py-2">
                                                 <div class="card-body">
-                                                    <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
+                                                    <div class="no-gutters align-items-center">
+                                                        <div class="col-md-12 mr-2">
                                                             {% if bug.status == "CREATED" %}
-                                                                <span class="badge badge-secondary">{{ bug.status }}</span>
+                                                                <span class="badge status-badge badge-secondary">{{ bug.status }}</span>
                                                             {% elif bug.status == "IN PROGRESS" %}
-                                                                <span class="badge badge-warning">{{ bug.status }}</span>
+                                                                <span class="badge status-badge badge-warning">{{ bug.status }}</span>
                                                             {% elif bug.status == "IN REVIEW" %}
-                                                                <span class="badge badge-info">{{ bug.status }}</span>
+                                                                <span class="badge status-badge badge-info">{{ bug.status }}</span>
                                                             {% else %}
-                                                                <span class="badge badge-success">{{ bug.status }}</span>
+                                                                <span class="badge status-badge badge-success">{{ bug.status }}</span>
                                                             {% endif %}
-                                                            <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
+                                                            <div class="m-0 issue-name font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                             </div>
                                                             <div class="text-truncate">{{ bug.description }}</div>
                                                         </div>
-                                                        <div id="{{ bug.id }}" class="col-auto text-center small text-gray-500">
+                                                        <div id="{{ bug.id }}" class="card-bottom small text-gray-500">
                                                             <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                                       {% if bug in bugs_upvoted %}
                                                                           <i class="fas fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
@@ -62,7 +62,7 @@
                                                                       {% endif %}
                                                                           Upvotes: {{ bug.upvotes }}</a>
                                                             </span>
-                                                            <p>Views: {{ bug.views }}</p>
+                                                            <span class="view-span bugs-view">Views: {{ bug.views }}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -160,7 +160,7 @@
             <!-- Upvoted bugs header-->
             <a href="#collapseMyUpvotes" class="d-block card-header py-3" data-toggle="collapse" role="button"
                aria-expanded="true" aria-controls="collapseMyIssues">
-                <h6 class="m-0 font-weight-bold text-primary">Bugs I've upvoted</h6>
+                <h6 class="m-0 sub-heading font-weight-bold text-primary">Bugs I've upvoted</h6>
             </a>
             <!-- Upvoted bugs content -->
             <div class="collapse" id="collapseMyUpvotes">
@@ -224,7 +224,7 @@
             <!-- Donations header-->
             <a href="#collapseMyDonations" class="d-block card-header py-3" data-toggle="collapse" role="button"
                aria-expanded="true" aria-controls="collapseMyDonations">
-                <h6 class="m-0 font-weight-bold text-primary">Donations</h6>
+                <h6 class="m-0 sub-heading font-weight-bold text-primary">Donations</h6>
             </a>
             <!-- Donations content -->
             <div class="collapse" id="collapseMyDonations">
