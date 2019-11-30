@@ -6,7 +6,7 @@
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
     //<![CDATA[
-        Stripe.publishableKey = '{{ publishable }}';
+    Stripe.publishableKey = '{{ publishable }}';
     //]]>
 </script>
 <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
@@ -21,30 +21,30 @@
     <div class="col-md-12 mb-4">
         <div class="card shadow mb-4 container">
             <div class="pt-4 pl-4">
-                <h4>Features in cart</h4>
+                <h4 class="h4 sub-heading mb-0">Features in cart</h4>
             </div>
             <hr>
 
             <div class="card-body">
                 {% for item in cart_items %}
-                <div class="col-md-4 mb-4" style="display: inline-block">
+                <div class="col-md-6 col-lg-4 col-xl-3 mb-4" style="display: inline-block">
                     <div class="card {% if item.feature.status == 'CREATED' %} border-left-secondary
                         {% elif item.feature.status == 'IN PROGRESS' %} border-left-warning
                         {% elif item.feature.status == 'IN REVIEW' %} border-left-info
                         {% else %} border-left-success {% endif %} shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
+                                <div class="col-md-12 mr-2">
                                     {% if item.feature.status == "CREATED" %}
-                                    <span class="badge badge-secondary">{{ item.feature.status }}</span>
+                                    <span class="badge status-badge badge-secondary">{{ item.feature.status }}</span>
                                     {% elif item.feature.status == "IN PROGRESS" %}
-                                    <span class="badge badge-warning">{{ item.feature.status }}</span>
+                                    <span class="badge status-badge badge-warning">{{ item.feature.status }}</span>
                                     {% elif item.feature.status == "IN REVIEW" %}
-                                    <span class="badge badge-info">{{ item.feature.status }}</span>
+                                    <span class="badge status-badge badge-info">{{ item.feature.status }}</span>
                                     {% else %}
-                                    <span class="badge badge-success">{{ item.feature.status }}</span>
+                                    <span class="badge status-badge badge-success">{{ item.feature.status }}</span>
                                     {% endif %}
-                                    <div class="m-0 font-weight-bold text-primary"><a
+                                    <div class="m-0 font-weight-bold text-primary" style="min-height: 30px"><a
                                             href="{% url 'feature_detail' item.id %}">{{ item.feature.name }}</a></div>
                                     <div class="text-truncate">{{ item.feature.description }}</div>
                                 </div>

@@ -30,14 +30,14 @@
                                 <div class="card border-left-secondary shadow h-100 py-2" id="bug-{{ bug.id }}" draggable="true"
                                      ondragstart="drag(event)">
                                     <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
+                                        <div class="no-gutters align-items-center">
+                                            <div class="col-md-12 mr-2">
                                                 <span class="badge status-badge badge-secondary">{{ bug.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div id="{{ bug.id }}" class="col-auto text-center small text-gray-500">
+                                            <div id="{{ bug.id }}" class="card-bottom small text-gray-500">
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}
                                                               <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
@@ -46,7 +46,7 @@
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
-                                                <p>Views: {{ bug.views }}</p>
+                                                <span class="view-span">Views: {{ bug.views }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -56,14 +56,14 @@
                             <div class="mb-4">
                                 <div class="card border-left-secondary shadow h-100 py-2" draggable="true">
                                     <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
+                                        <div class="no-gutters align-items-center">
+                                            <div class="col-md-12 mr-2">
                                                 <span class="badge status-badge badge-secondary">{{ bug.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div id="{{ bug.id }}" class="col-auto text-center small text-gray-500">
+                                            <div id="{{ bug.id }}" class="card-bottom small text-gray-500">
                                                 {% if user.is_authenticated %}
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}
@@ -73,7 +73,7 @@
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
-                                                <p>Views: {{ bug.views }}</p>
+                                                <span class="view-span">Views: {{ bug.views }}</span>
                                                 {% else %}
                                                 <span>Upvotes: {{ bug.upvotes }}</span> <span>Views: {{ bug.views }}</span>
                                                 {% endif %}
@@ -115,14 +115,14 @@
                                 <div class="card border-left-warning shadow h-100 py-2" id="bug-{{ bug.id }}" draggable="true"
                                      ondragstart="drag(event)">
                                     <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
+                                        <div class="no-gutters align-items-center">
+                                            <div class="col-md-12 mr-2">
                                                 <span class="badge status-badge badge-warning">{{ bug.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div id="{{ bug.id }}" class="col-auto text-center small text-gray-500">
+                                            <div id="{{ bug.id }}" class="card-bottom small text-gray-500">
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}
                                                               <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
@@ -131,7 +131,7 @@
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
-                                                <p>Views: {{ bug.views }}</p>
+                                                <span class="view-span">Views: {{ bug.views }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -141,14 +141,14 @@
                             <div class="mb-4">
                                 <div class="card border-left-warning shadow h-100 py-2" draggable="true">
                                     <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
+                                        <div class="no-gutters align-items-center">
+                                            <div class="col-12-md mr-2">
                                                 <span class="badge status-badge badge-warning">{{ bug.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div id="{{ bug.id }}" class="col-auto text-center small text-gray-500">
+                                            <div id="{{ bug.id }}" class="card-bottom small text-gray-500">
                                                 {% if user.is_authenticated %}
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}
@@ -158,7 +158,7 @@
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
-                                                <p>Views: {{ bug.views }}</p>
+                                                <span class="view-span">Views: {{ bug.views }}</span>
                                                 {% else %}
                                                 <span>Upvotes: {{ bug.upvotes }}</span> <span>Views: {{ bug.views }}</span>
                                                 {% endif %}
@@ -200,14 +200,14 @@
                                 <div class="card border-left-info shadow h-100 py-2" id="bug-{{ bug.id }}" draggable="true"
                                      ondragstart="drag(event)">
                                     <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
+                                        <div class="no-gutters align-items-center">
+                                            <div class="col-md-12 mr-2">
                                                 <span class="badge status-badge badge-info">{{ bug.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div id="{{ bug.id }}" class="col-auto text-center small text-gray-500">
+                                            <div id="{{ bug.id }}" class="card-bottom small text-gray-500">
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}
                                                               <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
@@ -216,7 +216,7 @@
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
-                                                <p>Views: {{ bug.views }}</p>
+                                                <span class="view-span">Views: {{ bug.views }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -226,14 +226,14 @@
                             <div class="mb-4">
                                 <div class="card border-left-info shadow h-100 py-2" draggable="true">
                                     <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
+                                        <div class="no-gutters align-items-center">
+                                            <div class="col-md-12 mr-2">
                                                 <span class="badge status-badge badge-info">{{ bug.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div id="{{ bug.id }}" class="col-auto text-center small text-gray-500">
+                                            <div id="{{ bug.id }}" class="card-bottom small text-gray-500">
                                                 {% if user.is_authenticated %}
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}
@@ -243,7 +243,7 @@
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
-                                                <p>Views: {{ bug.views }}</p>
+                                                <span class="view-span">Views: {{ bug.views }}</span>
                                                 {% else %}
                                                 <span>Upvotes: {{ bug.upvotes }}</span> <span>Views: {{ bug.views }}</span>
                                                 {% endif %}
@@ -285,14 +285,14 @@
                                 <div class="card border-left-success shadow h-100 py-2" id="bug-{{ bug.id }}" draggable="true"
                                      ondragstart="drag(event)">
                                     <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
+                                        <div class="no-gutters align-items-center">
+                                            <div class="col-md-12 mr-2">
                                                 <span class="badge status-badge badge-success">{{ bug.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div id="{{ bug.id }}" class="col-auto text-center small text-gray-500">
+                                            <div id="{{ bug.id }}" class="card-bottom small text-gray-500">
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}
                                                               <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
@@ -301,7 +301,7 @@
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
-                                                <p>Views: {{ bug.views }}</p>
+                                                <span class="view-span">Views: {{ bug.views }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -311,14 +311,14 @@
                             <div class="mb-4">
                                 <div class="card border-left-success shadow h-100 py-2" draggable="true">
                                     <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
+                                        <div class="no-gutters align-items-center">
+                                            <div class="col-md-12 mr-2">
                                                 <span class="badge status-badge badge-success">{{ bug.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div id="{{ bug.id }}" class="col-auto text-center small text-gray-500">
+                                            <div id="{{ bug.id }}" class="card-bottom small text-gray-500">
                                                 {% if user.is_authenticated %}
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}
@@ -328,7 +328,7 @@
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
-                                                <p>Views: {{ bug.views }}</p>
+                                                <span class="view-span">Views: {{ bug.views }}</span>
                                                 {% else %}
                                                 <span>Upvotes: {{ bug.upvotes }}</span> <span>Views: {{ bug.views }}</span>
                                                 {% endif %}
@@ -378,14 +378,14 @@
                                 <div class="card border-left-secondary shadow h-100 py-2" id="feature-{{ feature.id }}" draggable="true"
                                      ondragstart="drag(event)">
                                     <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
+                                        <div class="no-gutters align-items-center">
+                                            <div class="col-md-12 mr-2">
                                                 <span class="badge status-badge badge-secondary">{{ feature.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
-                                            <div class="col-auto text-center small text-gray-500">
+                                            <div class="row small text-gray-500">
                                                 <p><span>Donations: € {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
                                                 <form method="post" action="{% url 'add_to_cart' feature.id %}">
                                                     {% csrf_token %}
@@ -468,14 +468,14 @@
                                 <div class="card border-left-warning shadow h-100 py-2" id="feature-{{ feature.id }}" draggable="true"
                                      ondragstart="drag(event)">
                                     <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
+                                        <div class="no-gutters align-items-center">
+                                            <div class="col-md-12 mr-2">
                                                 <span class="badge status-badge badge-warning">{{ feature.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
-                                            <div class="col-auto text-center small text-gray-500">
+                                            <div class="row small text-gray-500">
                                                 <p><span>Donations: € {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
                                                 <form method="post" action="{% url 'add_to_cart' feature.id %}">
                                                     {% csrf_token %}
@@ -498,14 +498,14 @@
                             <div class="mb-4">
                                 <div class="card border-left-warning shadow h-100 py-2" draggable="true">
                                     <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
+                                        <div class="no-gutters align-items-center">
+                                            <div class="col-md-12 mr-2">
                                                 <span class="badge status-badge badge-warning">{{ feature.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
-                                            <div class="col-auto text-center small text-gray-500">
+                                            <div class="row small text-gray-500">
                                                 <p><span>Donations: € {{ feature.donations }}</span><br>
                                                     <span>Views: {{ feature.views }}</span></p>
                                                 <form method="post" action="{% url 'add_to_cart' feature.id %}">
@@ -648,14 +648,14 @@
                                 <div class="card border-left-success shadow h-100 py-2" id="feature-{{ feature.id }}" draggable="true"
                                      ondragstart="drag(event)">
                                     <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
+                                        <div class="no-gutters align-items-center">
+                                            <div class="col-md-12 mr-2">
                                                 <span class="badge status-badge badge-success">{{ feature.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
-                                            <div class="col-auto text-center small text-gray-500">
+                                            <div class="row small text-gray-500">
                                                 <p><span>Donations: € {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
                                                 <form method="post" action="{% url 'add_to_cart' feature.id %}">
                                                     {% csrf_token %}
@@ -678,14 +678,14 @@
                             <div class="mb-4">
                                 <div class="card border-left-success shadow h-100 py-2" draggable="true">
                                     <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
+                                        <div class="no-gutters align-items-center">
+                                            <div class="col-md-12 mr-2">
                                                 <span class="badge status-badge badge-success">{{ feature.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
-                                            <div class="col-auto text-center small text-gray-500">
+                                            <div class="row small text-gray-500">
                                                 <p><span>Donations: € {{ feature.donations }}</span><br>
                                                     <span>Views: {{ feature.views }}</span></p>
                                                 <form method="post" action="{% url 'add_to_cart' feature.id %}">

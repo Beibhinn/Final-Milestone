@@ -116,3 +116,69 @@ footer {
     background-color: #2d8659;
     border-color: #2d8659;
 }
+
+.view-span {
+    padding-top: 3px;
+    float: right;
+}
+
+.bugs-view {
+    padding-top: 8px;
+}
+
+.left {
+    float: left;
+}
+
+.card-bottom {
+    padding-top: 15px;
+}
+
+.issue-name {
+    min-height: 35px;
+}
+
+.section-header {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+a {
+    color: #800080;
+}
+
+a:hover {
+    color: #56219C;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #53249E;
+    border-color: #3938AF;
+    transition: 0.6s;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #2746BB;
+    border-color: #50259F;
+}
+
+legend {
+    color: #53249E;
+}
+
+@media (max-width: 576px) {
+    .container-fluid {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .container {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .card-body {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}

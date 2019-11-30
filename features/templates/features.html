@@ -9,31 +9,31 @@
 <div class="row">
     <div class="col-md-12 mb-4">
         <div class="card shadow mb-4 status-container">
-            <div class="card-body">
+            <div class="card-body mt-4 row">
                 {% if features %}
                 {% for feature in features %}
-                    <div class="col-md-3 mb-4" style="display: inline-block">
+                    <div class="col-md-6 col-lg-4 col-xl-3 mb-4" style="display: inline-block">
                         <div class="card {% if feature.status == 'CREATED' %} border-left-secondary
                         {% elif feature.status == 'IN PROGRESS' %} border-left-warning
                         {% elif feature.status == 'IN REVIEW' %} border-left-info
                         {% else %} border-left-success {% endif %} shadow h-100 py-2">
                             <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
+                                <div class="no-gutters align-items-center">
+                                    <div class="col-md-12 mr-2">
                                         {% if feature.status == "CREATED" %}
-                                        <span class="badge badge-secondary">{{ feature.status }}</span>
+                                        <span class="badge status-badge badge-secondary">{{ feature.status }}</span>
                                         {% elif feature.status == "IN PROGRESS" %}
-                                        <span class="badge badge-warning">{{ feature.status }}</span>
+                                        <span class="badge status-badge badge-warning">{{ feature.status }}</span>
                                         {% elif feature.status == "IN REVIEW" %}
-                                        <span class="badge badge-info">{{ feature.status }}</span>
+                                        <span class="badge status-badge badge-info">{{ feature.status }}</span>
                                         {% else %}
-                                        <span class="badge badge-success">{{ feature.status }}</span>
+                                        <span class="badge status-badge badge-success">{{ feature.status }}</span>
                                         {% endif %}
-                                        <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a></div>
+                                        <div class="m-0 issue-name font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a></div>
                                         <div class="text-truncate">{{ feature.description }}</div>
                                     </div>
-                                    <div class="col-auto text-center small text-gray-500">
-                                        <p><span>Donations: € {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
+                                    <div class="card-bottom small text-gray-500">
+                                        <p><span>Donations: € {{ feature.donations }}</span> <span class="view-span pt-0">Views: {{ feature.views }}</span></p>
                                         <form method="post" action="{% url 'add_to_cart' feature.id %}">
                                             {% csrf_token %}
                                             <div class="input-group">
