@@ -118,7 +118,7 @@ footer {
 }
 
 .view-span {
-    padding-top: 3px;
+    /*padding-top: 3px;*/
     float: right;
 }
 
@@ -132,10 +132,12 @@ footer {
 
 .card-bottom {
     padding-top: 15px;
+    width: 100%;
 }
 
 .issue-name {
     min-height: 35px;
+    font-size: large;
 }
 
 .section-header {
@@ -180,5 +182,8 @@ legend {
     .card-body {
         padding-left: 5px;
         padding-right: 5px;
+    }
+    .inline-pay-form {
+        max-width: 72%;
     }
 }

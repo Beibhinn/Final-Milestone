@@ -46,7 +46,7 @@
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
-                                                <span class="view-span">Views: {{ bug.views }}</span>
+                                                <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -73,7 +73,7 @@
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
-                                                <span class="view-span">Views: {{ bug.views }}</span>
+                                                <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
                                                 {% else %}
                                                 <span>Upvotes: {{ bug.upvotes }}</span> <span>Views: {{ bug.views }}</span>
                                                 {% endif %}
@@ -131,7 +131,7 @@
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
-                                                <span class="view-span">Views: {{ bug.views }}</span>
+                                                <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -158,7 +158,7 @@
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
-                                                <span class="view-span">Views: {{ bug.views }}</span>
+                                                <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
                                                 {% else %}
                                                 <span>Upvotes: {{ bug.upvotes }}</span> <span>Views: {{ bug.views }}</span>
                                                 {% endif %}
@@ -216,7 +216,7 @@
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
-                                                <span class="view-span">Views: {{ bug.views }}</span>
+                                                <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -243,7 +243,7 @@
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
-                                                <span class="view-span">Views: {{ bug.views }}</span>
+                                                <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
                                                 {% else %}
                                                 <span>Upvotes: {{ bug.upvotes }}</span> <span>Views: {{ bug.views }}</span>
                                                 {% endif %}
@@ -301,7 +301,7 @@
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
-                                                <span class="view-span">Views: {{ bug.views }}</span>
+                                                <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -328,7 +328,7 @@
                                                           {% endif %}
                                                           Upvotes: {{ bug.upvotes }}</a>
                                                 </span>
-                                                <span class="view-span">Views: {{ bug.views }}</span>
+                                                <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
                                                 {% else %}
                                                 <span>Upvotes: {{ bug.upvotes }}</span> <span>Views: {{ bug.views }}</span>
                                                 {% endif %}
@@ -378,15 +378,15 @@
                                 <div class="card border-left-secondary shadow h-100 py-2" id="feature-{{ feature.id }}" draggable="true"
                                      ondragstart="drag(event)">
                                     <div class="card-body">
-                                        <div class="no-gutters align-items-center">
-                                            <div class="col-md-12 mr-2">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
                                                 <span class="badge status-badge badge-secondary">{{ feature.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
-                                            <div class="row small text-gray-500">
-                                                <p><span>Donations: € {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
+                                            <div class="small text-gray-500">
+                                                <p><span>Donations: € {{ feature.donations }}</span> <span class="view-span">Views: {{ feature.views }}</span></p>
                                                 <form method="post" action="{% url 'add_to_cart' feature.id %}">
                                                     {% csrf_token %}
                                                     <div class="input-group">
@@ -415,9 +415,9 @@
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
-                                            <div class="col-auto text-center small text-gray-500">
+                                            <div class="small text-gray-500">
                                                 <p><span>Donations: € {{ feature.donations }}</span><br>
-                                                    <span>Views: {{ feature.views }}</span></p>
+                                                    <span class="view-span">Views: {{ feature.views }}</span></p>
                                                 <form method="post" action="{% url 'add_to_cart' feature.id %}">
                                                     {% csrf_token %}
                                                     <div class="input-group">
@@ -468,15 +468,15 @@
                                 <div class="card border-left-warning shadow h-100 py-2" id="feature-{{ feature.id }}" draggable="true"
                                      ondragstart="drag(event)">
                                     <div class="card-body">
-                                        <div class="no-gutters align-items-center">
-                                            <div class="col-md-12 mr-2">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
                                                 <span class="badge status-badge badge-warning">{{ feature.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
-                                            <div class="row small text-gray-500">
-                                                <p><span>Donations: € {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
+                                            <div class="small text-gray-500">
+                                                <p><span>Donations: € {{ feature.donations }}</span> <span class="view-span">Views: {{ feature.views }}</span></p>
                                                 <form method="post" action="{% url 'add_to_cart' feature.id %}">
                                                     {% csrf_token %}
                                                     <div class="input-group">
@@ -498,16 +498,16 @@
                             <div class="mb-4">
                                 <div class="card border-left-warning shadow h-100 py-2" draggable="true">
                                     <div class="card-body">
-                                        <div class="no-gutters align-items-center">
-                                            <div class="col-md-12 mr-2">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
                                                 <span class="badge status-badge badge-warning">{{ feature.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
-                                            <div class="row small text-gray-500">
+                                            <div class="small text-gray-500">
                                                 <p><span>Donations: € {{ feature.donations }}</span><br>
-                                                    <span>Views: {{ feature.views }}</span></p>
+                                                    <span class="view-span">Views: {{ feature.views }}</span></p>
                                                 <form method="post" action="{% url 'add_to_cart' feature.id %}">
                                                     {% csrf_token %}
                                                     <div class="input-group">
@@ -565,8 +565,8 @@
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
-                                            <div class="col-auto text-center small text-gray-500">
-                                                <p><span>Donations: € {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
+                                            <div class="small text-gray-500">
+                                                <p><span>Donations: € {{ feature.donations }}</span> <span class="view-span">Views: {{ feature.views }}</span></p>
                                                 <form method="post" action="{% url 'add_to_cart' feature.id %}">
                                                     {% csrf_token %}
                                                     <div class="input-group">
@@ -595,7 +595,7 @@
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
-                                            <div class="col-auto text-center small text-gray-500">
+                                            <div class="small text-gray-500">
                                                 <p><span>Donations: € {{ feature.donations }}</span><br>
                                                     <span>Views: {{ feature.views }}</span></p>
                                                 <form method="post" action="{% url 'add_to_cart' feature.id %}">
@@ -648,15 +648,15 @@
                                 <div class="card border-left-success shadow h-100 py-2" id="feature-{{ feature.id }}" draggable="true"
                                      ondragstart="drag(event)">
                                     <div class="card-body">
-                                        <div class="no-gutters align-items-center">
-                                            <div class="col-md-12 mr-2">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
                                                 <span class="badge status-badge badge-success">{{ feature.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
-                                            <div class="row small text-gray-500">
-                                                <p><span>Donations: € {{ feature.donations }}</span> <span>Views: {{ feature.views }}</span></p>
+                                            <div class="small text-gray-500">
+                                                <p><span>Donations: € {{ feature.donations }}</span> <span class="view-span">Views: {{ feature.views }}</span></p>
                                                 <form method="post" action="{% url 'add_to_cart' feature.id %}">
                                                     {% csrf_token %}
                                                     <div class="input-group">
@@ -678,16 +678,16 @@
                             <div class="mb-4">
                                 <div class="card border-left-success shadow h-100 py-2" draggable="true">
                                     <div class="card-body">
-                                        <div class="no-gutters align-items-center">
-                                            <div class="col-md-12 mr-2">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
                                                 <span class="badge status-badge badge-success">{{ feature.status }}</span>
                                                 <div class="m-0 font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>
                                                 </div>
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
-                                            <div class="row small text-gray-500">
+                                            <div class="small text-gray-500">
                                                 <p><span>Donations: € {{ feature.donations }}</span><br>
-                                                    <span>Views: {{ feature.views }}</span></p>
+                                                    <span class="view-span">Views: {{ feature.views }}</span></p>
                                                 <form method="post" action="{% url 'add_to_cart' feature.id %}">
                                                     {% csrf_token %}
                                                     <div class="input-group">
