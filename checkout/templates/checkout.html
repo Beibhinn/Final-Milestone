@@ -25,14 +25,14 @@
             </div>
             <hr>
 
-            <div class="card-body">
+            <div class="card-body row">
                 {% for item in cart_items %}
                 <div class="col-md-6 col-lg-4 col-xl-3 mb-4" style="display: inline-block">
                     <div class="card {% if item.feature.status == 'CREATED' %} border-left-secondary
                         {% elif item.feature.status == 'IN PROGRESS' %} border-left-warning
                         {% elif item.feature.status == 'IN REVIEW' %} border-left-info
                         {% else %} border-left-success {% endif %} shadow h-100 py-2">
-                        <div class="card-body">
+                        <div class="card-body pb-2">
                             <div class="row no-gutters align-items-center">
                                 <div class="col-md-12 mr-2">
                                     {% if item.feature.status == "CREATED" %}
@@ -44,11 +44,11 @@
                                     {% else %}
                                     <span class="badge status-badge badge-success">{{ item.feature.status }}</span>
                                     {% endif %}
-                                    <div class="m-0 font-weight-bold text-primary" style="min-height: 30px"><a
+                                    <div class="m-0 issue-name font-weight-bold text-primary" style="min-height: 30px"><a
                                             href="{% url 'feature_detail' item.id %}">{{ item.feature.name }}</a></div>
                                     <div class="text-truncate">{{ item.feature.description }}</div>
                                 </div>
-                                <div class="col-sm-12 text-center small text-gray-500">
+                                <div class="col-sm-12 pt-1 small text-gray-500">
                                     <div>Feature donation: € {{ item.donation_amount }}</div>
                                 </div>
                             </div>
@@ -56,13 +56,14 @@
                     </div>
                 </div>
                 {% endfor %}
-                <hr>
-                <div class="row">
+
+            </div>
+            <hr>
+                <div class="row pl-4 mb-3">
                     <div class="col-sm-12 text-gray-500">
                         <div>Total donation: € {{ total }}</div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 </div>
