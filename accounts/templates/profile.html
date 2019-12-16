@@ -9,23 +9,31 @@
 
 <div class="row">
     <div class="col-md-3" style="text-align: center">
-        {% avatar user 160 class="img-profile rounded-circle" id="user_avatar" %}
-        <div>
+        {% avatar user 160 class="img-profile rounded-circle profile-pic" id="user_avatar" %}
+        <div class="small">
             <a href="{% url 'avatar_change' %}">Change your avatar</a>
         </div>
     </div>
-    <div class="col-md-8">
-        <div class="card shadow mb-4">
-            <!-- My issues Header - Accordion -->
-            <a href="#collapseMyIssues" class="d-block card-header py-3" data-toggle="collapse" role="button"
-               aria-expanded="true" aria-controls="collapseMyIssues">
-                <h6 class="m-0 sub-heading font-weight-bold">My issues</h6>
-            </a>
-            <!-- My issues Content - Collapse -->
-            <div class="collapse mt-4" id="collapseMyIssues">
-                <div class="row card-body">
+    <div class="col-md-9">
+        <ul class="nav nav-pills nav-justified" id="myTab" role="tablist" style="box-shadow: 0 5px 3px -2px #800080;padding-bottom: 5px;">
+            <li class="nav-item">
+                <a class="nav-link active" id="issues-tab" data-toggle="tab" href="#myIssues" role="tab" aria-controls="myIssues"
+                   aria-selected="true"><i class="fas fa-ticket-alt profile-nav-icon"></i><span class="profile-nav-label">My issues</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="upvotes-tab" data-toggle="tab" href="#upvoted" role="tab"
+                   aria-controls="upvoted" aria-selected="false"><i class="fas fa-bug profile-nav-icon"></i><span class="profile-nav-label">Bugs I've upvoted</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="donation-tab" data-toggle="tab" href="#myDonations" role="tab"
+                   aria-controls="myDonations" aria-selected="false"><i class="fas fa-hand-holding-usd profile-nav-icon"></i><span class="profile-nav-label">Donations</span></a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="myIssues" role="tabpanel" aria-labelledby="issues-tab">
+                <div class="row card-body mt-3" style="padding-left: 0px;padding-right: 0px;">
                     <div class="col-sm-12 col-lg-6 mb-4">
-                        <div class="mb-4 status-container">
+                        <div class="mb-4 pb-2 status-container" style="border-radius: 24pt;">
                             <div class="py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="section-header font-weight-bold text-primary">Bugs</h6>
                             </div>
@@ -87,8 +95,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-6 mb-4">
-                        <div class="mb-4 status-container">
+                    <div class="col-sm-12 col-lg-6 mb-4">
+                        <div class="mb-4 pb-2 status-container" style="border-radius: 24pt;">
                             <div class="py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="section-header font-weight-bold text-primary">Features</h6>
                             </div>
@@ -122,13 +130,11 @@
                                                             <form method="post" action="{% url 'add_to_cart' feature.id %}">
                                                                 {% csrf_token %}
                                                                 <div class="input-group">
-                                                                    <div class="inline-pay-form">
-                                                                        <input name="donation_amount" type="number" min="1" max="999" class="form-control"
+                                                                    <input name="donation_amount" type="number" min="1" max="999" class="form-control"
                                                                                placeholder="€">
-                                                                    </div>
-                                                                    <div class="input-group-btn">
+                                                                    <span class="input-group-btn">
                                                                             <button class="btn btn-success" type="submit"><i class="fas fa-cart-plus"></i></button>
-                                                                    </div>
+                                                                    </span>
                                                                 </div>
                                                             </form>
                                                         </div>
@@ -157,14 +163,8 @@
                     </div>
                 </div>
             </div>
-            <!-- Upvoted bugs header-->
-            <a href="#collapseMyUpvotes" class="d-block card-header py-3" data-toggle="collapse" role="button"
-               aria-expanded="true" aria-controls="collapseMyIssues">
-                <h6 class="m-0 sub-heading font-weight-bold">Bugs I've upvoted</h6>
-            </a>
-            <!-- Upvoted bugs content -->
-            <div class="mt-4 collapse" id="collapseMyUpvotes">
-                <div class="row card-body">
+            <div class="tab-pane fade" id="upvoted" role="tabpanel" aria-labelledby="upvotes-tab">
+                <div class="row card-body mt-3">
                     {% if bugs_upvoted %}
                         {% for bug in bugs_upvoted %}
                             <div class="col-sm-12 col-lg-6 mb-4">
@@ -223,14 +223,8 @@
                     {% endif %}
                 </div>
             </div>
-            <!-- Donations header-->
-            <a href="#collapseMyDonations" class="d-block card-header py-3" data-toggle="collapse" role="button"
-               aria-expanded="true" aria-controls="collapseMyDonations">
-                <h6 class="m-0 sub-heading font-weight-bold">Donations</h6>
-            </a>
-            <!-- Donations content -->
-            <div class="mt-4 collapse" id="collapseMyDonations">
-                <div class="row card-body">
+            <div class="tab-pane fade" id="myDonations" role="tabpanel" aria-labelledby="donation-tab">
+                <div class="row card-body mt-3">
                     {% if donations %}
                         {% for donation in donations %}
                             <div class="col-sm-12 col-lg-6 mb-4">
@@ -261,13 +255,11 @@
                                                         <form method="post" action="{% url 'add_to_cart' donation.feature.id %}">
                                                             {% csrf_token %}
                                                             <div class="input-group">
-                                                                <div class="inline-pay-form">
-                                                                    <input name="donation_amount" type="number" min="1" max="999" class="form-control"
-                                                                           placeholder="€">
-                                                                </div>
-                                                                <div class="input-group-btn">
+                                                                <input name="donation_amount" type="number" min="1" max="999" class="form-control"
+                                                                       placeholder="€">
+                                                                <span class="input-group-btn">
                                                                         <button class="btn btn-success" type="submit"><i class="fas fa-cart-plus"></i></button>
-                                                                </div>
+                                                                </span>
                                                             </div>
                                                         </form>
                                                         <p style="margin-bottom: 0px;margin-top: 10px;">Amount already donated: € {{ donation.amount }}</p>
@@ -296,6 +288,287 @@
                 </div>
             </div>
         </div>
+<!--        <div class="card shadow mb-4">-->
+<!--            &lt;!&ndash; My issues Header - Accordion &ndash;&gt;-->
+<!--            <a href="#collapseMyIssues" class="d-block card-header py-3" data-toggle="collapse" role="button"-->
+<!--               aria-expanded="true" aria-controls="collapseMyIssues">-->
+<!--                <h6 class="m-0 sub-heading font-weight-bold">My issues</h6>-->
+<!--            </a>-->
+<!--            &lt;!&ndash; My issues Content - Collapse &ndash;&gt;-->
+<!--            <div class="collapse mt-4" id="collapseMyIssues">-->
+<!--                <div class="row card-body">-->
+<!--                    <div class="col-sm-12 col-lg-6 mb-4">-->
+<!--                        <div class="mb-4 status-container">-->
+<!--                            <div class="py-3 d-flex flex-row align-items-center justify-content-between">-->
+<!--                                <h6 class="section-header font-weight-bold text-primary">Bugs</h6>-->
+<!--                            </div>-->
+<!--                            <div class="pl-4 pr-4">-->
+<!--                                {% if bugs %}-->
+<!--                                    {% for bug in bugs %}-->
+<!--                                        <div class="mb-4">-->
+<!--                                            <div class="card {% if bug.status == 'CREATED' %} border-left-secondary-->
+<!--                                                {% elif bug.status == 'IN PROGRESS' %} border-left-warning-->
+<!--                                                {% elif bug.status == 'IN REVIEW' %} border-left-info-->
+<!--                                                {% else %} border-left-success {% endif %} shadow h-100 py-2">-->
+<!--                                                <div class="card-body">-->
+<!--                                                    <div class="no-gutters align-items-center">-->
+<!--                                                        <div class="col-md-12 mr-2">-->
+<!--                                                            {% if bug.status == "CREATED" %}-->
+<!--                                                                <span class="badge status-badge badge-secondary">{{ bug.status }}</span>-->
+<!--                                                            {% elif bug.status == "IN PROGRESS" %}-->
+<!--                                                                <span class="badge status-badge badge-warning">{{ bug.status }}</span>-->
+<!--                                                            {% elif bug.status == "IN REVIEW" %}-->
+<!--                                                                <span class="badge status-badge badge-info">{{ bug.status }}</span>-->
+<!--                                                            {% else %}-->
+<!--                                                                <span class="badge status-badge badge-success">{{ bug.status }}</span>-->
+<!--                                                            {% endif %}-->
+<!--                                                            <div class="m-0 issue-name font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>-->
+<!--                                                            </div>-->
+<!--                                                            <div class="text-truncate">{{ bug.description }}</div>-->
+<!--                                                        </div>-->
+<!--                                                        <div id="{{ bug.id }}" class="card-bottom small text-gray-500">-->
+<!--                                                            <span><a onclick="toggleUpvote('{{ bug.id }}')">-->
+<!--                                                                      {% if bug in bugs_upvoted %}-->
+<!--                                                                          <i class="fas fa-arrow-alt-circle-up fa-2x text-gray-300"></i>-->
+<!--                                                                      {% else %}-->
+<!--                                                                          <i class="far fa-arrow-alt-circle-up fa-2x text-gray-300"></i>-->
+<!--                                                                      {% endif %}-->
+<!--                                                                          Upvotes: {{ bug.upvotes }}</a>-->
+<!--                                                            </span>-->
+<!--                                                            <span class="view-span bugs-view">Views: {{ bug.views }}</span>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    {% endfor %}-->
+<!--                                {% else %}-->
+<!--                                <div class="mb-4">-->
+<!--                                    <div class="card shadow h-100 py-2">-->
+<!--                                        <div class="card-body">-->
+<!--                                            <div class="row no-gutters align-items-center">-->
+<!--                                                <div class="col mr-2">-->
+<!--                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">-->
+<!--                                                        You haven't added any bugs yet-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                {% endif %}-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-sm-12 col-md-6 mb-4">-->
+<!--                        <div class="mb-4 status-container">-->
+<!--                            <div class="py-3 d-flex flex-row align-items-center justify-content-between">-->
+<!--                                <h6 class="section-header font-weight-bold text-primary">Features</h6>-->
+<!--                            </div>-->
+<!--                            <div class="pl-4 pr-4">-->
+<!--                                {% if features %}-->
+<!--                                    {% for feature in features %}-->
+<!--                                        <div class="mb-4">-->
+<!--                                            <div class="card {% if feature.status == 'CREATED' %} border-left-secondary-->
+<!--                                                {% elif feature.status == 'IN PROGRESS' %} border-left-warning-->
+<!--                                                {% elif feature.status == 'IN REVIEW' %} border-left-info-->
+<!--                                                {% else %} border-left-success {% endif %} shadow h-100 py-2">-->
+<!--                                                <div class="card-body">-->
+<!--                                                    <div class="row no-gutters align-items-center">-->
+<!--                                                        <div class="col mr-2">-->
+<!--                                                            {% if feature.status == "CREATED" %}-->
+<!--                                                                <span class="badge status-badge badge-secondary">{{ feature.status }}</span>-->
+<!--                                                            {% elif feature.status == "IN PROGRESS" %}-->
+<!--                                                                <span class="badge status-badge badge-warning">{{ feature.status }}</span>-->
+<!--                                                            {% elif feature.status == "IN REVIEW" %}-->
+<!--                                                                <span class="badge status-badge badge-info">{{ feature.status }}</span>-->
+<!--                                                            {% else %}-->
+<!--                                                                <span class="badge status-badge badge-secondary">{{ feature.status }}</span>-->
+<!--                                                            {% endif %}-->
+<!--                                                            <div class="m-0 issue-name font-weight-bold text-primary"><a href="{% url 'feature_detail' feature.id %}">{{ feature.name }}</a>-->
+<!--                                                            </div>-->
+<!--                                                            <div class="text-truncate">{{ feature.description }}</div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="card-bottom small text-gray-500">-->
+<!--                                                            <p><span>Donations: € {{ feature.donations }}</span> <span class="view-span">Views: {{ feature.views }}</span>-->
+<!--                                                            </p>-->
+<!--                                                            <form method="post" action="{% url 'add_to_cart' feature.id %}">-->
+<!--                                                                {% csrf_token %}-->
+<!--                                                                <div class="input-group">-->
+<!--                                                                    <div class="inline-pay-form">-->
+<!--                                                                        <input name="donation_amount" type="number" min="1" max="999" class="form-control"-->
+<!--                                                                               placeholder="€">-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="input-group-btn">-->
+<!--                                                                            <button class="btn btn-success" type="submit"><i class="fas fa-cart-plus"></i></button>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                            </form>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    {% endfor %}-->
+<!--                                {% else %}-->
+<!--                                    <div class="mb-4">-->
+<!--                                        <div class="card shadow h-100 py-2">-->
+<!--                                            <div class="card-body">-->
+<!--                                                <div class="row no-gutters align-items-center">-->
+<!--                                                    <div class="col mr-2">-->
+<!--                                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">-->
+<!--                                                            You haven't added any features yet-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                {% endif %}-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; Upvoted bugs header&ndash;&gt;-->
+<!--            <a href="#collapseMyUpvotes" class="d-block card-header py-3" data-toggle="collapse" role="button"-->
+<!--               aria-expanded="true" aria-controls="collapseMyIssues">-->
+<!--                <h6 class="m-0 sub-heading font-weight-bold">Bugs I've upvoted</h6>-->
+<!--            </a>-->
+<!--            &lt;!&ndash; Upvoted bugs content &ndash;&gt;-->
+<!--            <div class="mt-4 collapse" id="collapseMyUpvotes">-->
+<!--                <div class="row card-body">-->
+<!--                    {% if bugs_upvoted %}-->
+<!--                        {% for bug in bugs_upvoted %}-->
+<!--                            <div class="col-sm-12 col-lg-6 mb-4">-->
+<!--                                <div class="pl-4 pr-4">-->
+<!--                                    <div class="card {% if bug.status == 'CREATED' %} border-left-secondary-->
+<!--                                        {% elif bug.status == 'IN PROGRESS' %} border-left-warning-->
+<!--                                        {% elif bug.status == 'IN REVIEW' %} border-left-info-->
+<!--                                        {% else %} border-left-success {% endif %} shadow h-100 py-2">-->
+<!--                                        <div class="card-body">-->
+<!--                                            <div class="row no-gutters align-items-center">-->
+<!--                                                <div class="col mr-2">-->
+<!--                                                    {% if bug.status == "CREATED" %}-->
+<!--                                                        <span class="badge status-badge badge-secondary">{{ bug.status }}</span>-->
+<!--                                                    {% elif bug.status == "IN PROGRESS" %}-->
+<!--                                                        <span class="badge status-badge badge-warning">{{ bug.status }}</span>-->
+<!--                                                    {% elif bug.status == "IN PROGRESS" %}-->
+<!--                                                        <span class="badge status-badge badge-info">{{ bug.status }}</span>-->
+<!--                                                    {% else %}-->
+<!--                                                        <span class="badge status-badge badge-success">{{ bug.status }}</span>-->
+<!--                                                    {% endif %}-->
+<!--                                                    <div class="m-0 issue-name font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</a>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="text-truncate">{{ bug.description }}</div>-->
+<!--                                                </div>-->
+<!--                                                <div id="{{ bug.id }}" class="card-bottom small text-gray-500">-->
+<!--                                                    <span><a onclick="toggleUpvote('{{ bug.id }}')">-->
+<!--                                                              {% if bug in bugs_upvoted %}-->
+<!--                                                                  <i class="fas fa-arrow-alt-circle-up fa-2x text-gray-300"></i>-->
+<!--                                                              {% else %}-->
+<!--                                                                  <i class="far fa-arrow-alt-circle-up fa-2x text-gray-300"></i>-->
+<!--                                                              {% endif %}-->
+<!--                                                              Upvotes: {{ bug.upvotes }}</a>-->
+<!--                                                    </span>-->
+<!--                                                    <span class="view-span bugs-view">Views: {{ bug.views }}</span>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        {% endfor %}-->
+<!--                    {% else %}-->
+<!--                    <div class="mb-4">-->
+<!--                        <div class="card shadow h-100 py-2">-->
+<!--                            <div class="card-body">-->
+<!--                                <div class="row no-gutters align-items-center">-->
+<!--                                    <div class="col mr-2">-->
+<!--                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">-->
+<!--                                            You haven't upvoted any bugs yet-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    {% endif %}-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; Donations header&ndash;&gt;-->
+<!--            <a href="#collapseMyDonations" class="d-block card-header py-3" data-toggle="collapse" role="button"-->
+<!--               aria-expanded="true" aria-controls="collapseMyDonations">-->
+<!--                <h6 class="m-0 sub-heading font-weight-bold">Donations</h6>-->
+<!--            </a>-->
+<!--            &lt;!&ndash; Donations content &ndash;&gt;-->
+<!--            <div class="mt-4 collapse" id="collapseMyDonations">-->
+<!--                <div class="row card-body">-->
+<!--                    {% if donations %}-->
+<!--                        {% for donation in donations %}-->
+<!--                            <div class="col-sm-12 col-lg-6 mb-4">-->
+<!--                                <div class="pl-4 pr-4">-->
+<!--                                    <div class="card {% if feature.status == 'CREATED' %} border-left-secondary-->
+<!--                                        {% elif feature.status == 'IN PROGRESS' %} border-left-warning-->
+<!--                                        {% elif feature.status == 'IN REVIEW' %} border-left-info-->
+<!--                                        {% else %} border-left-success {% endif %} shadow h-100 py-2">-->
+<!--                                            <div class="card-body" style="padding-bottom: 10px;">-->
+<!--                                                <div class="row no-gutters align-items-center">-->
+<!--                                                    <div class="col mr-2">-->
+<!--                                                        {% if donation.feature.status == "CREATED" %}-->
+<!--                                                            <span class="badge status-badge badge-secondary">{{ donation.feature.status }}</span>-->
+<!--                                                        {% elif donation.feature.status == "IN PROGRESS" %}-->
+<!--                                                            <span class="badge status-badge badge-warning">{{ donation.feature.status }}</span>-->
+<!--                                                        {% elif donation.feature.status == "IN REVIEW" %}-->
+<!--                                                            <span class="badge status-badge badge-info">{{ donation.feature.status }}</span>-->
+<!--                                                        {% else %}-->
+<!--                                                            <span class="badge status-badge badge-secondary">{{ donation.feature.status }}</span>-->
+<!--                                                        {% endif %}-->
+<!--                                                        <div class="m-0 issue-name font-weight-bold text-primary">{{ donation.feature.name }}-->
+<!--                                                        </div>-->
+<!--                                                        <div class="text-truncate">{{ donation.feature.description }}</div>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="card-bottom small text-gray-500">-->
+<!--                                                        <p><span>Total donations: € {{ donation.feature.donations }}</span> <span class="view-span">Views: {{ donation.feature.views }}</span>-->
+<!--                                                        </p>-->
+<!--                                                        <form method="post" action="{% url 'add_to_cart' donation.feature.id %}">-->
+<!--                                                            {% csrf_token %}-->
+<!--                                                            <div class="input-group">-->
+<!--                                                                <div class="inline-pay-form">-->
+<!--                                                                    <input name="donation_amount" type="number" min="1" max="999" class="form-control"-->
+<!--                                                                           placeholder="€">-->
+<!--                                                                </div>-->
+<!--                                                                <div class="input-group-btn">-->
+<!--                                                                        <button class="btn btn-success" type="submit"><i class="fas fa-cart-plus"></i></button>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </form>-->
+<!--                                                        <p style="margin-bottom: 0px;margin-top: 10px;">Amount already donated: € {{ donation.amount }}</p>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        {% endfor %}-->
+<!--                    {% else %}-->
+<!--                        <div class="mb-4">-->
+<!--                            <div class="card shadow h-100 py-2">-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row no-gutters align-items-center">-->
+<!--                                        <div class="col mr-2">-->
+<!--                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">-->
+<!--                                                You haven't added any features yet-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    {% endif %}-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
 </div>
 

@@ -99,6 +99,8 @@ footer {
     color: #661491;
 }
 
+/*card styles*/
+
 .upvote {
     font-size: 1.5em;
 }
@@ -174,6 +176,17 @@ legend {
     color: #53249E;
 }
 
+/*account */
+#user_avatar.profile-pic {
+    height: auto;
+    max-width: 100%;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color:#fff;
+    background-color: #800080;
+}
+
 @media (max-width: 576px) {
     .container-fluid {
         padding-left: 1rem;
@@ -191,3 +204,23 @@ legend {
         max-width: 72%;
     }
 }
+
+@media (max-width: 991.98px) {
+    .profile-nav-label {
+        display: none;
+    }
+    .profile-nav-icon::before {
+        display: inline-block;
+    }
+}
+
+@media (min-width: 992px) {
+    .profile-nav-icon::before {
+        display: none !important;
+    }
+
+    .profile-nav-label {
+        display: inline-block;
+    }
+}
+
