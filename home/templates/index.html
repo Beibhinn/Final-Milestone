@@ -75,7 +75,7 @@
                                                 </span>
                                                 <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
                                                 {% else %}
-                                                <span>Upvotes: {{ bug.upvotes }}</span> <span>Views: {{ bug.views }}</span>
+                                                <span>Upvotes: {{ bug.upvotes }}</span> <span class="view-span">Views: {{ bug.views }}</span>
                                                 {% endif %}
                                             </div>
                                         </div>
@@ -160,7 +160,7 @@
                                                 </span>
                                                 <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
                                                 {% else %}
-                                                <span>Upvotes: {{ bug.upvotes }}</span> <span>Views: {{ bug.views }}</span>
+                                                <span>Upvotes: {{ bug.upvotes }}</span> <span class="view-span">Views: {{ bug.views }}</span>
                                                 {% endif %}
                                             </div>
                                         </div>
@@ -245,7 +245,7 @@
                                                 </span>
                                                 <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
                                                 {% else %}
-                                                <span>Upvotes: {{ bug.upvotes }}</span> <span>Views: {{ bug.views }}</span>
+                                                <span>Upvotes: {{ bug.upvotes }}</span> <span class="view-span">Views: {{ bug.views }}</span>
                                                 {% endif %}
                                             </div>
                                         </div>
@@ -330,7 +330,7 @@
                                                 </span>
                                                 <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
                                                 {% else %}
-                                                <span>Upvotes: {{ bug.upvotes }}</span> <span>Views: {{ bug.views }}</span>
+                                                <span>Upvotes: {{ bug.upvotes }}</span> <span class="view-span">Views: {{ bug.views }}</span>
                                                 {% endif %}
                                             </div>
                                         </div>
@@ -416,18 +416,17 @@
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
                                             <div class="small text-gray-500">
-                                                <p><span>Donations: € {{ feature.donations }}</span><br>
-                                                    <span class="view-span">Views: {{ feature.views }}</span></p>
+                                                <p><span>Donations: € {{ feature.donations }}</span> <span class="view-span">Views: {{ feature.views }}</span></p>
                                                 <form method="post" action="{% url 'add_to_cart' feature.id %}">
                                                     {% csrf_token %}
                                                     <div class="input-group">
-                                                        <div>
+                                                        <div class="input-group-addon"><span class="glyphicon glyphicon-eur"
+                                                                                             aria-hidden="true"></span></div>
                                                             <input name="donation_amount" type="number" min="1" max="999" class="form-control"
                                                                    placeholder="€">
-                                                        </div>
-                                                        <div class="input-group-btn">
+                                                        <span class="input-group-btn">
                                                                 <button class="btn btn-success" type="submit"><i class="fas fa-cart-plus"></i></button>
-                                                        </div>
+                                                        </span>
                                                     </div>
                                                 </form>
                                             </div>
@@ -506,18 +505,17 @@
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
                                             <div class="small text-gray-500">
-                                                <p><span>Donations: € {{ feature.donations }}</span><br>
-                                                    <span class="view-span">Views: {{ feature.views }}</span></p>
+                                                <p><span>Donations: € {{ feature.donations }}</span> <span class="view-span">Views: {{ feature.views }}</span></p>
                                                 <form method="post" action="{% url 'add_to_cart' feature.id %}">
                                                     {% csrf_token %}
                                                     <div class="input-group">
-                                                        <div>
+                                                        <div class="input-group-addon"><span class="glyphicon glyphicon-eur"
+                                                                                             aria-hidden="true"></span></div>
                                                             <input name="donation_amount" type="number" min="1" max="999" class="form-control"
                                                                    placeholder="€">
-                                                        </div>
-                                                        <div class="input-group-btn">
+                                                        <span class="input-group-btn">
                                                                 <button class="btn btn-success" type="submit"><i class="fas fa-cart-plus"></i></button>
-                                                        </div>
+                                                        </span>
                                                     </div>
                                                 </form>
                                             </div>
@@ -596,18 +594,17 @@
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
                                             <div class="small text-gray-500">
-                                                <p><span>Donations: € {{ feature.donations }}</span><br>
-                                                    <span>Views: {{ feature.views }}</span></p>
+                                                <p><span>Donations: € {{ feature.donations }}</span> <span class="view-span">Views: {{ feature.views }}</span></p>
                                                 <form method="post" action="{% url 'add_to_cart' feature.id %}">
                                                     {% csrf_token %}
                                                     <div class="input-group">
-                                                        <div>
+                                                        <div class="input-group-addon"><span class="glyphicon glyphicon-eur"
+                                                                                             aria-hidden="true"></span></div>
                                                             <input name="donation_amount" type="number" min="1" max="999" class="form-control"
                                                                    placeholder="€">
-                                                        </div>
-                                                        <div class="input-group-btn">
+                                                        <span class="input-group-btn">
                                                                 <button class="btn btn-success" type="submit"><i class="fas fa-cart-plus"></i></button>
-                                                        </div>
+                                                        </span>
                                                     </div>
                                                 </form>
                                             </div>
@@ -686,18 +683,17 @@
                                                 <div class="text-truncate">{{ feature.description }}</div>
                                             </div>
                                             <div class="small text-gray-500">
-                                                <p><span>Donations: € {{ feature.donations }}</span><br>
-                                                    <span class="view-span">Views: {{ feature.views }}</span></p>
+                                                <p><span>Donations: € {{ feature.donations }}</span> <span class="view-span">Views: {{ feature.views }}</span></p>
                                                 <form method="post" action="{% url 'add_to_cart' feature.id %}">
                                                     {% csrf_token %}
                                                     <div class="input-group">
-                                                        <div>
+                                                        <div class="input-group-addon"><span class="glyphicon glyphicon-eur"
+                                                                                             aria-hidden="true"></span></div>
                                                             <input name="donation_amount" type="number" min="1" max="999" class="form-control"
                                                                    placeholder="€">
-                                                        </div>
-                                                        <div class="input-group-btn">
+                                                        <span class="input-group-btn">
                                                                 <button class="btn btn-success" type="submit"><i class="fas fa-cart-plus"></i></button>
-                                                        </div>
+                                                        </span>
                                                     </div>
                                                 </form>
                                             </div>
