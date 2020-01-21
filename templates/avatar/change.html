@@ -6,18 +6,19 @@
         <form method="POST" action="{% url 'avatar_change' %}">
             <fieldset class="form-group">
                 <legend>Choose a new Avatar</legend>
+                <hr>
                 {% csrf_token %}
                 {% if avatars %}
                     <p>{% trans "Your current avatar: " %}</p>
                     {% avatar user class="img-profile rounded-circle" %}
                 {% else %}
-                    <p>{% trans "You haven't uploaded an avatar yet. Please upload one now." %}</p>
+                    <div class="alert alert-danger" role="alert">{% trans "You haven't uploaded an avatar yet. Please upload one now." %}</div>
                 {% endif %}
-                <hr>
-                <ul>
+
+                <ul class="avatar-list">
                     {{ primary_avatar_form.as_ul }}
                 </ul>
-                <input type="submit" class="btn btn-primary" value="{% trans 'Choose new Default' %}"/>
+                <input type="submit" class="btn btn-primary avatar-list" value="{% trans 'Choose new Default' %}"/>
             </fieldset>
         </form>
 
@@ -34,3 +35,10 @@
 
 {% endblock %}
 
+
+{% block avatar_change_script %}
+<script>
+    if ($("#id_choice li").length == 0){ $(".avatar-list").css("display", "none");}
+    $("label[for='id_avatar']").css("text-transform", "capitalize");
+</script>
+{% endblock %}
