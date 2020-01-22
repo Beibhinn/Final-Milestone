@@ -180,12 +180,24 @@ legend {
 #user_avatar.profile-pic {
     height: auto;
     max-width: 100%;
+    padding-bottom: 10px;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color:#fff;
     background-color: #800080;
 }
+
+.purple-font {
+    color: #800080;
+}
+
+#divider {
+    border-bottom-width: 3px;
+    border-bottom-color: #800080;
+    border-bottom-style: solid;
+}
+
 
 @media (max-width: 576px) {
     .container-fluid {
@@ -221,6 +233,12 @@ legend {
 
     .profile-nav-label {
         display: inline-block;
+    }
+    #divider {
+        border-right-width: 3px;
+        border-right-color: #800080;
+        border-right-style: solid;
+        border-bottom-width: 0;
     }
 }
 

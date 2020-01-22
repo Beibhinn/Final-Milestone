@@ -192,3 +192,5 @@ COMMENTS_XTD_FROM_EMAIL = "noreply@example.com"
 
 # Contact mail address to show in messages.
 COMMENTS_XTD_CONTACT_EMAIL = "helpdesk@example.com"
+
+AVATAR_GRAVATAR_DEFAULT = "https://community.spotify.com/t5/image/serverpage/image-id/75447i3FF8FE0DEA7D5BCD/image-size/large/is-moderation-mode/true?v=1.0&px=999"

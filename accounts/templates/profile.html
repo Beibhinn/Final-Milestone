@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-md-3" style="text-align: center">
         {% avatar user 160 class="img-profile rounded-circle profile-pic" id="user_avatar" %}
-        <div class="small">
+        <div class="small" style="padding-bottom: 10px;">
             <a href="{% url 'avatar_change' %}">Change your avatar</a>
         </div>
     </div>
@@ -32,10 +32,10 @@
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="myIssues" role="tabpanel" aria-labelledby="issues-tab">
                 <div class="row card-body mt-3" style="padding-left: 0px;padding-right: 0px;">
-                    <div class="col-sm-12 col-lg-6 mb-4">
-                        <div class="mb-4 pb-2 status-container" style="border-radius: 24pt;">
+                    <div id="divider" class="col-sm-12 col-lg-6 mb-4">
+                        <div class="mb-4 pb-2" style="border-radius: 24pt;">
                             <div class="py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="section-header font-weight-bold text-primary">Bugs</h6>
+                                <h6 class="section-header font-weight-bold purple-font">Bugs</h6>
                             </div>
                             <div class="pl-4 pr-4">
                                 {% if bugs %}
@@ -80,10 +80,10 @@
                                 {% else %}
                                 <div class="mb-4">
                                     <div class="card shadow h-100 py-2">
-                                        <div class="card-body">
+                                        <div class="card-body" style="padding-bottom: 5px;text-align: center;">
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    <div class="text-xs font-weight-bold text-uppercase purple-font">
                                                         You haven't added any bugs yet
                                                     </div>
                                                 </div>
@@ -96,9 +96,9 @@
                         </div>
                     </div>
                     <div class="col-sm-12 col-lg-6 mb-4">
-                        <div class="mb-4 pb-2 status-container" style="border-radius: 24pt;">
+                        <div class="mb-4 pb-2" style="border-radius: 24pt;">
                             <div class="py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="section-header font-weight-bold text-primary">Features</h6>
+                                <h6 class="section-header font-weight-bold purple-font">Features</h6>
                             </div>
                             <div class="pl-4 pr-4">
                                 {% if features %}
@@ -146,10 +146,10 @@
                                 {% else %}
                                     <div class="mb-4">
                                         <div class="card shadow h-100 py-2">
-                                            <div class="card-body">
+                                            <div class="card-body" style="padding-bottom: 5px;text-align: center;">
                                                 <div class="row no-gutters align-items-center">
                                                     <div class="col mr-2">
-                                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        <div class="text-xs font-weight-bold text-uppercase purple-font">
                                                             You haven't added any features yet
                                                         </div>
                                                     </div>
@@ -207,12 +207,12 @@
                             </div>
                         {% endfor %}
                     {% else %}
-                    <div class="mb-4">
+                    <div class="mb-4" style="margin: auto;">
                         <div class="card shadow h-100 py-2">
-                            <div class="card-body">
+                            <div class="card-body" style="padding-bottom: 5px;text-align: center;">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        <div class="text-xs font-weight-bold text-uppercase purple-font">
                                             You haven't upvoted any bugs yet
                                         </div>
                                     </div>
@@ -271,12 +271,12 @@
                             </div>
                         {% endfor %}
                     {% else %}
-                        <div class="mb-4">
+                        <div class="mb-4" style="margin: auto;">
                             <div class="card shadow h-100 py-2">
-                                <div class="card-body">
+                                <div class="card-body" style="padding-bottom: 5px;text-align: center;">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-uppercase purple-font">
                                                 You haven't added any features yet
                                             </div>
                                         </div>
