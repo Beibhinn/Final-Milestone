@@ -37,7 +37,7 @@
                             <div class="py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="section-header font-weight-bold purple-font">Bugs</h6>
                             </div>
-                            <div class="pl-4 pr-4">
+                            <div class="pl-1 pr-1">
                                 {% if bugs %}
                                     {% for bug in bugs %}
                                         <div class="mb-4">
@@ -100,7 +100,7 @@
                             <div class="py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="section-header font-weight-bold purple-font">Features</h6>
                             </div>
-                            <div class="pl-4 pr-4">
+                            <div class="pl-1 pr-1">
                                 {% if features %}
                                     {% for feature in features %}
                                         <div class="mb-4">
@@ -168,7 +168,7 @@
                     {% if bugs_upvoted %}
                         {% for bug in bugs_upvoted %}
                             <div class="col-sm-12 col-lg-6 mb-4">
-                                <div class="pl-4 pr-4">
+                                <div class="pl-1 pr-1">
                                     <div class="card {% if bug.status == 'CREATED' %} border-left-secondary
                                         {% elif bug.status == 'IN PROGRESS' %} border-left-warning
                                         {% elif bug.status == 'IN REVIEW' %} border-left-info
@@ -228,7 +228,7 @@
                     {% if donations %}
                         {% for donation in donations %}
                             <div class="col-sm-12 col-lg-6 mb-4">
-                                <div class="pl-4 pr-4">
+                                <div class="pl-1 pr-1">
                                     <div class="card {% if feature.status == 'CREATED' %} border-left-secondary
                                         {% elif feature.status == 'IN PROGRESS' %} border-left-warning
                                         {% elif feature.status == 'IN REVIEW' %} border-left-info
@@ -277,7 +277,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-uppercase purple-font">
-                                                You haven't added any features yet
+                                                You haven't donated to any features yet
                                             </div>
                                         </div>
                                     </div>
