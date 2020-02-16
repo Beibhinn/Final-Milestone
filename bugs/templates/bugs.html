@@ -12,7 +12,7 @@
             <div class="card-body mt-4 row">
                 {% if bugs %}
                 {% for bug in bugs %}
-                <div class="col-md-6 col-lg-3 mb-4" style="display: inline-block">
+                <div class="col-md-6 col-lg-4 mb-4" style="display: inline-block">
                     <div class="card {% if bug.status == 'CREATED' %} border-left-secondary
                         {% elif bug.status == 'IN PROGRESS' %} border-left-warning
                         {% elif bug.status == 'IN REVIEW' %} border-left-info
