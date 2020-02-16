@@ -44,17 +44,17 @@
                     </div>
                         <div class="col-md-8">
                             {% if feature.image %}
-                                <img class="attachment" src="/media/{{ feature.image }}">
+                                <img class="attachment shadow" src="/media/{{ feature.image }}">
                             {% endif %}
                         </div>
 
                 </div>
                 <div class="row no-gutters align-items-center">
                     <div class="col-md-9">
-                        <div class="card-body">
-                            <p>{{ feature.description }}</p>
+                        <div class="card-body" style="padding-bottom: 0px;">
+                            <p style="margin-top: 10px">{{ feature.description }}</p>
                             {% get_comment_count for feature as comment_count %}
-                            <div class="py-4">
+                            <div class="small" style="padding-bottom: 1.5rem">
                                 {{ comment_count }} comment{{ comment_count|pluralize }}
                                 ha{{ comment_count|pluralize:"s,ve" }} been posted.
                             </div>
@@ -90,11 +90,11 @@
 <div class="row">
     <div class="col-md-12 mb-4">
         <div class="card shadow mb-4 container">
-            <div class="d-sm-flex align-items-center justify-content-between mt-4">
-                <h1 class="h5 mb-0 text-gray-600">Comments</h1>
+            <div class="d-sm-flex align-items-center justify-content-between mt-4 comment-padding">
+                <h1 class="h5 mb-0 text-gray-600 comment-padding">Comments</h1>
             </div>
             <hr/>
-            <div class="card-body">
+            <div class="card-body comment-body">
                 <div>
                     {% if comment_count %}
                     <div class="comments">
@@ -102,7 +102,7 @@
                     </div>
                     {% endif %}
                 </div>
-                <div class="row row-flex bottom-container">
+                <div class="row-flex bottom-container">
                     {% if user.is_authenticated %}
                     <div class="col-md-12">
                         <div class="card-body">
@@ -110,7 +110,7 @@
                         </div>
                     </div>
                     {% else %}
-                    <p>Please <a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">register</a> to post a comment
+                    <p style="text-align: center;">Please <a href="{% url 'login' %}">log in</a> or <a href="{% url 'register' %}">register</a> to post a comment
                     </p>
 
                     {% endif %}

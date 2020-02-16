@@ -43,18 +43,18 @@
                     </div>
                         <div class="col-md-8">
                             {% if bug.image %}
-                                <img class="attachment" src="/media/{{ bug.image }}">
+                                <img class="attachment shadow" src="/media/{{ bug.image }}">
                             {% endif %}
                         </div>
 
                 </div>
                 <div class="row no-gutters align-items-center">
                     <div class="col-md-10">
-                        <div class="card-body">
-                            <p>{{ bug.description }}</p>
+                        <div class="card-body" style="padding-bottom: 0px;">
+                            <p style="margin-top: 10px">{{ bug.description }}</p>
 
                             {% get_comment_count for bug as comment_count %}
-                            <div class="py-4">
+                            <div class="small" style="padding-bottom: 1.5rem">
                                 {{ comment_count }} comment{{ comment_count|pluralize }}
                                 ha{{ comment_count|pluralize:"s,ve" }} been posted.
                             </div>
@@ -62,7 +62,7 @@
                     </div>
                     <div id="{{ bug.id }}" class="col-md-2 text-center">
                         <span style="float: right"><a onclick="toggleUpvote('{{ bug.id }}')">
-                            <p class="text-gray-400" style="text-transform: uppercase; display: inline-block"><b>Upvote: </b></p>
+                            <p class="text-gray-400" style="display: inline-block"><b>Upvote: </b></p>
                             {% if bug in bugs_upvoted %}
                                   <i class="fas fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
                             {% else %}
@@ -80,11 +80,11 @@
 <div class="row">
     <div class="col-md-12 mb-4">
         <div class="card shadow mb-4 container">
-            <div class="d-sm-flex align-items-center justify-content-between mt-4">
-                <h1 class="h5 mb-0 text-gray-600">Comments</h1>
+            <div class="d-sm-flex align-items-center justify-content-between mt-4 comment-padding">
+                <h1 class="h5 mb-0 text-gray-600 comment-padding">Comments</h1>
             </div>
             <hr/>
-            <div class="card-body">
+            <div class="card-body comment-body">
                 <div>
                     {% if comment_count %}
                     <div class="comments">
@@ -92,7 +92,7 @@
                     </div>
                     {% endif %}
                 </div>
-                <div class="row row-flex bottom-container">
+                <div class="row-flex bottom-container">
                     {% if user.is_authenticated %}
                     <div class="col-md-12">
                         <div class="card-body">
@@ -100,7 +100,7 @@
                         </div>
                     </div>
                     {% else %}
-                    <p>Please <a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">register</a> to post a comment
+                    <p style="text-align: center;">Please <a href="{% url 'login' %}">log in</a> or <a href="{% url 'register' %}">register</a> to post a comment
                     </p>
 
                     {% endif %}

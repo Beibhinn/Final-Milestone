@@ -75,7 +75,7 @@ footer {
 }
 
 .comment-avatar {
-    padding-top: 8px;
+    margin-top: 8px;
     margin-right: 20px;
 }
 
@@ -176,6 +176,10 @@ legend {
     color: #53249E;
 }
 
+.comment-padding {
+    padding-left: 5px;
+}
+
 /*account */
 #user_avatar.profile-pic {
     height: auto;
@@ -215,6 +219,10 @@ legend {
     .inline-pay-form {
         max-width: 72%;
     }
+    .comment-avatar {
+        margin-left: 15px;
+        margin-right: 0px;
+    }
 }
 
 @media (max-width: 991.98px) {
@@ -223,6 +231,30 @@ legend {
     }
     .profile-nav-icon::before {
         display: inline-block;
+    }
+}
+
+@media (min-width: 576px) {
+    .comment-padding {
+        padding-left: 1.25rem;
+    }
+    .comment-body {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
+@media (min-width: 577px) {
+    .comment-avatar {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (min-width: 640px) {
+    .comment-body {
+        margin-left: 1.25rem;
+        margin-right: 1.25rem;
     }
 }
 

@@ -8,12 +8,12 @@
     <div class="pb-2 comment-row">
         <a name="c{{ comment.id }}"></a>
         <div class="row">
-            <div class="col-xs-12 col-sm-3 col-lg-2 col-xl-1" style="display: inline-block">
-            {% avatar comment.user class="img-circle comment-avatar img-responsive" id="user_avatar" %}
+            <div class="col-xs-12 col-sm-3 col-lg-2 col-xl-2 d-none d-sm-inline-block" style="text-align: center">
+            {% avatar comment.user class="rounded-circle comment-avatar img-responsive" id="user_avatar"%}
             </div>
-            <div class="col-xs-12 col-sm-9 col-lg-10 col-xl-11" style="display: inline-block; padding-left: 32px">
+            <div class="col-xs-12 col-sm-9 col-lg-10 col-xl-10 d-inline-block" style="padding-left: 20px">
                 <div class="comment pb-3">
-                  <div class="text-lg text-gray-800" style="display: inline-block">{{ comment.name }}</div>
+                  <div class="text-lg text-gray-800 d-inline-block" style="padding-right: 5px">{{ comment.name }}</div>
                     <div class="d-none d-md-inline-block mb-1 small text-gray-500" style="float: right">
                       <div class="mr-auto">{{ comment.submit_date }}</div>
                     </div>
