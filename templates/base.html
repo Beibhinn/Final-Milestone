@@ -407,6 +407,9 @@
               "X-CSRFToken": csrfToken
           },
           dataType: 'json',
+          success: function() {
+              $(`#bug-upvote-${id}`).load(location.href + ` [data-bug-id=${id}]`);
+            }
       });
       $(`div[data-bug-id=${id}]`).find('.fa-arrow-alt-circle-up').toggleClass("fas").toggleClass("far");
   }

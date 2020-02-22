@@ -13,5 +13,8 @@ def search_issues(request):
         Q(name__icontains=request.GET['search_term']) | Q(description__icontains=request.GET['search_term']))
     search_term = request.GET['search_term']
 
-    return render(request, "searchresults.html", {"bugs": bugs, "features": features, "search_term": search_term})
+    return render(request, "searchresults.html", {"bugs": bugs,
+                                                  "features": features,
+                                                  "search_term": search_term,
+                                                  "bugs_upvoted": Bug.objects.filter(upvoters__id=request.user.id)})
 

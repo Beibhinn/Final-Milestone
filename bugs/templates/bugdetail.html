@@ -60,15 +60,17 @@
                             </div>
                         </div>
                     </div>
-                    <div data-bug-id="{{ bug.id }}" class="col-md-2 text-center">
-                        <span style="float: right"><a onclick="toggleUpvote('{{ bug.id }}')">
-                            <p class="text-gray-400" style="display: inline-block"><b>Upvote: </b></p>
-                            {% if bug in bugs_upvoted %}
-                                  <i class="fas fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
-                            {% else %}
-                                  <i class="far fa-arrow-alt-circle-up fa-2x text-gray-300"></i></a>
-                            {% endif %}
-                        </span>
+                    <div id="bug-upvote-{{ bug.id }}">
+                        <div data-bug-id="{{ bug.id }}" class="col-md-2 text-center">
+                            <span style="float: right"><a onclick="toggleUpvote('{{ bug.id }}')">
+                                <p class="text-gray-400" style="display: inline-block"><b>Upvote: </b></p>
+                                {% if bug in bugs_upvoted %}
+                                      <i class="fas fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                                {% else %}
+                                      <i class="far fa-arrow-alt-circle-up fa-2x text-gray-300"></i></a>
+                                {% endif %}
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>

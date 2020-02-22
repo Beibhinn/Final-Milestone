@@ -37,16 +37,18 @@
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
-                                                <span><a onclick="toggleUpvote('{{ bug.id }}')">
-                                                          {% if bug in bugs_upvoted %}
-                                                              <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
-                                                          {% else %}
-                                                              <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
-                                                          {% endif %}
-                                                          Upvotes: {{ bug.upvotes }}</a>
-                                                </span>
-                                                <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
+                                            <div id="bug-upvote-{{ bug.id }}">
+                                                <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
+                                                    <span><a onclick="toggleUpvote('{{ bug.id }}')">
+                                                              {% if bug in bugs_upvoted %}
+                                                                  <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
+                                                              {% else %}
+                                                                  <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
+                                                              {% endif %}
+                                                              Upvotes: {{ bug.upvotes }}</a>
+                                                    </span>
+                                                    <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -63,20 +65,22 @@
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
-                                                {% if user.is_authenticated %}
-                                                <span><a onclick="toggleUpvote('{{ bug.id }}')">
-                                                          {% if bug in bugs_upvoted %}
-                                                              <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
-                                                          {% else %}
-                                                              <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
-                                                          {% endif %}
-                                                          Upvotes: {{ bug.upvotes }}</a>
-                                                </span>
-                                                <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
-                                                {% else %}
-                                                <span>Upvotes: {{ bug.upvotes }}</span> <span class="view-span">Views: {{ bug.views }}</span>
-                                                {% endif %}
+                                            <div id="bug-upvote-{{ bug.id }}">
+                                                <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
+                                                    {% if user.is_authenticated %}
+                                                    <span><a onclick="toggleUpvote('{{ bug.id }}')">
+                                                              {% if bug in bugs_upvoted %}
+                                                                  <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
+                                                              {% else %}
+                                                                  <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
+                                                              {% endif %}
+                                                              Upvotes: {{ bug.upvotes }}</a>
+                                                    </span>
+                                                    <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
+                                                    {% else %}
+                                                    <span>Upvotes: {{ bug.upvotes }}</span> <span class="view-span">Views: {{ bug.views }}</span>
+                                                    {% endif %}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -122,16 +126,18 @@
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
-                                                <span><a onclick="toggleUpvote('{{ bug.id }}')">
-                                                          {% if bug in bugs_upvoted %}
-                                                              <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
-                                                          {% else %}
-                                                              <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
-                                                          {% endif %}
-                                                          Upvotes: {{ bug.upvotes }}</a>
-                                                </span>
-                                                <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
+                                            <div id="bug-upvote-{{ bug.id }}">
+                                                <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
+                                                    <span><a onclick="toggleUpvote('{{ bug.id }}')">
+                                                              {% if bug in bugs_upvoted %}
+                                                                  <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
+                                                              {% else %}
+                                                                  <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
+                                                              {% endif %}
+                                                              Upvotes: {{ bug.upvotes }}</a>
+                                                    </span>
+                                                    <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -148,20 +154,22 @@
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
-                                                {% if user.is_authenticated %}
-                                                <span><a onclick="toggleUpvote('{{ bug.id }}')">
-                                                          {% if bug in bugs_upvoted %}
-                                                              <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
-                                                          {% else %}
-                                                              <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
-                                                          {% endif %}
-                                                          Upvotes: {{ bug.upvotes }}</a>
-                                                </span>
-                                                <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
-                                                {% else %}
-                                                <span>Upvotes: {{ bug.upvotes }}</span> <span class="view-span">Views: {{ bug.views }}</span>
-                                                {% endif %}
+                                            <div id="bug-upvote-{{ bug.id }}">
+                                                <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
+                                                    {% if user.is_authenticated %}
+                                                    <span><a onclick="toggleUpvote('{{ bug.id }}')">
+                                                              {% if bug in bugs_upvoted %}
+                                                                  <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
+                                                              {% else %}
+                                                                  <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
+                                                              {% endif %}
+                                                              Upvotes: {{ bug.upvotes }}</a>
+                                                    </span>
+                                                    <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
+                                                    {% else %}
+                                                    <span>Upvotes: {{ bug.upvotes }}</span> <span class="view-span">Views: {{ bug.views }}</span>
+                                                    {% endif %}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -207,16 +215,18 @@
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
-                                                <span><a onclick="toggleUpvote('{{ bug.id }}')">
-                                                          {% if bug in bugs_upvoted %}
-                                                              <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
-                                                          {% else %}
-                                                              <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
-                                                          {% endif %}
-                                                          Upvotes: {{ bug.upvotes }}</a>
-                                                </span>
-                                                <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
+                                            <div id="bug-upvote-{{ bug.id }}">
+                                                <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
+                                                    <span><a onclick="toggleUpvote('{{ bug.id }}')">
+                                                              {% if bug in bugs_upvoted %}
+                                                                  <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
+                                                              {% else %}
+                                                                  <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
+                                                              {% endif %}
+                                                              Upvotes: {{ bug.upvotes }}</a>
+                                                    </span>
+                                                    <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -233,20 +243,22 @@
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
-                                                {% if user.is_authenticated %}
-                                                <span><a onclick="toggleUpvote('{{ bug.id }}')">
-                                                          {% if bug in bugs_upvoted %}
-                                                              <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
-                                                          {% else %}
-                                                              <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
-                                                          {% endif %}
-                                                          Upvotes: {{ bug.upvotes }}</a>
-                                                </span>
-                                                <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
-                                                {% else %}
-                                                <span>Upvotes: {{ bug.upvotes }}</span> <span class="view-span">Views: {{ bug.views }}</span>
-                                                {% endif %}
+                                            <div id="bug-upvote-{{ bug.id }}">
+                                                <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
+                                                    {% if user.is_authenticated %}
+                                                    <span><a onclick="toggleUpvote('{{ bug.id }}')">
+                                                              {% if bug in bugs_upvoted %}
+                                                                  <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
+                                                              {% else %}
+                                                                  <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
+                                                              {% endif %}
+                                                              Upvotes: {{ bug.upvotes }}</a>
+                                                    </span>
+                                                    <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
+                                                    {% else %}
+                                                    <span>Upvotes: {{ bug.upvotes }}</span> <span class="view-span">Views: {{ bug.views }}</span>
+                                                    {% endif %}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -292,16 +304,18 @@
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
-                                                <span><a onclick="toggleUpvote('{{ bug.id }}')">
-                                                          {% if bug in bugs_upvoted %}
-                                                              <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
-                                                          {% else %}
-                                                              <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
-                                                          {% endif %}
-                                                          Upvotes: {{ bug.upvotes }}</a>
-                                                </span>
-                                                <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
+                                            <div id="bug-upvote-{{ bug.id }}">
+                                                <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
+                                                    <span><a onclick="toggleUpvote('{{ bug.id }}')">
+                                                              {% if bug in bugs_upvoted %}
+                                                                  <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
+                                                              {% else %}
+                                                                  <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
+                                                              {% endif %}
+                                                              Upvotes: {{ bug.upvotes }}</a>
+                                                    </span>
+                                                    <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -318,20 +332,22 @@
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
-                                                {% if user.is_authenticated %}
-                                                <span><a onclick="toggleUpvote('{{ bug.id }}')">
-                                                          {% if bug in bugs_upvoted %}
-                                                              <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
-                                                          {% else %}
-                                                              <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
-                                                          {% endif %}
-                                                          Upvotes: {{ bug.upvotes }}</a>
-                                                </span>
-                                                <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
-                                                {% else %}
-                                                <span>Upvotes: {{ bug.upvotes }}</span> <span class="view-span">Views: {{ bug.views }}</span>
-                                                {% endif %}
+                                            <div id="bug-upvote-{{ bug.id }}">
+                                                <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
+                                                    {% if user.is_authenticated %}
+                                                    <span><a onclick="toggleUpvote('{{ bug.id }}')">
+                                                              {% if bug in bugs_upvoted %}
+                                                                  <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
+                                                              {% else %}
+                                                                  <i class="far fa-arrow-alt-circle-up upvote text-gray-300"></i>
+                                                              {% endif %}
+                                                              Upvotes: {{ bug.upvotes }}</a>
+                                                    </span>
+                                                    <span class="view-span" style="padding-top: 2.5px;">Views: {{ bug.views }}</span>
+                                                    {% else %}
+                                                    <span>Upvotes: {{ bug.upvotes }}</span> <span class="view-span">Views: {{ bug.views }}</span>
+                                                    {% endif %}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
