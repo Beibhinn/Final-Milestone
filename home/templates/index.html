@@ -37,7 +37,7 @@
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div id="{{ bug.id }}" class="card-bottom small text-gray-500">
+                                            <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}
                                                               <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
@@ -63,7 +63,7 @@
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div id="{{ bug.id }}" class="card-bottom small text-gray-500">
+                                            <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
                                                 {% if user.is_authenticated %}
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}
@@ -122,7 +122,7 @@
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div id="{{ bug.id }}" class="card-bottom small text-gray-500">
+                                            <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}
                                                               <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
@@ -148,7 +148,7 @@
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div id="{{ bug.id }}" class="card-bottom small text-gray-500">
+                                            <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
                                                 {% if user.is_authenticated %}
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}
@@ -207,7 +207,7 @@
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div id="{{ bug.id }}" class="card-bottom small text-gray-500">
+                                            <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}
                                                               <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
@@ -233,7 +233,7 @@
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div id="{{ bug.id }}" class="card-bottom small text-gray-500">
+                                            <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
                                                 {% if user.is_authenticated %}
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}
@@ -292,7 +292,7 @@
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div id="{{ bug.id }}" class="card-bottom small text-gray-500">
+                                            <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}
                                                               <i class="fas fa-arrow-alt-circle-up upvote text-gray-300"></i>
@@ -318,7 +318,7 @@
                                                 </div>
                                                 <div class="text-truncate">{{ bug.description }}</div>
                                             </div>
-                                            <div id="{{ bug.id }}" class="card-bottom small text-gray-500">
+                                            <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
                                                 {% if user.is_authenticated %}
                                                 <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                           {% if bug in bugs_upvoted %}

@@ -38,7 +38,7 @@
                                                         <div class="m-0 font-weight-bold text-primary">{{ bug.name }}</div>
                                                         <div class="text-truncate">{{ bug.description }}</div>
                                                     </div>
-                                                    <div id="{{ bug.id }}" class="card-bottom small text-gray-500">
+                                                    <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
                                                         <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                                   {% if bug in bugs_upvoted %}
                                                                       <i class="fas fa-arrow-alt-circle-up fa-2x text-gray-300"></i>

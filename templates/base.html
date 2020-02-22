@@ -408,7 +408,7 @@
           },
           dataType: 'json',
       });
-      $(`#${id}`).find('.fa-arrow-alt-circle-up').toggleClass("fas").toggleClass("far");
+      $(`div[data-bug-id=${id}]`).find('.fa-arrow-alt-circle-up').toggleClass("fas").toggleClass("far");
   }
   </script>
 
