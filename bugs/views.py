@@ -20,7 +20,8 @@ def all_bugs(request):
     Bugs and renders them to the 'bugs.html' template
     """
     bugs = Bug.objects.all()
-    return render(request, "bugs.html", {"bugs": bugs})
+    return render(request, "bugs.html", {"bugs": bugs,
+                                         "bugs_upvoted": Bug.objects.filter(upvoters__id=request.user.id)})
 
 
 def bug_detail(request, pk):
