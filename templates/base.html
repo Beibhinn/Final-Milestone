@@ -409,6 +409,7 @@
           dataType: 'json',
           success: function() {
               $(`#bug-upvote-${id}`).load(location.href + ` [data-bug-id=${id}]`);
+              $(`#bug-detail-${id}`).load(location.href + ` #bug-detail-upvote-${id}`);
             }
       });
       $(`div[data-bug-id=${id}]`).find('.fa-arrow-alt-circle-up').toggleClass("fas").toggleClass("far");

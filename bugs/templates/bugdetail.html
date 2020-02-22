@@ -36,8 +36,12 @@
                                 {% if bug.date_finished %}
                                 <p>Completed on: {{ bug.date_finished }} </p>
                                 {% endif %}
-                                <p>Upvotes: {{ bug.upvotes }}</p>
-                                <p>Views: {{ bug.views }}</p>
+                                <div id="bug-detail-{{ bug.id }}">
+                                    <div id="bug-detail-upvote-{{ bug.id }}">
+                                        <p>Upvotes: {{ bug.upvotes }}</p>
+                                        <p>Views: {{ bug.views }}</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -60,17 +64,15 @@
                             </div>
                         </div>
                     </div>
-                    <div id="bug-upvote-{{ bug.id }}">
-                        <div data-bug-id="{{ bug.id }}" class="col-md-2 text-center">
-                            <span style="float: right"><a onclick="toggleUpvote('{{ bug.id }}')">
-                                <p class="text-gray-400" style="display: inline-block"><b>Upvote: </b></p>
-                                {% if bug in bugs_upvoted %}
-                                      <i class="fas fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
-                                {% else %}
-                                      <i class="far fa-arrow-alt-circle-up fa-2x text-gray-300"></i></a>
-                                {% endif %}
-                            </span>
-                        </div>
+                    <div data-bug-id="{{ bug.id }}" class="col-md-2 text-center">
+                        <span style="float: right"><a onclick="toggleUpvote('{{ bug.id }}')">
+                            <p class="text-gray-400" style="display: inline-block"><b>Upvote: </b></p>
+                            {% if bug in bugs_upvoted %}
+                                  <i class="fas fa-arrow-alt-circle-up fa-2x text-gray-300"></i>
+                            {% else %}
+                                  <i class="far fa-arrow-alt-circle-up fa-2x text-gray-300"></i></a>
+                            {% endif %}
+                        </span>
                     </div>
                 </div>
             </div>
