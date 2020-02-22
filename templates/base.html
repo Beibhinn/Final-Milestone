@@ -397,7 +397,7 @@
 
   function toggleUpvote(id) {
       $.ajax({
-          url: "http://{{ request.get_host }}/bugs/toggle_upvote/",
+          url: "https://{{ request.get_host }}/bugs/toggle_upvote/",
           type: 'post',
           data: JSON.stringify({
               id: id,
