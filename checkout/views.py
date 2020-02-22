@@ -47,7 +47,7 @@ def checkout(request):
                 messages.error(request, "Sorry, looks like your card was declined.")
 
             if customer.paid:
-                messages.error(request, "Thank you. You have successfully donated")
+                messages.success(request, "Thank you. You have successfully donated")
                 for id, donation_amount in cart.items():
                     feature = get_object_or_404(Feature, pk=id)
                     feature.donations += donation_amount
