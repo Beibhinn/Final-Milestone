@@ -18,7 +18,7 @@
                         <div class="row card-body">
                             {% if bugs %}
                                 {% for bug in bugs %}
-                                    <div class="col-lg-6 mb-4">
+                                    <div class="col-xl-6 mb-4">
                                         <div class="card {% if bug.status == 'CREATED' %} border-left-secondary
                                             {% elif bug.status == 'IN PROGRESS' %} border-left-warning
                                             {% elif bug.status == 'IN REVIEW' %} border-left-info
@@ -38,7 +38,7 @@
                                                         <div class="m-0 font-weight-bold text-primary">{{ bug.name }}</div>
                                                         <div class="text-truncate">{{ bug.description }}</div>
                                                     </div>
-                                                    <div id="bug-upvote-{{ bug.id }}">
+                                                    <div id="bug-upvote-{{ bug.id }}" style="width: 100%">
                                                         <div data-bug-id="{{ bug.id }}" class="card-bottom small text-gray-500">
                                                             <span><a onclick="toggleUpvote('{{ bug.id }}')">
                                                                       {% if bug in bugs_upvoted %}
@@ -48,7 +48,7 @@
                                                                       {% endif %}
                                                                           Upvotes: {{ bug.upvotes }}</a>
                                                             </span>
-                                                            <span class="bugs-view right">Views: {{ bug.views }}</span>
+                                                            <span class="bugs-view view-span">Views: {{ bug.views }}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -83,7 +83,7 @@
                         <div class="row card-body">
                             {% if features %}
                                 {% for feature in features %}
-                                    <div class="col-lg-6 mb-4">
+                                    <div class="col-xl-6 mb-4">
                                         <div class="card {% if feature.status == 'CREATED' %} border-left-secondary
                                             {% elif feature.status == 'IN PROGRESS' %} border-left-warning
                                             {% elif feature.status == 'IN REVIEW' %} border-left-info
