@@ -34,7 +34,8 @@ def bug_detail(request, pk):
     bug = get_object_or_404(Bug, pk=pk)
     bug.views += 1
     bug.save()
-    return render(request, "bugdetail.html", {'bug': bug})
+    return render(request, "bugdetail.html", {"bug": bug,
+                                              "bugs_upvoted": Bug.objects.filter(upvoters__id=request.user.id)})
 
 
 class BugDetailView(DateDetailView):

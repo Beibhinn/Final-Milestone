@@ -35,7 +35,7 @@
                                                         {% else %}
                                                             <span class="badge status-badge badge-success">{{ bug.status }}</span>
                                                         {% endif %}
-                                                        <div class="m-0 font-weight-bold text-primary">{{ bug.name }}</div>
+                                                        <div class="m-0 font-weight-bold text-primary"><a href="{% url 'bug_detail' bug.id %}">{{ bug.name }}</div>
                                                         <div class="text-truncate">{{ bug.description }}</div>
                                                     </div>
                                                     <div id="bug-upvote-{{ bug.id }}" style="width: 100%">
