@@ -151,5 +151,5 @@ class TestBugsViews(TestCase):
         self.assertIsNone(original_bug)
 
         # check bug exists with new name and details are as expected
-        edited_bug = Bug.objects.get(name="The bug of Joe")
-        self.assertEqual(edited_bug.description, "Please accept my bug")
+        edited_bug = Bug.objects.get(name="Technically Joe's bug")
+        self.assertEqual(edited_bug.description, "This bug is now a collaboration between Joe and admin")

@@ -56,12 +56,23 @@ def add_or_edit_feature(request, pk=None):
     if request.method == "POST":
         form = FeatureForm(request.POST, files=request.FILES, instance=feature)
         if form.is_valid():
-            feature = form.save(commit=False)
-            feature.username = request.user
-            feature.save()
-            return redirect(feature_detail, feature.pk)
+            if feature is None:
+                feature = form.save(commit=False)
+                feature.username = request.user
+                feature.save()
+                return redirect(feature_detail, feature.pk)
+            else:
+                if request.user.is_staff or request.user == feature.username:
+                    feature = form.save(commit=False)
+                    feature.save()
+                    return redirect(feature_detail, feature.pk)
+                else:
+                    return HttpResponse(status=403)
     else:
-        form = FeatureForm(instance=feature)
+        if feature is None or request.user.is_staff or request.user == feature.username:
+            form = FeatureForm(instance=feature)
+        else:
+            return HttpResponse(status=403)
     return render(request, 'featureform.html', {'form': form})
 
 
