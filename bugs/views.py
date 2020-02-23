@@ -61,12 +61,24 @@ def add_or_edit_bug(request, pk=None):
     if request.method == "POST":
         form = BugForm(request.POST, request.FILES, instance=bug)
         if form.is_valid():
-            bug = form.save(commit=False)
-            bug.username = request.user
-            bug.save()
-            return redirect(bug_detail, bug.pk)
+            if bug is None:
+                bug = form.save(commit=False)
+                bug.username = request.user
+                bug.save()
+                return redirect(bug_detail, bug.pk)
+            else:
+                if request.user.is_staff or request.user == bug.username:
+                    bug = form.save(commit=False)
+                    bug.save()
+                    return redirect(bug_detail, bug.pk)
+                else:
+                    return HttpResponse(status=403)
     else:
-        form = BugForm(instance=bug)
+        if bug is None or request.user.is_staff or request.user == bug.username:
+            form = BugForm(instance=bug)
+        else:
+            return HttpResponse(status=403)
+
     return render(request, 'bugform.html', {'form': form})
 
 
