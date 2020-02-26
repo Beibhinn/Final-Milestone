@@ -372,6 +372,25 @@
     ev.dataTransfer.setData("text", ev.target.id);console.log(ev.target);
   }
 
+    $(".draggable").hover(
+        function () {
+            $(this).css("cursor", "grab");
+        }, function () {
+            $(this).css("cursor", "default");
+        }
+    );
+  $(".draggable").mousedown(
+      function () {
+          $(this).css("cursor", "grabbing");
+      }
+  );
+  $(".draggable").mouseup(
+      function () {
+          $(this).css("cursor", "grab");
+      }
+  );
+
+
   function drop(ev) {
       ev.preventDefault();
       const data = ev.dataTransfer.getData("text");
