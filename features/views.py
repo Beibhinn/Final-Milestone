@@ -1,6 +1,7 @@
 import json
 
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.utils import timezone
 
@@ -45,6 +46,7 @@ class FeatureDetailView(DateDetailView):
         return context
 
 
+@login_required()
 def add_or_edit_feature(request, pk=None):
     """
     Create a view that allows to add
