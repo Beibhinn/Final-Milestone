@@ -202,6 +202,10 @@ legend {
     border-bottom-style: solid;
 }
 
+/* reset password */
+input#id_email {
+    border-radius: .35rem;
+}
 
 @media (max-width: 576px) {
     .container-fluid {
