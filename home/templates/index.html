@@ -3,11 +3,12 @@
 {% block content %}
 <!--suppress XmlDuplicatedId -->
 
+<!-- Page heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 page-heading">Issue Dashboard</h1>
 </div>
 <hr>
-
+<!-- End page heading -->
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h4 class="h4 sub-heading mb-0">Bugs</h4>
@@ -17,14 +18,15 @@
 <div class="row">
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card shadow mb-4 status-container" data-status="CREATED" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <!-- Card Header -->
+            <!-- Status Column Header -->
             <div class="card-header mb-2 py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">To do</h6>
             </div>
-            <!-- Card Body -->
+            <!-- Status Column Body -->
             <div class="card-body">
                 {% if bugs_created %}
                     {% for bug in bugs_created %}
+                        <!-- Draggable bug card for staff -->
                         {% if user.is_staff %}
                             <div class="mb-4">
                                 <div class="card draggable border-left-secondary shadow h-100 py-2" id="bug-{{ bug.id }}" draggable="true"
@@ -55,6 +57,7 @@
                                 </div>
                             </div>
                         {% else %}
+                        <!-- Bug card for all other users -->
                             <div class="mb-4">
                                 <div class="card border-left-secondary shadow h-100 py-2" draggable="true">
                                     <div class="card-body">
@@ -106,14 +109,15 @@
     </div>
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card shadow mb-4 status-container" data-status="IN PROGRESS" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <!-- Card Header -->
+            <!-- Status Column Header -->
             <div class="card-header mb-2 py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">In progress</h6>
             </div>
-            <!-- Card Body -->
+            <!-- Status Column Body -->
             <div class="card-body">
                 {% if bugs_in_progress %}
                     {% for bug in bugs_in_progress %}
+                        <!-- Draggable bug card for staff -->
                         {% if user.is_staff %}
                             <div class="mb-4">
                                 <div class="card draggable border-left-warning shadow h-100 py-2" id="bug-{{ bug.id }}" draggable="true"
@@ -144,6 +148,7 @@
                                 </div>
                             </div>
                         {% else %}
+                            <!-- Bug card for all other users -->
                             <div class="mb-4">
                                 <div class="card border-left-warning shadow h-100 py-2" draggable="true">
                                     <div class="card-body">
@@ -195,14 +200,15 @@
     </div>
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card shadow mb-4 status-container" data-status="IN REVIEW" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <!-- Card Header -->
+            <!-- Status Column Header -->
             <div class="card-header mb-2 py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">In review</h6>
             </div>
-            <!-- Card Body -->
+            <!-- Status Column Body -->
             <div class="card-body">
                 {% if bugs_in_review %}
                     {% for bug in bugs_in_review %}
+                        <!-- Draggable bug card for staff -->
                         {% if user.is_staff %}
                             <div class="mb-4">
                                 <div class="card draggable border-left-info shadow h-100 py-2" id="bug-{{ bug.id }}" draggable="true"
@@ -233,6 +239,7 @@
                                 </div>
                             </div>
                         {% else %}
+                            <!-- Bug card for all other users -->
                             <div class="mb-4">
                                 <div class="card border-left-info shadow h-100 py-2" draggable="true">
                                     <div class="card-body">
@@ -284,14 +291,15 @@
     </div>
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card shadow mb-4 status-container" data-status="COMPLETE" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <!-- Card Header -->
+            <!-- Status Column Header -->
             <div class="card-header mb-2 py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Done</h6>
             </div>
-            <!-- Card Body -->
+            <!-- Status Column Body -->
             <div class="card-body">
                 {% if bugs_complete %}
                     {% for bug in bugs_complete %}
+                        <!-- Draggable bug card for staff -->
                         {% if user.is_staff %}
                             <div class="mb-4">
                                 <div class="card draggable border-left-success shadow h-100 py-2" id="bug-{{ bug.id }}" draggable="true"
@@ -322,6 +330,7 @@
                                 </div>
                             </div>
                         {% else %}
+                            <!-- Bug card for all other users -->
                             <div class="mb-4">
                                 <div class="card border-left-success shadow h-100 py-2" draggable="true">
                                     <div class="card-body">
@@ -381,14 +390,15 @@
 <div class="row">
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card shadow mb-4 status-container" data-status="CREATED" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <!-- Card Header -->
+            <!-- Status Column Header -->
             <div class="card-header mb-2 py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">To do</h6>
             </div>
-            <!-- Card Body -->
+            <!-- Status Column Body -->
             <div class="card-body">
                 {% if features_created %}
                     {% for feature in features_created %}
+                        <!-- Draggable feature card for staff -->
                         {% if user.is_staff %}
                             <div class="mb-4">
                                 <div class="card draggable border-left-secondary shadow h-100 py-2" id="feature-{{ feature.id }}" draggable="true"
@@ -421,6 +431,7 @@
                                 </div>
                             </div>
                         {% else %}
+                            <!-- Feature card for all other users -->
                             <div class="mb-4">
                                 <div class="card border-left-secondary shadow h-100 py-2" draggable="true">
                                     <div class="card-body">
@@ -470,14 +481,15 @@
     </div>
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card shadow mb-4 status-container" data-status="IN PROGRESS" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <!-- Card Header -->
+            <!-- Status Column Header -->
             <div class="card-header mb-2 py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">In progress</h6>
             </div>
-            <!-- Card Body -->
+            <!-- Status Column Body -->
             <div class="card-body">
                 {% if features_in_progress %}
                     {% for feature in features_in_progress %}
+                        <!-- Draggable feature card for staff -->
                         {% if user.is_staff %}
                             <div class="mb-4">
                                 <div class="card draggable border-left-warning shadow h-100 py-2" id="feature-{{ feature.id }}" draggable="true"
@@ -510,6 +522,7 @@
                                 </div>
                             </div>
                         {% else %}
+                            <!-- Feature card for all other users -->
                             <div class="mb-4">
                                 <div class="card border-left-warning shadow h-100 py-2" draggable="true">
                                     <div class="card-body">
@@ -559,14 +572,15 @@
     </div>
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card shadow mb-4 status-container" data-status="IN REVIEW" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <!-- Card Header -->
+            <!-- Status Column Header -->
             <div class="card-header mb-2 py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">In review</h6>
             </div>
-            <!-- Card Body -->
+            <!-- Status Column Body -->
             <div class="card-body">
                 {% if features_in_review %}
                     {% for feature in features_in_review %}
+                        <!-- Draggable feature card for staff -->
                         {% if user.is_staff %}
                             <div class="mb-4">
                                 <div class="card draggable border-left-info shadow h-100 py-2" id="feature-{{ feature.id }}" draggable="true"
@@ -599,6 +613,7 @@
                                 </div>
                             </div>
                         {% else %}
+                            <!-- Feature card for all other users -->
                             <div class="mb-4">
                                 <div class="card border-left-info shadow h-100 py-2" draggable="true">
                                     <div class="card-body">
@@ -648,14 +663,15 @@
     </div>
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card shadow mb-4 status-container" data-status="COMPLETE" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <!-- Card Header -->
+            <!-- Status Column Header -->
             <div class="card-header mb-2 py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Done</h6>
             </div>
-            <!-- Card Body -->
+            <!-- Status Column Body -->
             <div class="card-body">
                 {% if features_complete %}
                     {% for feature in features_complete %}
+                        <!-- Draggable feature card for staff -->
                         {% if user.is_staff %}
                             <div class="mb-4">
                                 <div class="card draggable border-left-success shadow h-100 py-2" id="feature-{{ feature.id }}" draggable="true"
@@ -688,6 +704,7 @@
                                 </div>
                             </div>
                         {% else %}
+                            <!-- Feature card for all other users -->
                             <div class="mb-4">
                                 <div class="card border-left-success shadow h-100 py-2" draggable="true">
                                     <div class="card-body">

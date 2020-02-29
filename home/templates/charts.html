@@ -2,20 +2,20 @@
 
 {% block content %}
 
-
+<!-- Page Header -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 page-heading">Charts</h1>
 </div>
-
+<!-- End Page Header -->
 
 <div class="row">
     <div class="col-md-6">
         <div class="card shadow mb-4">
-            <!-- Card Header - Dropdown -->
+            <!-- Section Header - Bugs -->
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Bugs statuses</h6>
             </div>
-            <!-- Card Body -->
+            <!-- Bug chart container -->
             <div class="card-body">
                 <div class="chart-pie pt-4">
                     <canvas id="bugChart"></canvas>
@@ -37,15 +37,16 @@
                   </span>
                 </div>
             </div>
+            <!-- End bug chart container -->
         </div>
     </div>
     <div class="col-md-6">
         <div class="card shadow mb-4">
-            <!-- Card Header - Dropdown -->
+            <!-- Section Header - Features -->
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Features statuses</h6>
             </div>
-            <!-- Card Body -->
+            <!-- Feature chart container -->
             <div class="card-body">
                 <div class="chart-pie pt-4">
                     <canvas id="featureChart"></canvas>
@@ -67,6 +68,7 @@
                   </span>
                 </div>
             </div>
+            <!-- End feature chart container -->
         </div>
     </div>
 </div>
@@ -78,6 +80,7 @@
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 
+{# Bug chart script #}
 var ctx = document.getElementById("bugChart");
 
 var bugChart = new Chart(ctx, {
@@ -110,6 +113,7 @@ var bugChart = new Chart(ctx, {
   },
 });
 
+{# Feature chart script #}
 var ctx = document.getElementById("featureChart");
 
 var featureChart = new Chart(ctx, {

@@ -12,7 +12,7 @@ def filter_by_status(issues, status):
 
 
 def all_items(request):
-    """A view that will display the index page"""
+    """A view that will display the index page including all bugs and features"""
     bugs = Bug.objects.all()
     features = Feature.objects.all()
 

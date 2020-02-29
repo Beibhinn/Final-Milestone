@@ -15,6 +15,11 @@ stripe.api_key = settings.STRIPE_SECRET
 
 @login_required()
 def checkout(request):
+    """
+        A view where payment information is taken and the donation
+        amount is logged and added to the total donations for that
+        feature
+    """
     if request.method == "POST":
         donation_form = DonationForm(request.POST, request.user, datetime.now())
         payment_form = MakePaymentForm(request.POST)

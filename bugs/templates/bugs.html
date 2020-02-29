@@ -2,9 +2,11 @@
 
 {% block content %}
 
+<!-- Page header -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 page-heading">Bugs</h1>
 </div>
+<!-- End page header -->
 
 <div class="row">
     <div class="col-md-12 mb-4">
@@ -12,6 +14,7 @@
             <div class="card-body mt-4 row">
                 {% if bugs %}
                 {% for bug in bugs %}
+                <!-- Bug cards -->
                 <div class="col-md-6 col-lg-4 mb-4" style="display: inline-block">
                     <div class="card {% if bug.status == 'CREATED' %} border-left-secondary
                         {% elif bug.status == 'IN PROGRESS' %} border-left-warning
@@ -51,6 +54,7 @@
                 </div>
                 {% endfor %}
                 {% else %}
+                <!-- No bugs -->
                 <div class="mb-4">
                     <div class="card shadow h-100 py-2">
                         <div class="card-body">

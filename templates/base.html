@@ -386,11 +386,7 @@
     // https://docs.djangoproject.com/en/2.2/ref/csrf/#setting-the-token-on-the-ajax-request
     const csrfToken = jQuery("[name=csrfmiddlewaretoken]").val();
 
-    const $content = $('#profile-content');
-    $content.on('show.bs.collapse', '.collapse', function () {
-        $content.find('.collapse.in').collapse('hide');
-    });
-
+    {# Drag and drop funcationality #}
     function allowDrop(ev) {
         ev.preventDefault();
     }
@@ -442,6 +438,8 @@
             }
         });
     }
+
+    {# Upvoting functionality #}
 
     function toggleUpvote(id) {
         $.ajax({

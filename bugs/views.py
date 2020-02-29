@@ -52,9 +52,11 @@ class BugDetailView(DateDetailView):
 @login_required()
 def add_or_edit_bug(request, pk=None):
     """
-    Create a view that allows to add
+    Create a view that allows a user to add
     or edit a bug depending if the Bug ID
-    is null or not
+    is null or not. A user should only be able
+    to edit a bug if they created it, or if they
+    are staff
     """
     bug = get_object_or_404(Bug, pk=pk) if pk else None
     print(bug)
@@ -83,6 +85,9 @@ def add_or_edit_bug(request, pk=None):
 
 
 def update_status(request):
+    """
+    Create a view that allows a user to update the status of an issue
+    """
     if request.method == "POST":
         data = json.loads(request.body)
         # print('ID ', data['id'])
@@ -106,7 +111,7 @@ def update_status(request):
             bug.date_finished = None
 
         bug.status = data['status']
-        # Dave the bug with the new status
+        # Save the bug with the new status
         bug.save()
         return HttpResponse(status=204)
     else:
@@ -114,6 +119,11 @@ def update_status(request):
 
 
 def toggle_upvote(request):
+    """
+        Create a view that allows a user to toggle
+        whether they have upvoted a bug or not. They get
+        added or removed to the list of upvoters for a bug
+    """
     if request.method == "POST":
         data = json.loads(request.body)
 

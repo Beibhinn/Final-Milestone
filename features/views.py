@@ -49,7 +49,9 @@ def add_or_edit_feature(request, pk=None):
     """
     Create a view that allows to add
     or edit a feature depending if the feature ID
-    is null or not
+    is null or not. A user should only be able
+    to edit a feature if they created it, or if they
+    are staff
     """
     feature = get_object_or_404(Feature, pk=pk) if pk else None
     print(feature)
@@ -77,6 +79,9 @@ def add_or_edit_feature(request, pk=None):
 
 
 def update_status(request):
+    """
+        Create a view that allows a user to update the status of an issue
+    """
     if request.method == "POST":
         data = json.loads(request.body)
 

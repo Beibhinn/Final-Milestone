@@ -9,8 +9,12 @@ def view_cart(request):
 
 
 def add_to_cart(request, id):
-    """Add a specified feature to the cart.
-    No quantity needed as each feature the user wishes to support is separate"""
+    """
+    Add a specified feature to the cart. No quantity needed
+    as each feature the user wishes to support is separate.
+    Instead the user specifies the donation amount they'd
+    like to contribute for that feature
+    """
     donation_amount = int(request.POST.get('donation_amount'))
     print(donation_amount)
     cart = request.session.get('cart', {})
