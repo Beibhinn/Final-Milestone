@@ -179,7 +179,12 @@ STRIPE_PUBLISHABLE = os.getenv("STRIPE_PUBLISHABLE")
 STRIPE_SECRET = os.getenv("STRIPE_SECRET")
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # mail service smtp
+EMAIL_HOST_USER = os.getenv("EMAIL_USER")  # email id
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASSWORD")  #password
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 COMMENTS_APP = 'django_comments_xtd'
 
@@ -188,9 +193,9 @@ COMMENTS_XTD_SALT = (b"Timendi causa est nescire. "
                      b"Aequam memento rebus in arduis servare mentem.")
 
 # Source mail address used for notifications.
-COMMENTS_XTD_FROM_EMAIL = "noreply@example.com"
+COMMENTS_XTD_FROM_EMAIL = "noreply@beibhinnsunicorn.com"
 
 # Contact mail address to show in messages.
-COMMENTS_XTD_CONTACT_EMAIL = "helpdesk@example.com"
+COMMENTS_XTD_CONTACT_EMAIL = "helpdesk@beibhinnsunicorn.com"
 
 AVATAR_GRAVATAR_DEFAULT = "https://community.spotify.com/t5/image/serverpage/image-id/75447i3FF8FE0DEA7D5BCD/image-size/large/is-moderation-mode/true?v=1.0&px=999"
