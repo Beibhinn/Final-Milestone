@@ -51,7 +51,7 @@
                     <!-- Bug image column -->
                         <div class="col-md-8">
                             {% if bug.image %}
-                                <img class="attachment shadow" src="/media/{{ bug.image }}">
+                                <img class="attachment shadow" src="{{ MEDIA_URL }}{{ bug.image }}">
                             {% endif %}
                         </div>
 
