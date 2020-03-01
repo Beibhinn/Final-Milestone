@@ -56,7 +56,7 @@ def profile(request):
     bugs = Bug.objects.filter(username=username)
     features = Feature.objects.filter(username=username)
     don = Donation.objects.filter(user=username)
-    donations = DonationLineItem.objects.filter(donation=don)
+    donations = DonationLineItem.objects.filter(donation__in=don).distinct('feature')
     upvoted = Bug.objects.filter(upvoters__id=request.user.id)
     return render(request, 'profile.html', {'bugs': bugs,
                                             'features': features,
