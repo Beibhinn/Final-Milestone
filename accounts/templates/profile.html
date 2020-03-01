@@ -249,9 +249,9 @@
                             <!-- feature cards -->
                             <div class="col-sm-12 col-lg-6 mb-4">
                                 <div class="pl-1 pr-1">
-                                    <div class="card {% if feature.status == 'CREATED' %} border-left-secondary
-                                        {% elif feature.status == 'IN PROGRESS' %} border-left-warning
-                                        {% elif feature.status == 'IN REVIEW' %} border-left-info
+                                    <div class="card {% if donation.feature.status == 'CREATED' %} border-left-secondary
+                                        {% elif donation.feature.status == 'IN PROGRESS' %} border-left-warning
+                                        {% elif donation.feature.status == 'IN REVIEW' %} border-left-info
                                         {% else %} border-left-success {% endif %} shadow h-100 py-2">
                                             <div class="card-body" style="padding-bottom: 10px;">
                                                 <div class="row no-gutters align-items-center">
@@ -263,7 +263,7 @@
                                                         {% elif donation.feature.status == "IN REVIEW" %}
                                                             <span class="badge status-badge badge-info">{{ donation.feature.status }}</span>
                                                         {% else %}
-                                                            <span class="badge status-badge badge-secondary">{{ donation.feature.status }}</span>
+                                                            <span class="badge status-badge badge-success">{{ donation.feature.status }}</span>
                                                         {% endif %}
                                                         <div class="m-0 issue-name font-weight-bold text-primary">{{ donation.feature.name }}
                                                         </div>
