@@ -47,7 +47,7 @@
                 <!-- Image column -->
                         <div class="col-md-8">
                             {% if feature.image %}
-                                <img class="attachment shadow" src="/media/{{ feature.image }}">
+                                <img class="attachment shadow" src="{{ MEDIA_URL }}{{ feature.image }}">
                             {% endif %}
                         </div>
 

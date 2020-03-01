@@ -236,7 +236,7 @@
                                        href="{% url 'feature_detail' item.feature.id %}">
                                     {% if item.feature.image %}
                                         <div class="dropdown-list-image mr-3">
-                                            <img class="rounded-circle" src="/media/{{ item.feature.image }}" alt="">
+                                            <img class="rounded-circle" src="{{ MEDIA_URL }}{{ item.feature.image }}" alt="">
                                         </div>
                                     {% endif %}
                                     <div class="font-weight-bold">
