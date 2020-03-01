@@ -12,9 +12,9 @@
   + [Testing](#testing)
     - [Manual Testing](#manual-testing)
     - [Automated Testing](#automated-testing)
+    - [Known Issues](#known-issues)
   + [Deployment](#deployment)
   + [Credits](#credits)
-    - [Content](#content)
     - [Layout](#layout)
     - [Media](#media)
     - [Templates](#templates)
@@ -211,10 +211,13 @@ While manual testing was done on every feature possible, I also wrote some tests
 	- [models](https://github.com/Beibhinn/Final-Milestone/blob/master/bugs/test_models.py)
 	- [views](https://github.com/Beibhinn/Final-Milestone/blob/master/bugs/test_views.py)
 
- To run the tests simply perform `python manage.py test`. These tests focus on the behaviours/ possible actions of the users as they interact with the website, and the expected outcomes of these interactions. The tests verify that all pages and templates are rendered as expected, and also tests CRUD functionality for the database.   
+To run the tests simply perform `python manage.py test`. These tests focus on the behaviours/ possible actions of the users as they interact with the website, and the expected outcomes of these interactions. The tests verify that all pages and templates are rendered as expected, and also tests CRUD functionality for the database.   
 
 This project is responsive, adjusting and resizing dependant on screen size. This was tested using devices with various screen sizes, as well as the ‘responsive design mode’ tool in firefox and chrome.
   
+####  Known issues
+
+The profile page will fail when running locally as `DISTINCT ON` is not supported by sqlite. This is used to ensure that, despite repeated donations, features only show up once in the donations list.
   
 ### Deployment  
   
