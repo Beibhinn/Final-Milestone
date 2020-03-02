@@ -97,6 +97,13 @@ The wireframes I created for this project can be viewed [here.](https://github.c
       
 ### Testing  
   
+  If a staff login is needed for the live site, the following login can be used.
+    
+    username: Mike
+    
+    password: Password
+  
+  
 #### Manual Testing  
   
  - *Navbar* :  
